@@ -1,10 +1,58 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>My First Website</title>
+  <title>My Website</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #0f172a;
+      color: white;
+      text-align: center;
+      padding-top: 80px;
+    }
+
+    .box {
+      background: #1e293b;
+      padding: 20px;
+      width: 300px;
+      margin: auto;
+      border-radius: 10px;
+    }
+
+    input {
+      width: 90%;
+      padding: 10px;
+      margin-top: 10px;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 10px;
+      width: 95%;
+      background: #3b82f6;
+      border: none;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+  </style>
 </head>
 <body>
-  <h1>Welcome to My Website</h1>
-  <p>This website is hosted for free.</p>
+
+  <h1>My First Website</h1>
+
+  <div class="box">
+    <input id="url" placeholder="Enter something">
+    <button onclick="show()">Submit</button>
+    <p id="out"></p>
+  </div>
+
+  <script>
+    function show() {
+      let v = document.getElementById("url").value;
+      document.getElementById("out").innerText = "You entered: " + v;
+    }
+  </script>
+
 </body>
 </html>
