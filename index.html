@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>My Website</title>
+  <title>Fast File Downloader</title>
   <style>
     body {
       font-family: Arial;
@@ -14,7 +14,7 @@
     .box {
       background: #1e293b;
       padding: 20px;
-      width: 300px;
+      width: 350px;
       margin: auto;
       border-radius: 10px;
     }
@@ -29,30 +29,49 @@
       margin-top: 10px;
       padding: 10px;
       width: 95%;
-      background: #3b82f6;
+      background: #22c55e;
       border: none;
       color: white;
-      cursor: pointer;
       border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #16a34a;
+    }
+
+    a {
+      display: block;
+      margin-top: 15px;
+      color: #60a5fa;
     }
   </style>
 </head>
 <body>
 
-  <h1>My First Website</h1>
+<h1>⚡ Fast File Downloader</h1>
 
-  <div class="box">
-    <input id="url" placeholder="Enter something">
-    <button onclick="show()">Submit</button>
-    <p id="out"></p>
-  </div>
+<div class="box">
+  <input id="url" placeholder="Paste direct file URL (mp4/mp3/pdf)">
+  <button onclick="downloadFile()">Generate Download</button>
 
-  <script>
-    function show() {
-      let v = document.getElementById("url").value;
-      document.getElementById("out").innerText = "You entered: " + v;
-    }
-  </script>
+  <a id="downloadLink" download>Download will appear here</a>
+</div>
+
+<script>
+function downloadFile() {
+  let url = document.getElementById("url").value;
+
+  if (!url) {
+    alert("Please enter a URL");
+    return;
+  }
+
+  let link = document.getElementById("downloadLink");
+  link.href = url;
+  link.innerText = "Click here to download file";
+}
+</script>
 
 </body>
 </html>
