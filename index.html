@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Fast File Downloader</title>
+  <title>Smart Downloader</title>
   <style>
     body {
       font-family: Arial;
       background: #0f172a;
       color: white;
       text-align: center;
-      padding-top: 80px;
+      padding-top: 70px;
     }
 
     .box {
       background: #1e293b;
       padding: 20px;
-      width: 350px;
+      width: 400px;
       margin: auto;
       border-radius: 10px;
     }
@@ -36,40 +36,61 @@
       cursor: pointer;
     }
 
-    button:hover {
-      background: #16a34a;
-    }
-
     a {
       display: block;
       margin-top: 15px;
       color: #60a5fa;
     }
+
+    .error {
+      color: #f87171;
+      margin-top: 10px;
+    }
   </style>
 </head>
 <body>
 
-<h1>⚡ Fast File Downloader</h1>
+<h1>⚡ Smart Download Generator</h1>
 
 <div class="box">
-  <input id="url" placeholder="Paste direct file URL (mp4/mp3/pdf)">
-  <button onclick="downloadFile()">Generate Download</button>
 
-  <a id="downloadLink" download>Download will appear here</a>
+  <input id="url" placeholder="Paste direct file URL (mp4/mp3/pdf)">
+
+  <button onclick="generate()">Generate Download Link</button>
+
+  <p class="error" id="msg"></p>
+
+  <a id="download" download></a>
+
 </div>
 
 <script>
-function downloadFile() {
+function generate() {
   let url = document.getElementById("url").value;
+  let msg = document.getElementById("msg");
+  let link = document.getElementById("download");
+
+  msg.innerText = "";
+  link.innerText = "";
 
   if (!url) {
-    alert("Please enter a URL");
+    msg.innerText = "Please enter a URL";
     return;
   }
 
-  let link = document.getElementById("downloadLink");
+  // simple check
+  let allowed = url.includes(".mp4") || url.includes(".mp3") || url.includes(".pdf") || url.includes(".zip");
+
+  if (!allowed) {
+    msg.innerText = "❌ This URL is not a direct downloadable file";
+    return;
+  }
+
+  let fileName = url.split("/").pop();
+
   link.href = url;
-  link.innerText = "Click here to download file";
+  link.download = fileName;
+  link.innerText = "⬇ Click here to download file";
 }
 </script>
 
