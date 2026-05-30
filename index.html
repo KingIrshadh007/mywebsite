@@ -1,146 +1,379 @@
 <!DOCTYPE html>
-<html>
+
+<html lang="en">
 <head>
-  <title>Modern Tool Hub</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial;
-      background: #0f172a;
-      color: white;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    header {
-      background: #1e293b;
-      padding: 20px;
-      text-align: center;
-      font-size: 24px;
-      font-weight: bold;
-    }
+<title>Free Online Tools Hub</title>
 
-    .container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 15px;
-      padding: 20px;
-    }
+<meta name="description"
+content="Free online tools including word counter, password generator, age calculator and text converter.">
 
-    .card {
-      background: #1e293b;
-      padding: 20px;
-      border-radius: 10px;
-      text-align: center;
-      cursor: pointer;
-      transition: 0.2s;
-    }
+<meta name="keywords"
+content="free tools, online tools, calculator, word counter, password generator">
 
-    .card:hover {
-      background: #334155;
-      transform: scale(1.03);
-    }
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
 
-    .tool-box {
-      display: none;
-      padding: 20px;
-      text-align: center;
-    }
+body{
+background:#0f172a;
+color:white;
+}
 
-    input {
-      width: 80%;
-      padding: 10px;
-      margin-top: 10px;
-    }
+header{
+padding:30px;
+text-align:center;
+background:#1e293b;
+}
 
-    button {
-      margin-top: 10px;
-      padding: 10px;
-      width: 200px;
-      background: #22c55e;
-      border: none;
-      color: white;
-      border-radius: 5px;
-      cursor: pointer;
-    }
+header h1{
+font-size:32px;
+}
 
-    a {
-      display: block;
-      margin-top: 10px;
-      color: #60a5fa;
-    }
-  </style>
+header p{
+margin-top:10px;
+color:#cbd5e1;
+}
+
+.search-box{
+text-align:center;
+padding:20px;
+}
+
+.search-box input{
+width:90%;
+max-width:500px;
+padding:12px;
+border:none;
+border-radius:8px;
+}
+
+.container{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+padding:20px;
+}
+
+.card{
+background:#1e293b;
+padding:20px;
+border-radius:15px;
+cursor:pointer;
+transition:.3s;
+text-align:center;
+}
+
+.card:hover{
+background:#334155;
+transform:translateY(-5px);
+}
+
+.tool-box{
+display:none;
+padding:30px;
+text-align:center;
+}
+
+.tool-box input,
+.tool-box textarea{
+width:90%;
+max-width:600px;
+padding:10px;
+margin-top:10px;
+border:none;
+border-radius:8px;
+}
+
+button{
+padding:12px 20px;
+margin-top:10px;
+border:none;
+background:#22c55e;
+color:white;
+border-radius:8px;
+cursor:pointer;
+}
+
+button:hover{
+background:#16a34a;
+}
+
+.result{
+margin-top:20px;
+font-size:18px;
+}
+
+footer{
+padding:20px;
+text-align:center;
+color:#94a3b8;
+}
+</style>
+
 </head>
 <body>
 
-<header>⚡ Modern Tool Hub</header>
+<header>
+<h1>⚡ Free Online Tools Hub</h1>
+<p>Calculators, Generators & Utility Tools</p>
+</header>
 
-<!-- HOME MENU -->
+<div class="search-box">
+<input
+type="text"
+id="searchTool"
+placeholder="Search tools..."
+onkeyup="searchTools()">
+</div>
+
 <div id="home" class="container">
 
-  <div class="card" onclick="openTool('video')">🎬 Video Tools</div>
-  <div class="card" onclick="openTool('text')">📝 Text Tools</div>
-  <div class="card" onclick="openTool('download')">⬇ Downloader</div>
+<div class="card" onclick="openTool('counter')">
+<h3>🔢 Word Counter</h3>
+<p>Count words and characters</p>
+</div>
+
+<div class="card" onclick="openTool('text')">
+<h3>📝 Text Converter</h3>
+<p>Convert text to uppercase</p>
+</div>
+
+<div class="card" onclick="openTool('password')">
+<h3>🔐 Password Generator</h3>
+<p>Create secure passwords</p>
+</div>
+
+<div class="card" onclick="openTool('age')">
+<h3>🎂 Age Calculator</h3>
+<p>Calculate your age instantly</p>
+</div>
 
 </div>
 
-<!-- VIDEO TOOL -->
-<div id="video" class="tool-box">
-  <h2>Video Tool</h2>
-  <input id="videoUrl" placeholder="Paste video URL">
-  <button onclick="showVideo()">Play Video</button>
-  <br><br>
-  <video id="player" controls width="90%"></video>
-  <br>
-  <button onclick="back()">Back</button>
+<!-- WORD COUNTER -->
+
+<div id="counter" class="tool-box">
+<h2>Word Counter</h2>
+
+<textarea
+id="counterText"
+rows="8"
+placeholder="Paste text here">
+</textarea>
+
+<br>
+
+<button onclick="countWords()">
+Count
+</button>
+
+<div id="counterResult"
+class="result">
 </div>
 
-<!-- TEXT TOOL -->
+<button onclick="back()">
+Back
+</button>
+</div>
+
+<!-- TEXT CONVERTER -->
+
 <div id="text" class="tool-box">
-  <h2>Text Converter</h2>
-  <input id="txt" placeholder="Enter text">
-  <button onclick="convert()">Convert</button>
-  <p id="out"></p>
-  <br>
-  <button onclick="back()">Back</button>
+<h2>Text Converter</h2>
+
+<input
+id="txt"
+placeholder="Enter text">
+
+<br>
+
+<button onclick="convert()">
+Convert
+</button>
+
+<div id="out"
+class="result">
 </div>
 
-<!-- DOWNLOADER TOOL -->
-<div id="download" class="tool-box">
-  <h2>Downloader</h2>
-  <input id="dl" placeholder="Direct file URL">
-  <button onclick="generate()">Generate Link</button>
-  <p id="link"></p>
-  <button onclick="back()">Back</button>
+<button onclick="back()">
+Back
+</button>
 </div>
+
+<!-- PASSWORD -->
+
+<div id="password" class="tool-box">
+<h2>Password Generator</h2>
+
+<button onclick="makePassword()">
+Generate Password
+</button>
+
+<div id="passwordResult"
+class="result">
+</div>
+
+<button onclick="back()">
+Back
+</button>
+</div>
+
+<!-- AGE -->
+
+<div id="age" class="tool-box">
+<h2>Age Calculator</h2>
+
+<input
+type="date"
+id="dob">
+
+<br>
+
+<button onclick="calculateAge()">
+Calculate Age
+</button>
+
+<div id="ageResult"
+class="result">
+</div>
+
+<button onclick="back()">
+Back
+</button>
+</div>
+
+<footer>
+© 2026 Free Online Tools Hub
+</footer>
 
 <script>
-function openTool(id) {
-  document.getElementById("home").style.display = "none";
-  document.getElementById(id).style.display = "block";
+
+function openTool(id){
+document.getElementById("home").style.display="none";
+
+document.querySelectorAll(".tool-box")
+.forEach(t=>t.style.display="none");
+
+document.getElementById(id)
+.style.display="block";
 }
 
-function back() {
-  document.getElementById("home").style.display = "grid";
-  document.querySelectorAll(".tool-box").forEach(t => t.style.display = "none");
+function back(){
+document.getElementById("home")
+.style.display="grid";
+
+document.querySelectorAll(".tool-box")
+.forEach(t=>t.style.display="none");
 }
 
-// Video tool
-function showVideo() {
-  let url = document.getElementById("videoUrl").value;
-  document.getElementById("player").src = url;
+function searchTools(){
+
+let value=
+document.getElementById("searchTool")
+.value.toLowerCase();
+
+let cards=
+document.querySelectorAll(".card");
+
+cards.forEach(card=>{
+
+card.style.display=
+card.innerText.toLowerCase()
+.includes(value)
+? "block"
+: "none";
+
+});
 }
 
-// Text tool
-function convert() {
-  let t = document.getElementById("txt").value;
-  document.getElementById("out").innerText = t.toUpperCase();
+function convert(){
+
+let t=
+document.getElementById("txt").value;
+
+document.getElementById("out")
+.innerText=t.toUpperCase();
 }
 
-// Downloader tool
-function generate() {
-  let url = document.getElementById("dl").value;
-  document.getElementById("link").innerHTML =
-    `<a href="${url}" download>⬇ Download File</a>`;
+function countWords(){
+
+let text=
+document.getElementById("counterText")
+.value.trim();
+
+let words=
+text===""
+?0
+:text.split(/\s+/).length;
+
+let chars=text.length;
+
+document.getElementById("counterResult")
+.innerHTML=
+"Words: "+words+
+"<br>Characters: "+chars;
 }
+
+function makePassword(){
+
+const chars=
+"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*";
+
+let pass="";
+
+for(let i=0;i<16;i++){
+
+pass+=chars.charAt(
+Math.floor(
+Math.random()*chars.length
+)
+);
+}
+
+document.getElementById("passwordResult")
+.innerText=pass;
+}
+
+function calculateAge(){
+
+const dob=
+new Date(
+document.getElementById("dob").value
+);
+
+const today=
+new Date();
+
+let age=
+today.getFullYear()
+-
+dob.getFullYear();
+
+const m=
+today.getMonth()
+-
+dob.getMonth();
+
+if(
+m<0 ||
+(m===0 &&
+today.getDate()<dob.getDate())
+){
+age--;
+}
+
+document.getElementById("ageResult")
+.innerText=
+age+" Years";
+}
+
 </script>
 
 </body>
