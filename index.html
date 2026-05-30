@@ -1,377 +1,403 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Free Online Tools Hub</title>
-
-<meta name="description"
-content="Free online tools including word counter, password generator, age calculator and text converter.">
-
-<meta name="keywords"
-content="free tools, online tools, calculator, word counter, password generator">
+<title>Free Tools Hub - 17 Online Tools</title>
 
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
-}
-
 body{
+margin:0;
+font-family:Arial;
 background:#0f172a;
 color:white;
 }
 
 header{
-padding:30px;
-text-align:center;
-background:#1e293b;
-}
-
-header h1{
-font-size:32px;
-}
-
-header p{
-margin-top:10px;
-color:#cbd5e1;
-}
-
-.search-box{
 text-align:center;
 padding:20px;
-}
-
-.search-box input{
-width:90%;
-max-width:500px;
-padding:12px;
-border:none;
-border-radius:8px;
+background:#1e293b;
 }
 
 .container{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:20px;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:15px;
 padding:20px;
 }
 
 .card{
 background:#1e293b;
-padding:20px;
-border-radius:15px;
-cursor:pointer;
-transition:.3s;
+padding:15px;
 text-align:center;
+border-radius:10px;
+cursor:pointer;
+transition:.2s;
 }
 
 .card:hover{
 background:#334155;
-transform:translateY(-5px);
+transform:scale(1.05);
 }
 
-.tool-box{
+.tool{
 display:none;
-padding:30px;
+padding:20px;
 text-align:center;
 }
 
-.tool-box input,
-.tool-box textarea{
-width:90%;
-max-width:600px;
+input,textarea,select{
+width:80%;
 padding:10px;
-margin-top:10px;
+margin:5px;
+border-radius:5px;
 border:none;
-border-radius:8px;
 }
 
 button{
-padding:12px 20px;
-margin-top:10px;
-border:none;
+padding:10px 15px;
+margin:5px;
 background:#22c55e;
+border:none;
 color:white;
-border-radius:8px;
 cursor:pointer;
-}
-
-button:hover{
-background:#16a34a;
+border-radius:5px;
 }
 
 .result{
-margin-top:20px;
+margin-top:10px;
 font-size:18px;
-}
-
-footer{
-padding:20px;
-text-align:center;
-color:#94a3b8;
+color:#38bdf8;
 }
 </style>
 
+<!-- QR Library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
 </head>
+
 <body>
 
 <header>
-<h1>⚡ Free Online Tools Hub</h1>
-<p>Calculators, Generators & Utility Tools</p>
+<h2>⚡ Free Tools Hub</h2>
 </header>
-
-<div class="search-box">
-<input
-type="text"
-id="searchTool"
-placeholder="Search tools..."
-onkeyup="searchTools()">
-</div>
 
 <div id="home" class="container">
 
-<div class="card" onclick="openTool('counter')">
-<h3>🔢 Word Counter</h3>
-<p>Count words and characters</p>
-</div>
+<div class="card" onclick="openTool('age')">🎂 Age Calculator</div>
+<div class="card" onclick="openTool('bmi')">⚖️ BMI Calculator</div>
+<div class="card" onclick="openTool('emi')">🏦 EMI Calculator</div>
+<div class="card" onclick="openTool('gst')">💰 GST Calculator</div>
+<div class="card" onclick="openTool('percent')">📊 Percentage</div>
+<div class="card" onclick="openTool('discount')">🏷 Discount</div>
+<div class="card" onclick="openTool('word')">🔢 Word Counter</div>
+<div class="card" onclick="openTool('char')">🔤 Character Counter</div>
+<div class="card" onclick="openTool('pass')">🔐 Password</div>
+<div class="card" onclick="openTool('random')">🎲 Random Number</div>
+<div class="card" onclick="openTool('sip')">📈 SIP Calculator</div>
+<div class="card" onclick="openTool('loan')">💳 Loan Calculator</div>
+<div class="card" onclick="openTool('url')">🔗 URL Encoder</div>
+<div class="card" onclick="openTool('base64')">📦 Base64</div>
+<div class="card" onclick="openTool('json')">🧾 JSON Formatter</div>
+<div class="card" onclick="openTool('color')">🎨 Color Picker</div>
+<div class="card" onclick="openTool('qr')">📱 QR Generator</div>
 
-<div class="card" onclick="openTool('text')">
-<h3>📝 Text Converter</h3>
-<p>Convert text to uppercase</p>
-</div>
-
-<div class="card" onclick="openTool('password')">
-<h3>🔐 Password Generator</h3>
-<p>Create secure passwords</p>
-</div>
-
-<div class="card" onclick="openTool('age')">
-<h3>🎂 Age Calculator</h3>
-<p>Calculate your age instantly</p>
-</div>
-
-</div>
-
-<!-- WORD COUNTER -->
-
-<div id="counter" class="tool-box">
-<h2>Word Counter</h2>
-
-<textarea
-id="counterText"
-rows="8"
-placeholder="Paste text here">
-</textarea>
-
-<br>
-
-<button onclick="countWords()">
-Count
-</button>
-
-<div id="counterResult"
-class="result">
-</div>
-
-<button onclick="back()">
-Back
-</button>
-</div>
-
-<!-- TEXT CONVERTER -->
-
-<div id="text" class="tool-box">
-<h2>Text Converter</h2>
-
-<input
-id="txt"
-placeholder="Enter text">
-
-<br>
-
-<button onclick="convert()">
-Convert
-</button>
-
-<div id="out"
-class="result">
-</div>
-
-<button onclick="back()">
-Back
-</button>
-</div>
-
-<!-- PASSWORD -->
-
-<div id="password" class="tool-box">
-<h2>Password Generator</h2>
-
-<button onclick="makePassword()">
-Generate Password
-</button>
-
-<div id="passwordResult"
-class="result">
-</div>
-
-<button onclick="back()">
-Back
-</button>
 </div>
 
 <!-- AGE -->
-
-<div id="age" class="tool-box">
+<div id="age" class="tool">
 <h2>Age Calculator</h2>
-
-<input
-type="date"
-id="dob">
-
-<br>
-
-<button onclick="calculateAge()">
-Calculate Age
-</button>
-
-<div id="ageResult"
-class="result">
+<input type="date" id="dob">
+<button onclick="calcAge()">Calculate</button>
+<div class="result" id="ageRes"></div>
+<button onclick="back()">Back</button>
 </div>
 
-<button onclick="back()">
-Back
-</button>
+<!-- BMI -->
+<div id="bmi" class="tool">
+<h2>BMI Calculator</h2>
+<input id="w" placeholder="Weight kg">
+<input id="h" placeholder="Height cm">
+<button onclick="bmi()">Calculate</button>
+<div class="result" id="bmiRes"></div>
+<button onclick="back()">Back</button>
 </div>
 
-<footer>
-© 2026 Free Online Tools Hub
-</footer>
+<!-- EMI -->
+<div id="emi" class="tool">
+<h2>EMI Calculator</h2>
+<input id="loan" placeholder="Loan">
+<input id="rate" placeholder="Rate %">
+<input id="year" placeholder="Years">
+<button onclick="emiCalc()">Calculate</button>
+<div class="result" id="emiRes"></div>
+<button onclick="back()">Back</button>
+</div>
+
+<!-- GST -->
+<div id="gst" class="tool">
+<h2>GST Calculator</h2>
+<input id="amt" placeholder="Amount">
+<input id="gstRate" placeholder="GST %">
+<button onclick="gstCalc()">Calculate</button>
+<div class="result" id="gstRes"></div>
+<button onclick="back()">Back</button>
+</div>
+
+<!-- PERCENT -->
+<div id="percent" class="tool">
+<h2>Percentage Calculator</h2>
+<input id="p1" placeholder="Part">
+<input id="p2" placeholder="Whole">
+<button onclick="percent()">Calculate</button>
+<div class="result" id="percentRes"></div>
+<button onclick="back()">Back</button>
+</div>
+
+<!-- DISCOUNT -->
+<div id="discount" class="tool">
+<h2>Discount Calculator</h2>
+<input id="price" placeholder="Price">
+<input id="disc" placeholder="Discount %">
+<button onclick="discount()">Calculate</button>
+<div class="result" id="discRes"></div>
+<button onclick="back()">Back</button>
+</div>
+
+<!-- WORD -->
+<div id="word" class="tool">
+<h2>Word Counter</h2>
+<textarea id="wordTxt"></textarea>
+<button onclick="wordCount()">Count</button>
+<div class="result" id="wordRes"></div>
+<button onclick="back()">Back</button>
+</div>
+
+<!-- CHAR -->
+<div id="char" class="tool">
+<h2>Character Counter</h2>
+<textarea id="charTxt"></textarea>
+<button onclick="charCount()">Count</button>
+<div class="result" id="charRes"></div>
+<button onclick="back()">Back</button>
+</div>
+
+<!-- PASSWORD -->
+<div id="pass" class="tool">
+<h2>Password Generator</h2>
+<button onclick="passGen()">Generate</button>
+<div class="result" id="passRes"></div>
+<button onclick="back()">Back</button>
+</div>
+
+<!-- RANDOM -->
+<div id="random" class="tool">
+<h2>Random Number</h2>
+<button onclick="rand()">Generate</button>
+<div class="result" id="randRes"></div>
+<button onclick="back()">Back</button>
+</div>
+
+<!-- SIP -->
+<div id="sip" class="tool">
+<h2>SIP Calculator</h2>
+<input id="sipAmt" placeholder="Monthly">
+<input id="sipRate" placeholder="Rate %">
+<input id="sipYear" placeholder="Years">
+<button onclick="sipCalc()">Calculate</button>
+<div class="result" id="sipRes"></div>
+<button onclick="back()">Back</button>
+</div>
+
+<!-- LOAN -->
+<div id="loan" class="tool">
+<h2>Loan Calculator</h2>
+<input id="l1" placeholder="Loan">
+<input id="l2" placeholder="Rate">
+<input id="l3" placeholder="Years">
+<button onclick="loanCalc()">Calculate</button>
+<div class="result" id="loanRes"></div>
+<button onclick="back()">Back</button>
+</div>
+
+<!-- URL -->
+<div id="url" class="tool">
+<h2>URL Encoder</h2>
+<input id="urlTxt">
+<button onclick="encode()">Encode</button>
+<div class="result" id="urlRes"></div>
+<button onclick="back()">Back</button>
+</div>
+
+<!-- BASE64 -->
+<div id="base64" class="tool">
+<h2>Base64</h2>
+<input id="b64">
+<button onclick="b64enc()">Encode</button>
+<div class="result" id="b64Res"></div>
+<button onclick="back()">Back</button>
+</div>
+
+<!-- JSON -->
+<div id="json" class="tool">
+<h2>JSON Formatter</h2>
+<textarea id="jsonTxt"></textarea>
+<button onclick="formatJSON()">Format</button>
+<div class="result" id="jsonRes"></div>
+<button onclick="back()">Back</button>
+</div>
+
+<!-- COLOR -->
+<div id="color" class="tool">
+<h2>Color Picker</h2>
+<input type="color" id="colorPick">
+<div class="result" id="colorRes"></div>
+<button onclick="showColor()">Show</button>
+<button onclick="back()">Back</button>
+</div>
+
+<!-- QR -->
+<div id="qr" class="tool">
+<h2>QR Generator</h2>
+<input id="qrTxt">
+<button onclick="genQR()">Generate</button>
+<div id="qrBox"></div>
+<button onclick="back()">Back</button>
+</div>
 
 <script>
 
+// navigation
 function openTool(id){
 document.getElementById("home").style.display="none";
-
-document.querySelectorAll(".tool-box")
-.forEach(t=>t.style.display="none");
-
-document.getElementById(id)
-.style.display="block";
+document.getElementById(id).style.display="block";
 }
 
 function back(){
-document.getElementById("home")
-.style.display="grid";
-
-document.querySelectorAll(".tool-box")
-.forEach(t=>t.style.display="none");
+document.getElementById("home").style.display="grid";
+document.querySelectorAll(".tool").forEach(t=>t.style.display="none");
 }
 
-function searchTools(){
-
-let value=
-document.getElementById("searchTool")
-.value.toLowerCase();
-
-let cards=
-document.querySelectorAll(".card");
-
-cards.forEach(card=>{
-
-card.style.display=
-card.innerText.toLowerCase()
-.includes(value)
-? "block"
-: "none";
-
-});
+// AGE
+function calcAge(){
+let dob=new Date(document.getElementById("dob").value);
+let d=new Date();
+let age=d.getFullYear()-dob.getFullYear();
+document.getElementById("ageRes").innerText=age+" years";
 }
 
-function convert(){
-
-let t=
-document.getElementById("txt").value;
-
-document.getElementById("out")
-.innerText=t.toUpperCase();
+// BMI
+function bmi(){
+let w=document.getElementById("w").value;
+let h=document.getElementById("h").value/100;
+let res=w/(h*h);
+document.getElementById("bmiRes").innerText=res.toFixed(2);
 }
 
-function countWords(){
-
-let text=
-document.getElementById("counterText")
-.value.trim();
-
-let words=
-text===""
-?0
-:text.split(/\s+/).length;
-
-let chars=text.length;
-
-document.getElementById("counterResult")
-.innerHTML=
-"Words: "+words+
-"<br>Characters: "+chars;
+// EMI
+function emiCalc(){
+let p=+document.getElementById("loan").value;
+let r=+document.getElementById("rate").value/12/100;
+let n=+document.getElementById("year").value*12;
+let emi=(p*r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1);
+document.getElementById("emiRes").innerText=emi.toFixed(2);
 }
 
-function makePassword(){
-
-const chars=
-"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*";
-
-let pass="";
-
-for(let i=0;i<16;i++){
-
-pass+=chars.charAt(
-Math.floor(
-Math.random()*chars.length
-)
-);
+// GST
+function gstCalc(){
+let a=+document.getElementById("amt").value;
+let g=+document.getElementById("gstRate").value;
+document.getElementById("gstRes").innerText=a+(a*g/100);
 }
 
-document.getElementById("passwordResult")
-.innerText=pass;
+// Percent
+function percent(){
+let p=+document.getElementById("p1").value;
+let w=+document.getElementById("p2").value;
+document.getElementById("percentRes").innerText=(p/w*100).toFixed(2)+"%";
 }
 
-function calculateAge(){
-
-const dob=
-new Date(
-document.getElementById("dob").value
-);
-
-const today=
-new Date();
-
-let age=
-today.getFullYear()
--
-dob.getFullYear();
-
-const m=
-today.getMonth()
--
-dob.getMonth();
-
-if(
-m<0 ||
-(m===0 &&
-today.getDate()<dob.getDate())
-){
-age--;
+// Discount
+function discount(){
+let p=+document.getElementById("price").value;
+let d=+document.getElementById("disc").value;
+document.getElementById("discRes").innerText=p-(p*d/100);
 }
 
-document.getElementById("ageResult")
-.innerText=
-age+" Years";
+// Word
+function wordCount(){
+let t=document.getElementById("wordTxt").value.trim();
+let w=t?t.split(/\s+/).length:0;
+document.getElementById("wordRes").innerText=w+" words";
+}
+
+// Char
+function charCount(){
+let t=document.getElementById("charTxt").value;
+document.getElementById("charRes").innerText=t.length+" chars";
+}
+
+// Password
+function passGen(){
+let c="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$!";
+let p="";
+for(let i=0;i<12;i++){
+p+=c[Math.floor(Math.random()*c.length)];
+}
+document.getElementById("passRes").innerText=p;
+}
+
+// Random
+function rand(){
+document.getElementById("randRes").innerText=Math.floor(Math.random()*10000);
+}
+
+// SIP
+function sipCalc(){
+let p=+document.getElementById("sipAmt").value;
+let r=+document.getElementById("sipRate").value/12/100;
+let n=+document.getElementById("sipYear").value*12;
+let fv=p*((Math.pow(1+r,n)-1)/r)*(1+r);
+document.getElementById("sipRes").innerText=fv.toFixed(2);
+}
+
+// Loan same EMI logic
+function loanCalc(){
+emiCalc();
+document.getElementById("loanRes").innerText=document.getElementById("emiRes").innerText;
+}
+
+// URL encode
+function encode(){
+document.getElementById("urlRes").innerText=encodeURIComponent(document.getElementById("urlTxt").value);
+}
+
+// Base64
+function b64enc(){
+document.getElementById("b64Res").innerText=btoa(document.getElementById("b64").value);
+}
+
+// JSON
+function formatJSON(){
+try{
+let obj=JSON.parse(document.getElementById("jsonTxt").value);
+document.getElementById("jsonRes").innerText=JSON.stringify(obj,null,2);
+}catch(e){
+document.getElementById("jsonRes").innerText="Invalid JSON";
+}
+}
+
+// Color
+function showColor(){
+let c=document.getElementById("colorPick").value;
+document.getElementById("colorRes").innerText=c;
+}
+
+// QR
+function genQR(){
+document.getElementById("qrBox").innerHTML="";
+new QRCode(document.getElementById("qrBox"),document.getElementById("qrTxt").value);
 }
 
 </script>
