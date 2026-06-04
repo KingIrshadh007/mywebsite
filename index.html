@@ -3,19 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Free Tools Hub</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 
+/* ================= ROOT THEME ================= */
 :root{
 --bg:#0f172a;
 --card:#1e293b;
---card-hover:#334155;
---text:#ffffff;
+--text:#fff;
 --accent:#22c55e;
 --secondary:#38bdf8;
 --border:#334155;
@@ -24,1306 +22,295 @@
 .light{
 --bg:#f8fafc;
 --card:#ffffff;
---card-hover:#f1f5f9;
 --text:#0f172a;
 --accent:#16a34a;
 --secondary:#0284c7;
 --border:#dbeafe;
 }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins;}
 
 body{
 background:var(--bg);
 color:var(--text);
-transition:.3s;
 }
 
 /* HEADER */
-
 header{
-height:70px;
 display:flex;
-align-items:center;
 justify-content:space-between;
-padding:0 25px;
+align-items:center;
+padding:15px 25px;
 background:var(--card);
-border-bottom:1px solid var(--border);
 position:sticky;
 top:0;
-z-index:999;
 }
 
-.logo{
-font-size:24px;
-font-weight:700;
-color:var(--secondary);
-}
+.logo{font-size:22px;font-weight:700;color:var(--secondary);}
 
-.nav-links{
-display:flex;
-gap:20px;
-}
-
-.nav-links a{
-text-decoration:none;
-color:var(--text);
-font-weight:500;
-}
-
-.nav-links a:hover{
-color:var(--secondary);
-}
-
-.header-right{
-display:flex;
-align-items:center;
-gap:10px;
-}
-
-.theme-btn{
-background:var(--accent);
-border:none;
-padding:10px 14px;
-border-radius:8px;
+button{
 cursor:pointer;
-color:white;
 }
 
-/* MAIN */
-
-.main-layout{
+/* LAYOUT */
+.main{
 display:flex;
-min-height:calc(100vh - 70px);
+min-height:100vh;
 }
 
 /* SIDEBAR */
-
 .sidebar{
-width:280px;
+width:260px;
 background:var(--card);
+padding:15px;
 border-right:1px solid var(--border);
-padding:20px;
-overflow-y:auto;
 }
 
-.sidebar h3{
-margin-top:15px;
-margin-bottom:10px;
-color:var(--secondary);
-font-size:16px;
-}
-
-.tool-link{
-display:block;
+.tool-btn{
 width:100%;
 padding:10px;
-margin-bottom:6px;
-background:transparent;
+margin:5px 0;
 border:none;
+background:transparent;
 color:var(--text);
 text-align:left;
-cursor:pointer;
 border-radius:8px;
 }
 
-.tool-link:hover{
-background:var(--card-hover);
+.tool-btn:hover{
+background:var(--bg);
 }
 
 /* CONTENT */
-
 .content{
 flex:1;
-padding:30px;
+padding:20px;
 }
 
-.welcome-card{
+/* WELCOME */
+#welcome{
 background:var(--card);
-padding:30px;
-border-radius:15px;
+padding:20px;
+border-radius:10px;
 }
 
-.welcome-card h1{
-margin-bottom:15px;
-}
-
-.welcome-card p{
-line-height:1.7;
-}
-
-/* TOOL PANEL */
-
+/* TOOL BOX */
 .tool-panel{
 display:none;
 background:var(--card);
-padding:25px;
-border-radius:15px;
+padding:20px;
+border-radius:10px;
 }
 
 .tool-panel.active{
 display:block;
 }
 
-.tool-panel h2{
-margin-bottom:10px;
-}
-
-.tool-panel .description{
-background:rgba(56,189,248,.1);
-padding:15px;
-border-left:4px solid var(--secondary);
-border-radius:10px;
-margin-bottom:20px;
-}
-
-input,
-textarea,
-select{
-width:100%;
-padding:12px;
-margin-top:8px;
-margin-bottom:15px;
-border-radius:10px;
-border:1px solid var(--border);
-background:var(--bg);
-color:var(--text);
-}
-
-button.action-btn{
-background:var(--accent);
-color:white;
-border:none;
-padding:12px 20px;
-border-radius:10px;
-cursor:pointer;
-}
-
-button.action-btn:hover{
-opacity:.9;
-}
-
-.result-box{
-margin-top:20px;
-padding:15px;
-border-radius:10px;
-background:rgba(34,197,94,.1);
-border-left:4px solid var(--accent);
-}
-
-/* FOOTER */
-
-footer{
-background:var(--card);
-padding:25px;
-border-top:1px solid var(--border);
-}
-
-.footer-container{
-display:flex;
-justify-content:space-between;
-flex-wrap:wrap;
-gap:20px;
-}
-
-.footer-links a{
-display:block;
-text-decoration:none;
-color:var(--text);
-margin-bottom:8px;
-}
-
-.footer-links a:hover{
+.result{
+margin-top:10px;
 color:var(--secondary);
 }
 
-.copyright{
-margin-top:20px;
-text-align:center;
-font-size:14px;
-opacity:.8;
-}
-
-/* MODAL */
-
-.modal{
-display:none;
-position:fixed;
-left:0;
-top:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,.7);
-z-index:9999;
-}
-
-.modal-content{
+/* FOOTER */
+footer{
 background:var(--card);
-width:90%;
-max-width:800px;
-margin:50px auto;
-padding:25px;
-border-radius:15px;
-max-height:80vh;
-overflow:auto;
-}
-
-.close-btn{
-float:right;
-background:red;
-border:none;
-color:white;
-padding:8px 12px;
-border-radius:5px;
-cursor:pointer;
-}
-
-/* MOBILE */
-
-@media(max-width:900px){
-
-.main-layout{
-flex-direction:column;
-}
-
-.sidebar{
-width:100%;
-border-right:none;
-border-bottom:1px solid var(--border);
-}
-
-.nav-links{
-display:none;
-}
-
+text-align:center;
+padding:20px;
+margin-top:20px;
 }
 
 </style>
+
 </head>
 
 <body>
 
-<!-- HEADER -->
-
 <header>
-
-<div class="logo">
-⚡ Free Tools Hub
-</div>
-
-<nav class="nav-links">
-<a href="#">Home</a>
-<a href="#">Calculators</a>
-<a href="#">Converters</a>
-<a href="#">Generators</a>
-<a href="#">About</a>
-</nav>
-
-<div class="header-right">
-<button class="theme-btn" onclick="toggleTheme()">
-🌙 Theme
-</button>
-</div>
-
+<div class="logo">⚡ Free Tools Hub</div>
+<button onclick="toggleTheme()">🌙 Theme</button>
 </header>
 
-<!-- MAIN LAYOUT -->
-
-<div class="main-layout">
-
-<!-- SIDEBAR -->
+<div class="main">
 
 <aside class="sidebar">
 
-<h3>📊 Calculators</h3>
+<h3>Calculators</h3>
 
-<button class="tool-link" onclick="showTool('ageTool')">
-Age Calculator
-</button>
+<button class="tool-btn" onclick="showTool('ageTool')">Age</button>
+<button class="tool-btn" onclick="showTool('bmiTool')">BMI</button>
+<button class="tool-btn" onclick="showTool('emiTool')">EMI</button>
+<button class="tool-btn" onclick="showTool('gstTool')">GST</button>
 
-<button class="tool-link" onclick="showTool('bmiTool')">
-BMI Calculator
-</button>
+<h3>Tools</h3>
 
-<button class="tool-link" onclick="showTool('emiTool')">
-EMI Calculator
-</button>
-
-<button class="tool-link" onclick="showTool('gstTool')">
-GST Calculator
-</button>
-
-<button class="tool-link" onclick="showTool('sipTool')">
-SIP Calculator
-</button>
-
-<button class="tool-link" onclick="showTool('loanTool')">
-Loan Calculator
-</button>
-
-<h3>📝 Text Tools</h3>
-
-<button class="tool-link" onclick="showTool('wordTool')">
-Word Counter
-</button>
-
-<button class="tool-link" onclick="showTool('charTool')">
-Character Counter
-</button>
-
-<button class="tool-link" onclick="showTool('jsonTool')">
-JSON Formatter
-</button>
-
-<h3>🔗 Encoding Tools</h3>
-
-<button class="tool-link" onclick="showTool('urlTool')">
-URL Encoder
-</button>
-
-<button class="tool-link" onclick="showTool('base64Tool')">
-Base64 Encoder
-</button>
-
-<h3>🎨 Utility Tools</h3>
-
-<button class="tool-link" onclick="showTool('colorTool')">
-Color Picker
-</button>
-
-<button class="tool-link" onclick="showTool('randomTool')">
-Random Number
-</button>
-
-<button class="tool-link" onclick="showTool('passwordTool')">
-Password Generator
-</button>
-
-<button class="tool-link" onclick="showTool('qrTool')">
-QR Generator
-</button>
+<button class="tool-btn" onclick="showTool('wordTool')">Word</button>
+<button class="tool-btn" onclick="showTool('charTool')">Char</button>
+<button class="tool-btn" onclick="showTool('jsonTool')">JSON</button>
+<button class="tool-btn" onclick="showTool('qrTool')">QR</button>
 
 </aside>
 
-<!-- CONTENT -->
-
 <main class="content">
 
-<div id="welcome" class="welcome-card">
-
+<div id="welcome">
 <h1>Welcome to Free Tools Hub</h1>
-
-<p>
-Free Tools Hub provides calculators, converters,
-text utilities, generators and productivity tools
-for daily use.
-</p>
-
-<br>
-
-<p>
-Select any tool from the left sidebar to begin.
-Each tool contains detailed instructions,
-validation, examples and result explanations.
-</p>
-
+<p>Select a tool from sidebar to start.</p>
+</div>
+<!-- AGE -->
+<div id="ageTool" class="tool-panel">
+<h2>Age Calculator</h2>
+<input type="date" id="ageDob">
+<button onclick="calculateAge()">Calculate</button>
+<div class="result" id="ageResult"></div>
 </div>
 
-<!-- TOOLS WILL BE INSERTED IN PART 2 -->
+<!-- BMI -->
+<div id="bmiTool" class="tool-panel">
+<h2>BMI Calculator</h2>
+<input id="bmiWeight" placeholder="Weight">
+<input id="bmiHeight" placeholder="Height cm">
+<button onclick="calculateBMI()">Calculate</button>
+<div class="result" id="bmiResult"></div>
+</div>
+
+<!-- EMI -->
+<div id="emiTool" class="tool-panel">
+<h2>EMI Calculator</h2>
+<input id="emiPrincipal" placeholder="Loan">
+<input id="emiRate" placeholder="Rate %">
+<input id="emiYears" placeholder="Years">
+<button onclick="calculateEMI()">Calculate</button>
+<div class="result" id="emiResult"></div>
+</div>
+
+<!-- GST -->
+<div id="gstTool" class="tool-panel">
+<h2>GST Calculator</h2>
+<input id="gstAmount" placeholder="Amount">
+<input id="gstRate" placeholder="GST %">
+<button onclick="calculateGST()">Calculate</button>
+<div class="result" id="gstResult"></div>
+</div>
+
+<!-- WORD -->
+<div id="wordTool" class="tool-panel">
+<h2>Word Counter</h2>
+<textarea id="wordText"></textarea>
+<button onclick="wordCounter()">Count</button>
+<div class="result" id="wordResult"></div>
+</div>
+
+<!-- CHAR -->
+<div id="charTool" class="tool-panel">
+<h2>Character Counter</h2>
+<textarea id="charText"></textarea>
+<button onclick="characterCounter()">Count</button>
+<div class="result" id="charResult"></div>
+</div>
+
+<!-- JSON -->
+<div id="jsonTool" class="tool-panel">
+<h2>JSON Formatter</h2>
+<textarea id="jsonInput"></textarea>
+<button onclick="formatJSON()">Format</button>
+<pre id="jsonResult"></pre>
+</div>
+
+<!-- QR -->
+<div id="qrTool" class="tool-panel">
+<h2>QR Generator</h2>
+<input id="qrText" placeholder="Enter text">
+<button onclick="generateQR()">Generate</button>
+<div id="qrContainer"></div>
+</div>
 
-<!-- QRCode Library -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-
-<script>
-
-/* ==========================
-   THEME
-========================== */
-
-function toggleTheme(){
-    document.body.classList.toggle("light");
-
-    const isLight = document.body.classList.contains("light");
-    localStorage.setItem("theme", isLight ? "light" : "dark");
-}
-
-window.addEventListener("load", () => {
-    const savedTheme = localStorage.getItem("theme");
-
-    if(savedTheme === "light"){
-        document.body.classList.add("light");
-    }
-});
-
-/* ==========================
-   PRIVACY MODAL
-========================== */
-
-function openPrivacy(){
-    document.getElementById("privacyModal").style.display="block";
-}
-
-function closePrivacy(){
-    document.getElementById("privacyModal").style.display="none";
-}
-
-/* ==========================
-   TOOL SWITCHER
-========================== */
-
-function showTool(id){
-
-    document.getElementById("welcome").style.display="none";
-
-    document.querySelectorAll(".tool-panel")
-    .forEach(tool=>{
-        tool.classList.remove("active");
-    });
-
-    const selected=document.getElementById(id);
-
-    if(selected){
-        selected.classList.add("active");
-    }
-}
-
-/* ==========================
-   AGE CALCULATOR
-========================== */
-
-function calculateAge(){
-
-    const dobValue=document.getElementById("ageDob").value;
-
-    if(!dobValue){
-        document.getElementById("ageResult").innerHTML=
-        "Please select your birth date.";
-        return;
-    }
-
-    const dob=new Date(dobValue);
-    const today=new Date();
-
-    let years=today.getFullYear()-dob.getFullYear();
-    let months=today.getMonth()-dob.getMonth();
-    let days=today.getDate()-dob.getDate();
-
-    if(days<0){
-        months--;
-        days+=30;
-    }
-
-    if(months<0){
-        years--;
-        months+=12;
-    }
-
-    document.getElementById("ageResult").innerHTML=
-    `Age: <b>${years}</b> Years,
-     <b>${months}</b> Months,
-     <b>${days}</b> Days`;
-}
-
-/* ==========================
-   BMI
-========================== */
-
-function calculateBMI(){
-
-    const weight=parseFloat(
-        document.getElementById("bmiWeight").value
-    );
-
-    const height=parseFloat(
-        document.getElementById("bmiHeight").value
-    )/100;
-
-    if(!weight || !height){
-        document.getElementById("bmiResult").innerHTML=
-        "Enter valid weight and height.";
-        return;
-    }
-
-    const bmi=weight/(height*height);
-
-    let category="";
-
-    if(bmi<18.5){
-        category="Underweight";
-    }
-    else if(bmi<25){
-        category="Normal";
-    }
-    else if(bmi<30){
-        category="Overweight";
-    }
-    else{
-        category="Obese";
-    }
-
-    document.getElementById("bmiResult").innerHTML=
-    `BMI: <b>${bmi.toFixed(2)}</b><br>${category}`;
-}
-
-/* ==========================
-   EMI
-========================== */
-
-function calculateEMI(){
-
-    const p=parseFloat(
-        document.getElementById("emiPrincipal").value
-    );
-
-    const annualRate=parseFloat(
-        document.getElementById("emiRate").value
-    );
-
-    const years=parseFloat(
-        document.getElementById("emiYears").value
-    );
-
-    if(!p || !annualRate || !years){
-        document.getElementById("emiResult").innerHTML=
-        "Please fill all fields.";
-        return;
-    }
-
-    const r=annualRate/12/100;
-    const n=years*12;
-
-    const emi=
-    (p*r*Math.pow(1+r,n))/
-    (Math.pow(1+r,n)-1);
-
-    document.getElementById("emiResult").innerHTML=
-    `Monthly EMI: ₹${emi.toFixed(2)}`;
-}
-
-/* ==========================
-   GST
-========================== */
-
-function calculateGST(){
-
-    const amount=parseFloat(
-        document.getElementById("gstAmount").value
-    );
-
-    const rate=parseFloat(
-        document.getElementById("gstRate").value
-    );
-
-    if(!amount || !rate){
-        document.getElementById("gstResult").innerHTML=
-        "Enter valid values.";
-        return;
-    }
-
-    const gst=(amount*rate)/100;
-    const total=amount+gst;
-
-    document.getElementById("gstResult").innerHTML=
-    `
-    GST Amount: ₹${gst.toFixed(2)}<br>
-    Total Amount: ₹${total.toFixed(2)}
-    `;
-}
-
-/* ==========================
-   SIP
-========================== */
-
-function calculateSIP(){
-
-    const monthly=parseFloat(
-        document.getElementById("sipAmount").value
-    );
-
-    const rate=parseFloat(
-        document.getElementById("sipRate").value
-    );
-
-    const years=parseFloat(
-        document.getElementById("sipYears").value
-    );
-
-    if(!monthly || !rate || !years){
-        document.getElementById("sipResult").innerHTML=
-        "Please fill all fields.";
-        return;
-    }
-
-    const r=rate/12/100;
-    const n=years*12;
-
-    const future=
-    monthly*
-    ((Math.pow(1+r,n)-1)/r)*
-    (1+r);
-
-    document.getElementById("sipResult").innerHTML=
-    `Estimated Value: ₹${future.toFixed(2)}`;
-}
-
-/* ==========================
-   LOAN
-========================== */
-
-function calculateLoan(){
-
-    const p=parseFloat(
-        document.getElementById("loanPrincipal").value
-    );
-
-    const rate=parseFloat(
-        document.getElementById("loanRate").value
-    );
-
-    const years=parseFloat(
-        document.getElementById("loanYears").value
-    );
-
-    if(!p || !rate || !years){
-        document.getElementById("loanResult").innerHTML=
-        "Please fill all fields.";
-        return;
-    }
-
-    const r=rate/12/100;
-    const n=years*12;
-
-    const emi=
-    (p*r*Math.pow(1+r,n))/
-    (Math.pow(1+r,n)-1);
-
-    document.getElementById("loanResult").innerHTML=
-    `Loan EMI: ₹${emi.toFixed(2)}`;
-}
-
-/* ==========================
-   WORD COUNTER
-========================== */
-
-function wordCounter(){
-
-    const txt=document
-    .getElementById("wordText")
-    .value.trim();
-
-    const count=
-    txt ? txt.split(/\s+/).length : 0;
-
-    document.getElementById("wordResult")
-    .innerHTML=`Words: ${count}`;
-}
-
-/* ==========================
-   CHARACTER COUNTER
-========================== */
-
-function characterCounter(){
-
-    const txt=document
-    .getElementById("charText")
-    .value;
-
-    document.getElementById("charResult")
-    .innerHTML=`Characters: ${txt.length}`;
-}
-
-/* ==========================
-   JSON FORMATTER
-========================== */
-
-function formatJSON(){
-
-    try{
-
-        const input=document
-        .getElementById("jsonInput")
-        .value;
-
-        const obj=JSON.parse(input);
-
-        document.getElementById("jsonResult")
-        .textContent=
-        JSON.stringify(obj,null,4);
-
-    }catch(err){
-
-        document.getElementById("jsonResult")
-        .textContent=
-        "Invalid JSON";
-    }
-}
-
-/* ==========================
-   URL ENCODER
-========================== */
-
-function encodeURL(){
-
-    const txt=document
-    .getElementById("urlInput")
-    .value;
-
-    document.getElementById("urlResult")
-    .innerHTML=
-    encodeURIComponent(txt);
-}
-
-/* ==========================
-   BASE64
-========================== */
-
-function base64Encode(){
-
-    const txt=document
-    .getElementById("base64Input")
-    .value;
-
-    document.getElementById("base64Result")
-    .innerHTML=
-    btoa(txt);
-}
-
-/* ==========================
-   COLOR PICKER
-========================== */
-
-function showColor(){
-
-    const color=document
-    .getElementById("colorPicker")
-    .value;
-
-    document.getElementById("colorResult")
-    .innerHTML=
-    `
-    HEX: ${color}
-    <br><br>
-    <div style="
-    width:100px;
-    height:50px;
-    background:${color};
-    border-radius:8px;"></div>
-    `;
-}
-
-/* ==========================
-   RANDOM NUMBER
-========================== */
-
-function generateRandom(){
-
-    const min=parseInt(
-        document.getElementById("randMin").value
-    );
-
-    const max=parseInt(
-        document.getElementById("randMax").value
-    );
-
-    if(isNaN(min)||isNaN(max)||min>max){
-        document.getElementById("randomResult")
-        .innerHTML="Invalid range.";
-        return;
-    }
-
-    const num=
-    Math.floor(Math.random()*
-    (max-min+1))+min;
-
-    document.getElementById("randomResult")
-    .innerHTML=num;
-}
-
-/* ==========================
-   PASSWORD
-========================== */
-
-function generatePassword(){
-
-    const length=parseInt(
-        document.getElementById("passLength").value
-    );
-
-    const chars=
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZ"+
-    "abcdefghijklmnopqrstuvwxyz"+
-    "0123456789"+
-    "@#$%&*!?";
-
-    let password="";
-
-    for(let i=0;i<length;i++){
-
-        password+=
-        chars[
-        Math.floor(
-        Math.random()*chars.length
-        )];
-    }
-
-    document.getElementById("passwordResult")
-    .innerHTML=password;
-}
-
-/* ==========================
-   QR GENERATOR
-========================== */
-
-function generateQR(){
-
-    const text=document
-    .getElementById("qrText")
-    .value;
-
-    const box=
-    document.getElementById("qrContainer");
-
-    box.innerHTML="";
-
-    if(!text){
-        box.innerHTML=
-        "Enter text or URL.";
-        return;
-    }
-
-    new QRCode(box,{
-        text:text,
-        width:200,
-        height:200
-    });
-}
-
-</script>
 </main>
 
-</div>
-
-<!-- FOOTER -->
-
 <footer>
-
-<div class="footer-container">
-
-<div>
-<h3>Free Tools Hub</h3>
-<p>
-Professional collection of calculators,
-converters and online utilities.
-</p>
-</div>
-
-<div class="footer-links">
-<a href="#" onclick="openPrivacy()">
-Privacy Policy
-</a>
-
-<a href="#">
-Terms & Conditions
-</a>
-
-<a href="#">
-Contact Us
-</a>
-</div>
-
-</div>
-
-<div class="copyright">
-© 2026 Free Tools Hub. All Rights Reserved.
-</div>
-
+© 2026 Free Tools Hub
 </footer>
-
-<!-- PRIVACY POLICY -->
-
-<div class="modal" id="privacyModal">
-
-<div class="modal-content">
-
-<button class="close-btn"
-onclick="closePrivacy()">
-Close
-</button>
-
-<h2>Privacy Policy</h2>
-
-<br>
-
-<p>
-We do not store your calculations,
-text inputs, generated passwords,
-QR codes or personal information.
-</p>
-
-<br>
-
-<p>
-All processing is performed directly
-inside your browser whenever possible.
-</p>
-
-<br>
-
-<p>
-By using this website you agree
-to our terms and privacy practices.
-</p>
-
-</div>
-
-</div>
-
-<script>
-
-<!-- QRCode Library -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
 <script>
 
-/* =========================
-   THEME TOGGLE (SAVE MODE)
-========================= */
-
+/* THEME */
 function toggleTheme(){
-    document.body.classList.toggle("light");
-    localStorage.setItem(
-        "theme",
-        document.body.classList.contains("light")
-        ? "light" : "dark"
-    );
+document.body.classList.toggle("light");
 }
 
-window.onload = () => {
-    if(localStorage.getItem("theme") === "light"){
-        document.body.classList.add("light");
-    }
-};
-
-/* =========================
-   TOOL NAVIGATION
-========================= */
-
+/* TOOL SWITCH */
 function showTool(id){
 
-    document.getElementById("welcome").style.display="none";
+document.getElementById("welcome").style.display="none";
 
-    document.querySelectorAll(".tool-panel").forEach(tool=>{
-        tool.classList.remove("active");
-    });
+document.querySelectorAll(".tool-panel").forEach(t=>{
+t.classList.remove("active");
+});
 
-    document.getElementById(id).classList.add("active");
+document.getElementById(id).classList.add("active");
 }
 
-/* =========================
-   PRIVACY MODAL
-========================= */
-
-function openPrivacy(){
-    document.getElementById("privacyModal").style.display="block";
-}
-
-function closePrivacy(){
-    document.getElementById("privacyModal").style.display="none";
-}
-
-/* =========================
-   AGE CALCULATOR (ACCURATE)
-========================= */
-
+/* AGE */
 function calculateAge(){
-
-    const dob = document.getElementById("ageDob").value;
-
-    if(!dob){
-        document.getElementById("ageResult").innerHTML="Please select DOB";
-        return;
-    }
-
-    const birth = new Date(dob);
-    const today = new Date();
-
-    let years = today.getFullYear() - birth.getFullYear();
-    let months = today.getMonth() - birth.getMonth();
-    let days = today.getDate() - birth.getDate();
-
-    if(days < 0){
-        months--;
-        days += 30;
-    }
-
-    if(months < 0){
-        years--;
-        months += 12;
-    }
-
-    document.getElementById("ageResult").innerHTML =
-    `Age: <b>${years}</b> Years <b>${months}</b> Months <b>${days}</b> Days`;
+let dob=new Date(document.getElementById("ageDob").value);
+let today=new Date();
+let age=today.getFullYear()-dob.getFullYear();
+document.getElementById("ageResult").innerText=age+" years";
 }
 
-/* =========================
-   BMI CALCULATOR
-========================= */
-
+/* BMI */
 function calculateBMI(){
-
-    let w = parseFloat(document.getElementById("bmiWeight").value);
-    let h = parseFloat(document.getElementById("bmiHeight").value)/100;
-
-    if(!w || !h){
-        document.getElementById("bmiResult").innerHTML="Enter valid data";
-        return;
-    }
-
-    let bmi = w/(h*h);
-    let status = "";
-
-    if(bmi < 18.5) status = "Underweight";
-    else if(bmi < 25) status = "Normal";
-    else if(bmi < 30) status = "Overweight";
-    else status = "Obese";
-
-    document.getElementById("bmiResult").innerHTML =
-    `BMI: <b>${bmi.toFixed(2)}</b> (${status})`;
+let w=parseFloat(document.getElementById("bmiWeight").value);
+let h=parseFloat(document.getElementById("bmiHeight").value)/100;
+let bmi=w/(h*h);
+document.getElementById("bmiResult").innerText=bmi.toFixed(2);
 }
 
-/* =========================
-   EMI CALCULATOR
-========================= */
-
+/* EMI */
 function calculateEMI(){
-
-    let p = +document.getElementById("emiPrincipal").value;
-    let r = +document.getElementById("emiRate").value / 12 / 100;
-    let n = +document.getElementById("emiYears").value * 12;
-
-    if(!p || !r || !n){
-        document.getElementById("emiResult").innerHTML="Fill all fields";
-        return;
-    }
-
-    let emi = (p*r*Math.pow(1+r,n)) / (Math.pow(1+r,n)-1);
-
-    document.getElementById("emiResult").innerHTML =
-    `Monthly EMI: ₹${emi.toFixed(2)}`;
+let p=+document.getElementById("emiPrincipal").value;
+let r=+document.getElementById("emiRate").value/12/100;
+let n=+document.getElementById("emiYears").value*12;
+let emi=(p*r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1);
+document.getElementById("emiResult").innerText=emi.toFixed(2);
 }
 
-/* =========================
-   GST CALCULATOR
-========================= */
-
+/* GST */
 function calculateGST(){
-
-    let amt = +document.getElementById("gstAmount").value;
-    let gst = +document.getElementById("gstRate").value;
-
-    if(!amt || !gst){
-        document.getElementById("gstResult").innerHTML="Enter values";
-        return;
-    }
-
-    let gstAmt = amt * gst / 100;
-    let total = amt + gstAmt;
-
-    document.getElementById("gstResult").innerHTML =
-    `GST: ₹${gstAmt.toFixed(2)} <br> Total: ₹${total.toFixed(2)}`;
+let a=+document.getElementById("gstAmount").value;
+let g=+document.getElementById("gstRate").value;
+document.getElementById("gstResult").innerText=a+(a*g/100);
 }
 
-/* =========================
-   SIP CALCULATOR
-========================= */
-
-function calculateSIP(){
-
-    let p = +document.getElementById("sipAmount").value;
-    let r = +document.getElementById("sipRate").value / 12 / 100;
-    let n = +document.getElementById("sipYears").value * 12;
-
-    if(!p || !r || !n){
-        document.getElementById("sipResult").innerHTML="Fill all fields";
-        return;
-    }
-
-    let fv = p * ((Math.pow(1+r,n)-1)/r) * (1+r);
-
-    document.getElementById("sipResult").innerHTML =
-    `Future Value: ₹${fv.toFixed(2)}`;
-}
-
-/* =========================
-   LOAN CALCULATOR
-========================= */
-
-function calculateLoan(){
-
-    let p = +document.getElementById("loanPrincipal").value;
-    let r = +document.getElementById("loanRate").value / 12 / 100;
-    let n = +document.getElementById("loanYears").value * 12;
-
-    if(!p || !r || !n){
-        document.getElementById("loanResult").innerHTML="Fill all fields";
-        return;
-    }
-
-    let emi = (p*r*Math.pow(1+r,n)) / (Math.pow(1+r,n)-1);
-
-    document.getElementById("loanResult").innerHTML =
-    `Loan EMI: ₹${emi.toFixed(2)}`;
-}
-
-/* =========================
-   WORD COUNTER
-========================= */
-
+/* WORD */
 function wordCounter(){
-
-    let text = document.getElementById("wordText").value.trim();
-
-    let count = text ? text.split(/\s+/).length : 0;
-
-    document.getElementById("wordResult").innerHTML =
-    `Words: ${count}`;
+let t=document.getElementById("wordText").value.trim();
+document.getElementById("wordResult").innerText=t?t.split(/\s+/).length:0;
 }
 
-/* =========================
-   CHARACTER COUNTER
-========================= */
-
+/* CHAR */
 function characterCounter(){
-
-    let text = document.getElementById("charText").value;
-
-    document.getElementById("charResult").innerHTML =
-    `Characters: ${text.length}`;
+let t=document.getElementById("charText").value;
+document.getElementById("charResult").innerText=t.length;
 }
 
-/* =========================
-   JSON FORMATTER
-========================= */
-
+/* JSON */
 function formatJSON(){
-
-    try{
-        let obj = JSON.parse(document.getElementById("jsonInput").value);
-        document.getElementById("jsonResult").textContent =
-        JSON.stringify(obj, null, 4);
-    }
-    catch(e){
-        document.getElementById("jsonResult").textContent =
-        "Invalid JSON";
-    }
+try{
+let obj=JSON.parse(document.getElementById("jsonInput").value);
+document.getElementById("jsonResult").innerText=
+JSON.stringify(obj,null,2);
+}catch{
+document.getElementById("jsonResult").innerText="Invalid JSON";
+}
 }
 
-/* =========================
-   URL ENCODER
-========================= */
-
-function encodeURL(){
-
-    let text = document.getElementById("urlInput").value;
-
-    document.getElementById("urlResult").innerHTML =
-    encodeURIComponent(text);
-}
-
-/* =========================
-   BASE64 ENCODER
-========================= */
-
-function base64Encode(){
-
-    let text = document.getElementById("base64Input").value;
-
-    document.getElementById("base64Result").innerHTML =
-    btoa(text);
-}
-
-/* =========================
-   COLOR PICKER
-========================= */
-
-function showColor(){
-
-    let color = document.getElementById("colorPicker").value;
-
-    document.getElementById("colorResult").innerHTML =
-    `HEX: ${color} <br>
-    <div style="width:80px;height:40px;background:${color};border-radius:8px;"></div>`;
-}
-
-/* =========================
-   RANDOM NUMBER
-========================= */
-
-function generateRandom(){
-
-    let min = +document.getElementById("randMin").value;
-    let max = +document.getElementById("randMax").value;
-
-    if(isNaN(min) || isNaN(max) || min > max){
-        document.getElementById("randomResult").innerHTML="Invalid range";
-        return;
-    }
-
-    let num = Math.floor(Math.random()*(max-min+1))+min;
-
-    document.getElementById("randomResult").innerHTML = num;
-}
-
-/* =========================
-   PASSWORD GENERATOR
-========================= */
-
-function generatePassword(){
-
-    let length = +document.getElementById("passLength").value;
-
-    let chars =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&*!";
-
-    let pass = "";
-
-    for(let i=0;i<length;i++){
-        pass += chars[Math.floor(Math.random()*chars.length)];
-    }
-
-    document.getElementById("passwordResult").innerHTML = pass;
-}
-
-/* =========================
-   QR GENERATOR
-========================= */
-
+/* QR */
 function generateQR(){
-
-    let text = document.getElementById("qrText").value;
-
-    let box = document.getElementById("qrContainer");
-
-    box.innerHTML = "";
-
-    if(!text){
-        box.innerHTML = "Enter text";
-        return;
-    }
-
-    new QRCode(box, {
-        text: text,
-        width: 180,
-        height: 180
-    });
+document.getElementById("qrContainer").innerHTML="";
+new QRCode(document.getElementById("qrContainer"),
+document.getElementById("qrText").value);
 }
-
-</script>
 
 </script>
 
