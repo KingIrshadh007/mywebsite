@@ -1,318 +1,202 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Free Tools Hub</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-<style>
-
-/* ================= ROOT THEME ================= */
-:root{
---bg:#0f172a;
---card:#1e293b;
---text:#fff;
---accent:#22c55e;
---secondary:#38bdf8;
---border:#334155;
-}
-
-.light{
---bg:#f8fafc;
---card:#ffffff;
---text:#0f172a;
---accent:#16a34a;
---secondary:#0284c7;
---border:#dbeafe;
-}
-
-*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins;}
-
-body{
-background:var(--bg);
-color:var(--text);
-}
-
-/* HEADER */
-header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:15px 25px;
-background:var(--card);
-position:sticky;
-top:0;
-}
-
-.logo{font-size:22px;font-weight:700;color:var(--secondary);}
-
-button{
-cursor:pointer;
-}
-
-/* LAYOUT */
-.main{
-display:flex;
-min-height:100vh;
-}
-
-/* SIDEBAR */
-.sidebar{
-width:260px;
-background:var(--card);
-padding:15px;
-border-right:1px solid var(--border);
-}
-
-.tool-btn{
-width:100%;
-padding:10px;
-margin:5px 0;
-border:none;
-background:transparent;
-color:var(--text);
-text-align:left;
-border-radius:8px;
-}
-
-.tool-btn:hover{
-background:var(--bg);
-}
-
-/* CONTENT */
-.content{
-flex:1;
-padding:20px;
-}
-
-/* WELCOME */
-#welcome{
-background:var(--card);
-padding:20px;
-border-radius:10px;
-}
-
-/* TOOL BOX */
-.tool-panel{
-display:none;
-background:var(--card);
-padding:20px;
-border-radius:10px;
-}
-
-.tool-panel.active{
-display:block;
-}
-
-.result{
-margin-top:10px;
-color:var(--secondary);
-}
-
-/* FOOTER */
-footer{
-background:var(--card);
-text-align:center;
-padding:20px;
-margin-top:20px;
-}
-
-</style>
-
-</head>
-
-<body>
-
 <header>
-<div class="logo">⚡ Free Tools Hub</div>
-<button onclick="toggleTheme()">🌙 Theme</button>
+  <h2>⚡ Free Tools Hub</h2>
 </header>
 
-<div class="main">
+<!-- HOME DASHBOARD -->
+<div id="home" class="container">
 
-<aside class="sidebar">
+  <div class="card" onclick="openTool('age')">🎂 Age Calculator</div>
+  <div class="card" onclick="openTool('bmi')">⚖️ BMI Calculator</div>
+  <div class="card" onclick="openTool('emi')">🏦 EMI Calculator</div>
+  <div class="card" onclick="openTool('gst')">💰 GST Calculator</div>
 
-<h3>Calculators</h3>
+  <div class="card" onclick="openTool('percent')">📊 Percentage</div>
+  <div class="card" onclick="openTool('discount')">🏷 Discount</div>
 
-<button class="tool-btn" onclick="showTool('ageTool')">Age</button>
-<button class="tool-btn" onclick="showTool('bmiTool')">BMI</button>
-<button class="tool-btn" onclick="showTool('emiTool')">EMI</button>
-<button class="tool-btn" onclick="showTool('gstTool')">GST</button>
+  <div class="card" onclick="openTool('word')">🔢 Word Counter</div>
+  <div class="card" onclick="openTool('char')">🔤 Character Counter</div>
 
-<h3>Tools</h3>
+  <div class="card" onclick="openTool('json')">🧾 JSON Formatter</div>
+  <div class="card" onclick="openTool('qr')">📱 QR Generator</div>
 
-<button class="tool-btn" onclick="showTool('wordTool')">Word</button>
-<button class="tool-btn" onclick="showTool('charTool')">Char</button>
-<button class="tool-btn" onclick="showTool('jsonTool')">JSON</button>
-<button class="tool-btn" onclick="showTool('qrTool')">QR</button>
-
-</aside>
-
-<main class="content">
-
-<div id="welcome">
-<h1>Welcome to Free Tools Hub</h1>
-<p>Select a tool from sidebar to start.</p>
-</div>
-<!-- AGE -->
-<div id="ageTool" class="tool-panel">
-<h2>Age Calculator</h2>
-<input type="date" id="ageDob">
-<button onclick="calculateAge()">Calculate</button>
-<div class="result" id="ageResult"></div>
 </div>
 
-<!-- BMI -->
-<div id="bmiTool" class="tool-panel">
-<h2>BMI Calculator</h2>
-<input id="bmiWeight" placeholder="Weight">
-<input id="bmiHeight" placeholder="Height cm">
-<button onclick="calculateBMI()">Calculate</button>
-<div class="result" id="bmiResult"></div>
+<!-- TOOLS -->
+
+<div id="age" class="tool">
+  <h2>Age Calculator</h2>
+  <input type="date" id="dob">
+  <button onclick="calcAge()">Calculate</button>
+  <div id="ageRes"></div>
+  <button onclick="back()">Back</button>
 </div>
 
-<!-- EMI -->
-<div id="emiTool" class="tool-panel">
-<h2>EMI Calculator</h2>
-<input id="emiPrincipal" placeholder="Loan">
-<input id="emiRate" placeholder="Rate %">
-<input id="emiYears" placeholder="Years">
-<button onclick="calculateEMI()">Calculate</button>
-<div class="result" id="emiResult"></div>
+<div id="bmi" class="tool">
+  <h2>BMI Calculator</h2>
+  <input id="w" placeholder="Weight kg">
+  <input id="h" placeholder="Height cm">
+  <button onclick="bmi()">Calculate</button>
+  <div id="bmiRes"></div>
+  <button onclick="back()">Back</button>
 </div>
 
-<!-- GST -->
-<div id="gstTool" class="tool-panel">
-<h2>GST Calculator</h2>
-<input id="gstAmount" placeholder="Amount">
-<input id="gstRate" placeholder="GST %">
-<button onclick="calculateGST()">Calculate</button>
-<div class="result" id="gstResult"></div>
+<div id="emi" class="tool">
+  <h2>EMI Calculator</h2>
+  <input id="loan" placeholder="Loan">
+  <input id="rate" placeholder="Rate %">
+  <input id="year" placeholder="Years">
+  <button onclick="emiCalc()">Calculate</button>
+  <div id="emiRes"></div>
+  <button onclick="back()">Back</button>
 </div>
 
-<!-- WORD -->
-<div id="wordTool" class="tool-panel">
-<h2>Word Counter</h2>
-<textarea id="wordText"></textarea>
-<button onclick="wordCounter()">Count</button>
-<div class="result" id="wordResult"></div>
+<div id="gst" class="tool">
+  <h2>GST Calculator</h2>
+  <input id="amt" placeholder="Amount">
+  <input id="gstRate" placeholder="GST %">
+  <button onclick="gstCalc()">Calculate</button>
+  <div id="gstRes"></div>
+  <button onclick="back()">Back</button>
 </div>
 
-<!-- CHAR -->
-<div id="charTool" class="tool-panel">
-<h2>Character Counter</h2>
-<textarea id="charText"></textarea>
-<button onclick="characterCounter()">Count</button>
-<div class="result" id="charResult"></div>
+<div id="word" class="tool">
+  <h2>Word Counter</h2>
+  <textarea id="wordTxt"></textarea>
+  <button onclick="wordCount()">Count</button>
+  <div id="wordRes"></div>
+  <button onclick="back()">Back</button>
 </div>
 
-<!-- JSON -->
-<div id="jsonTool" class="tool-panel">
-<h2>JSON Formatter</h2>
-<textarea id="jsonInput"></textarea>
-<button onclick="formatJSON()">Format</button>
-<pre id="jsonResult"></pre>
+<div id="char" class="tool">
+  <h2>Character Counter</h2>
+  <textarea id="charTxt"></textarea>
+  <button onclick="charCount()">Count</button>
+  <div id="charRes"></div>
+  <button onclick="back()">Back</button>
 </div>
 
-<!-- QR -->
-<div id="qrTool" class="tool-panel">
-<h2>QR Generator</h2>
-<input id="qrText" placeholder="Enter text">
-<button onclick="generateQR()">Generate</button>
-<div id="qrContainer"></div>
+<div id="json" class="tool">
+  <h2>JSON Formatter</h2>
+  <textarea id="jsonTxt"></textarea>
+  <button onclick="formatJSON()">Format</button>
+  <pre id="jsonRes"></pre>
+  <button onclick="back()">Back</button>
 </div>
 
-</main>
+<div id="qr" class="tool">
+  <h2>QR Generator</h2>
+  <input id="qrTxt" placeholder="Enter text">
+  <button onclick="genQR()">Generate</button>
+  <div id="qrBox"></div>
+  <button onclick="back()">Back</button>
+</div>
+.container{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:15px;
+  padding:20px;
+}
 
-<footer>
-© 2026 Free Tools Hub
-</footer>
+.card{
+  background:#1e293b;
+  color:white;
+  padding:20px;
+  border-radius:10px;
+  cursor:pointer;
+  text-align:center;
+  transition:0.2s;
+}
+
+.card:hover{
+  transform:scale(1.05);
+  background:#334155;
+}
+
+.tool{
+  display:none;
+  padding:20px;
+}
+
+.tool button{
+  margin-top:10px;
+  padding:10px;
+}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
 <script>
 
-/* THEME */
-function toggleTheme(){
-document.body.classList.toggle("light");
+function openTool(id){
+  document.getElementById("home").style.display="none";
+  document.getElementById(id).style.display="block";
 }
 
-/* TOOL SWITCH */
-function showTool(id){
+function back(){
+  document.getElementById("home").style.display="grid";
 
-document.getElementById("welcome").style.display="none";
-
-document.querySelectorAll(".tool-panel").forEach(t=>{
-t.classList.remove("active");
-});
-
-document.getElementById(id).classList.add("active");
+  document.querySelectorAll(".tool").forEach(t=>{
+    t.style.display="none";
+  });
 }
 
 /* AGE */
-function calculateAge(){
-let dob=new Date(document.getElementById("ageDob").value);
-let today=new Date();
-let age=today.getFullYear()-dob.getFullYear();
-document.getElementById("ageResult").innerText=age+" years";
+function calcAge(){
+  let dob=new Date(document.getElementById("dob").value);
+  let now=new Date();
+  let age=now.getFullYear()-dob.getFullYear();
+  document.getElementById("ageRes").innerText=age+" years";
 }
 
 /* BMI */
-function calculateBMI(){
-let w=parseFloat(document.getElementById("bmiWeight").value);
-let h=parseFloat(document.getElementById("bmiHeight").value)/100;
-let bmi=w/(h*h);
-document.getElementById("bmiResult").innerText=bmi.toFixed(2);
+function bmi(){
+  let w=+document.getElementById("w").value;
+  let h=+document.getElementById("h").value/100;
+  document.getElementById("bmiRes").innerText=(w/(h*h)).toFixed(2);
 }
 
 /* EMI */
-function calculateEMI(){
-let p=+document.getElementById("emiPrincipal").value;
-let r=+document.getElementById("emiRate").value/12/100;
-let n=+document.getElementById("emiYears").value*12;
-let emi=(p*r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1);
-document.getElementById("emiResult").innerText=emi.toFixed(2);
+function emiCalc(){
+  let p=+document.getElementById("loan").value;
+  let r=+document.getElementById("rate").value/12/100;
+  let n=+document.getElementById("year").value*12;
+  let emi=(p*r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1);
+  document.getElementById("emiRes").innerText=emi.toFixed(2);
 }
 
 /* GST */
-function calculateGST(){
-let a=+document.getElementById("gstAmount").value;
-let g=+document.getElementById("gstRate").value;
-document.getElementById("gstResult").innerText=a+(a*g/100);
+function gstCalc(){
+  let a=+document.getElementById("amt").value;
+  let g=+document.getElementById("gstRate").value;
+  document.getElementById("gstRes").innerText=a+(a*g/100);
 }
 
 /* WORD */
-function wordCounter(){
-let t=document.getElementById("wordText").value.trim();
-document.getElementById("wordResult").innerText=t?t.split(/\s+/).length:0;
+function wordCount(){
+  let t=document.getElementById("wordTxt").value.trim();
+  document.getElementById("wordRes").innerText=t?t.split(/\s+/).length:0;
 }
 
 /* CHAR */
-function characterCounter(){
-let t=document.getElementById("charText").value;
-document.getElementById("charResult").innerText=t.length;
+function charCount(){
+  let t=document.getElementById("charTxt").value;
+  document.getElementById("charRes").innerText=t.length;
 }
 
 /* JSON */
 function formatJSON(){
-try{
-let obj=JSON.parse(document.getElementById("jsonInput").value);
-document.getElementById("jsonResult").innerText=
-JSON.stringify(obj,null,2);
-}catch{
-document.getElementById("jsonResult").innerText="Invalid JSON";
-}
+  try{
+    let obj=JSON.parse(document.getElementById("jsonTxt").value);
+    document.getElementById("jsonRes").innerText=
+    JSON.stringify(obj,null,2);
+  }catch{
+    document.getElementById("jsonRes").innerText="Invalid JSON";
+  }
 }
 
 /* QR */
-function generateQR(){
-document.getElementById("qrContainer").innerHTML="";
-new QRCode(document.getElementById("qrContainer"),
-document.getElementById("qrText").value);
+function genQR(){
+  document.getElementById("qrBox").innerHTML="";
+  new QRCode(document.getElementById("qrBox"),
+  document.getElementById("qrTxt").value);
 }
 
 </script>
-
-</body>
-</html>
