@@ -4,403 +4,1087 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Free Tools Hub - 17 Online Tools</title>
+<title>Free Tools Hub</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-body{
-margin:0;
-font-family:Arial;
-background:#0f172a;
-color:white;
+
+:root{
+--bg:#0f172a;
+--card:#1e293b;
+--card-hover:#334155;
+--text:#ffffff;
+--accent:#22c55e;
+--secondary:#38bdf8;
+--border:#334155;
 }
+
+.light{
+--bg:#f8fafc;
+--card:#ffffff;
+--card-hover:#f1f5f9;
+--text:#0f172a;
+--accent:#16a34a;
+--secondary:#0284c7;
+--border:#dbeafe;
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:var(--bg);
+color:var(--text);
+transition:.3s;
+}
+
+/* HEADER */
 
 header{
-text-align:center;
-padding:20px;
-background:#1e293b;
+height:70px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 25px;
+background:var(--card);
+border-bottom:1px solid var(--border);
+position:sticky;
+top:0;
+z-index:999;
 }
 
-.container{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-gap:15px;
-padding:20px;
+.logo{
+font-size:24px;
+font-weight:700;
+color:var(--secondary);
 }
 
-.card{
-background:#1e293b;
+.nav-links{
+display:flex;
+gap:20px;
+}
+
+.nav-links a{
+text-decoration:none;
+color:var(--text);
+font-weight:500;
+}
+
+.nav-links a:hover{
+color:var(--secondary);
+}
+
+.header-right{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.theme-btn{
+background:var(--accent);
+border:none;
+padding:10px 14px;
+border-radius:8px;
+cursor:pointer;
+color:white;
+}
+
+/* MAIN */
+
+.main-layout{
+display:flex;
+min-height:calc(100vh - 70px);
+}
+
+/* SIDEBAR */
+
+.sidebar{
+width:280px;
+background:var(--card);
+border-right:1px solid var(--border);
+padding:20px;
+overflow-y:auto;
+}
+
+.sidebar h3{
+margin-top:15px;
+margin-bottom:10px;
+color:var(--secondary);
+font-size:16px;
+}
+
+.tool-link{
+display:block;
+width:100%;
+padding:10px;
+margin-bottom:6px;
+background:transparent;
+border:none;
+color:var(--text);
+text-align:left;
+cursor:pointer;
+border-radius:8px;
+}
+
+.tool-link:hover{
+background:var(--card-hover);
+}
+
+/* CONTENT */
+
+.content{
+flex:1;
+padding:30px;
+}
+
+.welcome-card{
+background:var(--card);
+padding:30px;
+border-radius:15px;
+}
+
+.welcome-card h1{
+margin-bottom:15px;
+}
+
+.welcome-card p{
+line-height:1.7;
+}
+
+/* TOOL PANEL */
+
+.tool-panel{
+display:none;
+background:var(--card);
+padding:25px;
+border-radius:15px;
+}
+
+.tool-panel.active{
+display:block;
+}
+
+.tool-panel h2{
+margin-bottom:10px;
+}
+
+.tool-panel .description{
+background:rgba(56,189,248,.1);
 padding:15px;
-text-align:center;
+border-left:4px solid var(--secondary);
+border-radius:10px;
+margin-bottom:20px;
+}
+
+input,
+textarea,
+select{
+width:100%;
+padding:12px;
+margin-top:8px;
+margin-bottom:15px;
+border-radius:10px;
+border:1px solid var(--border);
+background:var(--bg);
+color:var(--text);
+}
+
+button.action-btn{
+background:var(--accent);
+color:white;
+border:none;
+padding:12px 20px;
 border-radius:10px;
 cursor:pointer;
-transition:.2s;
 }
 
-.card:hover{
-background:#334155;
-transform:scale(1.05);
+button.action-btn:hover{
+opacity:.9;
 }
 
-.tool{
-display:none;
-padding:20px;
+.result-box{
+margin-top:20px;
+padding:15px;
+border-radius:10px;
+background:rgba(34,197,94,.1);
+border-left:4px solid var(--accent);
+}
+
+/* FOOTER */
+
+footer{
+background:var(--card);
+padding:25px;
+border-top:1px solid var(--border);
+}
+
+.footer-container{
+display:flex;
+justify-content:space-between;
+flex-wrap:wrap;
+gap:20px;
+}
+
+.footer-links a{
+display:block;
+text-decoration:none;
+color:var(--text);
+margin-bottom:8px;
+}
+
+.footer-links a:hover{
+color:var(--secondary);
+}
+
+.copyright{
+margin-top:20px;
 text-align:center;
+font-size:14px;
+opacity:.8;
 }
 
-input,textarea,select{
-width:80%;
-padding:10px;
-margin:5px;
-border-radius:5px;
-border:none;
+/* MODAL */
+
+.modal{
+display:none;
+position:fixed;
+left:0;
+top:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.7);
+z-index:9999;
 }
 
-button{
-padding:10px 15px;
-margin:5px;
-background:#22c55e;
+.modal-content{
+background:var(--card);
+width:90%;
+max-width:800px;
+margin:50px auto;
+padding:25px;
+border-radius:15px;
+max-height:80vh;
+overflow:auto;
+}
+
+.close-btn{
+float:right;
+background:red;
 border:none;
 color:white;
-cursor:pointer;
+padding:8px 12px;
 border-radius:5px;
+cursor:pointer;
 }
 
-.result{
-margin-top:10px;
-font-size:18px;
-color:#38bdf8;
+/* MOBILE */
+
+@media(max-width:900px){
+
+.main-layout{
+flex-direction:column;
 }
+
+.sidebar{
+width:100%;
+border-right:none;
+border-bottom:1px solid var(--border);
+}
+
+.nav-links{
+display:none;
+}
+
+}
+
 </style>
-
-<!-- QR Library -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-
 </head>
 
 <body>
 
+<!-- HEADER -->
+
 <header>
-<h2>⚡ Free Tools Hub</h2>
+
+<div class="logo">
+⚡ Free Tools Hub
+</div>
+
+<nav class="nav-links">
+<a href="#">Home</a>
+<a href="#">Calculators</a>
+<a href="#">Converters</a>
+<a href="#">Generators</a>
+<a href="#">About</a>
+</nav>
+
+<div class="header-right">
+<button class="theme-btn" onclick="toggleTheme()">
+🌙 Theme
+</button>
+</div>
+
 </header>
 
-<div id="home" class="container">
+<!-- MAIN LAYOUT -->
 
-<div class="card" onclick="openTool('age')">🎂 Age Calculator</div>
-<div class="card" onclick="openTool('bmi')">⚖️ BMI Calculator</div>
-<div class="card" onclick="openTool('emi')">🏦 EMI Calculator</div>
-<div class="card" onclick="openTool('gst')">💰 GST Calculator</div>
-<div class="card" onclick="openTool('percent')">📊 Percentage</div>
-<div class="card" onclick="openTool('discount')">🏷 Discount</div>
-<div class="card" onclick="openTool('word')">🔢 Word Counter</div>
-<div class="card" onclick="openTool('char')">🔤 Character Counter</div>
-<div class="card" onclick="openTool('pass')">🔐 Password</div>
-<div class="card" onclick="openTool('random')">🎲 Random Number</div>
-<div class="card" onclick="openTool('sip')">📈 SIP Calculator</div>
-<div class="card" onclick="openTool('loan')">💳 Loan Calculator</div>
-<div class="card" onclick="openTool('url')">🔗 URL Encoder</div>
-<div class="card" onclick="openTool('base64')">📦 Base64</div>
-<div class="card" onclick="openTool('json')">🧾 JSON Formatter</div>
-<div class="card" onclick="openTool('color')">🎨 Color Picker</div>
-<div class="card" onclick="openTool('qr')">📱 QR Generator</div>
+<div class="main-layout">
+
+<!-- SIDEBAR -->
+
+<aside class="sidebar">
+
+<h3>📊 Calculators</h3>
+
+<button class="tool-link" onclick="showTool('ageTool')">
+Age Calculator
+</button>
+
+<button class="tool-link" onclick="showTool('bmiTool')">
+BMI Calculator
+</button>
+
+<button class="tool-link" onclick="showTool('emiTool')">
+EMI Calculator
+</button>
+
+<button class="tool-link" onclick="showTool('gstTool')">
+GST Calculator
+</button>
+
+<button class="tool-link" onclick="showTool('sipTool')">
+SIP Calculator
+</button>
+
+<button class="tool-link" onclick="showTool('loanTool')">
+Loan Calculator
+</button>
+
+<h3>📝 Text Tools</h3>
+
+<button class="tool-link" onclick="showTool('wordTool')">
+Word Counter
+</button>
+
+<button class="tool-link" onclick="showTool('charTool')">
+Character Counter
+</button>
+
+<button class="tool-link" onclick="showTool('jsonTool')">
+JSON Formatter
+</button>
+
+<h3>🔗 Encoding Tools</h3>
+
+<button class="tool-link" onclick="showTool('urlTool')">
+URL Encoder
+</button>
+
+<button class="tool-link" onclick="showTool('base64Tool')">
+Base64 Encoder
+</button>
+
+<h3>🎨 Utility Tools</h3>
+
+<button class="tool-link" onclick="showTool('colorTool')">
+Color Picker
+</button>
+
+<button class="tool-link" onclick="showTool('randomTool')">
+Random Number
+</button>
+
+<button class="tool-link" onclick="showTool('passwordTool')">
+Password Generator
+</button>
+
+<button class="tool-link" onclick="showTool('qrTool')">
+QR Generator
+</button>
+
+</aside>
+
+<!-- CONTENT -->
+
+<main class="content">
+
+<div id="welcome" class="welcome-card">
+
+<h1>Welcome to Free Tools Hub</h1>
+
+<p>
+Free Tools Hub provides calculators, converters,
+text utilities, generators and productivity tools
+for daily use.
+</p>
+
+<br>
+
+<p>
+Select any tool from the left sidebar to begin.
+Each tool contains detailed instructions,
+validation, examples and result explanations.
+</p>
 
 </div>
 
-<!-- AGE -->
-<div id="age" class="tool">
-<h2>Age Calculator</h2>
-<input type="date" id="dob">
-<button onclick="calcAge()">Calculate</button>
-<div class="result" id="ageRes"></div>
-<button onclick="back()">Back</button>
+<!-- TOOLS WILL BE INSERTED IN PART 2 -->
+
+<div id="ageTool" class="tool-panel">
+
+<h2>🎂 Age Calculator</h2>
+
+<div class="description">
+Calculate your exact age from your date of birth.
+The calculator compares your birth date with today's date.
 </div>
 
-<!-- BMI -->
-<div id="bmi" class="tool">
-<h2>BMI Calculator</h2>
-<input id="w" placeholder="Weight kg">
-<input id="h" placeholder="Height cm">
-<button onclick="bmi()">Calculate</button>
-<div class="result" id="bmiRes"></div>
-<button onclick="back()">Back</button>
+<label>Date of Birth</label>
+<input type="date" id="ageDob">
+
+<button class="action-btn" onclick="calculateAge()">
+Calculate Age
+</button>
+
+<div class="result-box" id="ageResult">
+Your result will appear here.
 </div>
 
-<!-- EMI -->
-<div id="emi" class="tool">
-<h2>EMI Calculator</h2>
-<input id="loan" placeholder="Loan">
-<input id="rate" placeholder="Rate %">
-<input id="year" placeholder="Years">
-<button onclick="emiCalc()">Calculate</button>
-<div class="result" id="emiRes"></div>
-<button onclick="back()">Back</button>
 </div>
 
-<!-- GST -->
-<div id="gst" class="tool">
-<h2>GST Calculator</h2>
-<input id="amt" placeholder="Amount">
-<input id="gstRate" placeholder="GST %">
-<button onclick="gstCalc()">Calculate</button>
-<div class="result" id="gstRes"></div>
-<button onclick="back()">Back</button>
+  <div id="bmiTool" class="tool-panel">
+
+<h2>⚖️ BMI Calculator</h2>
+
+<div class="description">
+BMI (Body Mass Index) helps estimate whether your weight is healthy relative to your height.
 </div>
 
-<!-- PERCENT -->
-<div id="percent" class="tool">
-<h2>Percentage Calculator</h2>
-<input id="p1" placeholder="Part">
-<input id="p2" placeholder="Whole">
-<button onclick="percent()">Calculate</button>
-<div class="result" id="percentRes"></div>
-<button onclick="back()">Back</button>
+<label>Weight (kg)</label>
+<input type="number" id="bmiWeight">
+
+<label>Height (cm)</label>
+<input type="number" id="bmiHeight">
+
+<button class="action-btn" onclick="calculateBMI()">
+Calculate BMI
+</button>
+
+<div class="result-box" id="bmiResult">
+BMI result will appear here.
 </div>
 
-<!-- DISCOUNT -->
-<div id="discount" class="tool">
-<h2>Discount Calculator</h2>
-<input id="price" placeholder="Price">
-<input id="disc" placeholder="Discount %">
-<button onclick="discount()">Calculate</button>
-<div class="result" id="discRes"></div>
-<button onclick="back()">Back</button>
 </div>
 
-<!-- WORD -->
-<div id="word" class="tool">
-<h2>Word Counter</h2>
-<textarea id="wordTxt"></textarea>
-<button onclick="wordCount()">Count</button>
-<div class="result" id="wordRes"></div>
-<button onclick="back()">Back</button>
+  <div id="emiTool" class="tool-panel">
+
+<h2>🏦 EMI Calculator</h2>
+
+<div class="description">
+Calculate your monthly EMI using loan amount, interest rate and tenure.
 </div>
 
-<!-- CHAR -->
-<div id="char" class="tool">
-<h2>Character Counter</h2>
-<textarea id="charTxt"></textarea>
-<button onclick="charCount()">Count</button>
-<div class="result" id="charRes"></div>
-<button onclick="back()">Back</button>
+<label>Loan Amount</label>
+<input type="number" id="emiPrincipal">
+
+<label>Interest Rate (%)</label>
+<input type="number" id="emiRate">
+
+<label>Tenure (Years)</label>
+<input type="number" id="emiYears">
+
+<button class="action-btn" onclick="calculateEMI()">
+Calculate EMI
+</button>
+
+<div class="result-box" id="emiResult"></div>
+
 </div>
 
-<!-- PASSWORD -->
-<div id="pass" class="tool">
-<h2>Password Generator</h2>
-<button onclick="passGen()">Generate</button>
-<div class="result" id="passRes"></div>
-<button onclick="back()">Back</button>
+  <div id="gstTool" class="tool-panel">
+
+<h2>💰 GST Calculator</h2>
+
+<div class="description">
+Calculate GST amount and total payable amount.
 </div>
 
-<!-- RANDOM -->
-<div id="random" class="tool">
-<h2>Random Number</h2>
-<button onclick="rand()">Generate</button>
-<div class="result" id="randRes"></div>
-<button onclick="back()">Back</button>
+<label>Amount</label>
+<input type="number" id="gstAmount">
+
+<label>GST Rate (%)</label>
+<input type="number" id="gstRate">
+
+<button class="action-btn" onclick="calculateGST()">
+Calculate GST
+</button>
+
+<div class="result-box" id="gstResult"></div>
+
+</div>
+  <div id="sipTool" class="tool-panel">
+
+<h2>📈 SIP Calculator</h2>
+
+<div class="description">
+Estimate future value of monthly investments.
 </div>
 
-<!-- SIP -->
-<div id="sip" class="tool">
-<h2>SIP Calculator</h2>
-<input id="sipAmt" placeholder="Monthly">
-<input id="sipRate" placeholder="Rate %">
-<input id="sipYear" placeholder="Years">
-<button onclick="sipCalc()">Calculate</button>
-<div class="result" id="sipRes"></div>
-<button onclick="back()">Back</button>
+<label>Monthly Investment</label>
+<input type="number" id="sipAmount">
+
+<label>Expected Return (%)</label>
+<input type="number" id="sipRate">
+
+<label>Investment Period (Years)</label>
+<input type="number" id="sipYears">
+
+<button class="action-btn" onclick="calculateSIP()">
+Calculate SIP
+</button>
+
+<div class="result-box" id="sipResult"></div>
+
+</div>
+  <div id="loanTool" class="tool-panel">
+
+<h2>💳 Loan Calculator</h2>
+
+<div class="description">
+Loan calculator showing monthly EMI.
 </div>
 
-<!-- LOAN -->
-<div id="loan" class="tool">
-<h2>Loan Calculator</h2>
-<input id="l1" placeholder="Loan">
-<input id="l2" placeholder="Rate">
-<input id="l3" placeholder="Years">
-<button onclick="loanCalc()">Calculate</button>
-<div class="result" id="loanRes"></div>
-<button onclick="back()">Back</button>
+<label>Loan Amount</label>
+<input type="number" id="loanPrincipal">
+
+<label>Interest Rate (%)</label>
+<input type="number" id="loanRate">
+
+<label>Years</label>
+<input type="number" id="loanYears">
+
+<button class="action-btn" onclick="calculateLoan()">
+Calculate Loan EMI
+</button>
+
+<div class="result-box" id="loanResult"></div>
+
+</div>
+  <div id="wordTool" class="tool-panel">
+
+<h2>🔢 Word Counter</h2>
+
+<div class="description">
+Counts total words entered.
 </div>
 
-<!-- URL -->
-<div id="url" class="tool">
-<h2>URL Encoder</h2>
-<input id="urlTxt">
-<button onclick="encode()">Encode</button>
-<div class="result" id="urlRes"></div>
-<button onclick="back()">Back</button>
+<textarea id="wordText" rows="8"></textarea>
+
+<button class="action-btn" onclick="wordCounter()">
+Count Words
+</button>
+
+<div class="result-box" id="wordResult"></div>
+
+</div>
+  <div id="charTool" class="tool-panel">
+
+<h2>🔤 Character Counter</h2>
+
+<div class="description">
+Counts all characters including spaces.
 </div>
 
-<!-- BASE64 -->
-<div id="base64" class="tool">
-<h2>Base64</h2>
-<input id="b64">
-<button onclick="b64enc()">Encode</button>
-<div class="result" id="b64Res"></div>
-<button onclick="back()">Back</button>
+<textarea id="charText" rows="8"></textarea>
+
+<button class="action-btn" onclick="characterCounter()">
+Count Characters
+</button>
+
+<div class="result-box" id="charResult"></div>
+
+</div>
+  <div id="jsonTool" class="tool-panel">
+
+<h2>🧾 JSON Formatter</h2>
+
+<div class="description">
+Formats JSON into readable structure.
 </div>
 
-<!-- JSON -->
-<div id="json" class="tool">
-<h2>JSON Formatter</h2>
-<textarea id="jsonTxt"></textarea>
-<button onclick="formatJSON()">Format</button>
-<div class="result" id="jsonRes"></div>
-<button onclick="back()">Back</button>
+<textarea id="jsonInput" rows="10"></textarea>
+
+<button class="action-btn" onclick="formatJSON()">
+Format JSON
+</button>
+
+<div class="result-box">
+<pre id="jsonResult"></pre>
 </div>
 
-<!-- COLOR -->
-<div id="color" class="tool">
-<h2>Color Picker</h2>
-<input type="color" id="colorPick">
-<div class="result" id="colorRes"></div>
-<button onclick="showColor()">Show</button>
-<button onclick="back()">Back</button>
+</div>
+  <div id="urlTool" class="tool-panel">
+
+<h2>🔗 URL Encoder</h2>
+
+<div class="description">
+Convert text into URL-safe format.
 </div>
 
-<!-- QR -->
-<div id="qr" class="tool">
-<h2>QR Generator</h2>
-<input id="qrTxt">
-<button onclick="genQR()">Generate</button>
-<div id="qrBox"></div>
-<button onclick="back()">Back</button>
+<input type="text" id="urlInput">
+
+<button class="action-btn" onclick="encodeURL()">
+Encode URL
+</button>
+
+<div class="result-box" id="urlResult"></div>
+
 </div>
+  <div id="base64Tool" class="tool-panel">
+
+<h2>📦 Base64 Encoder</h2>
+
+<div class="description">
+Convert plain text to Base64 format.
+</div>
+
+<input type="text" id="base64Input">
+
+<button class="action-btn" onclick="base64Encode()">
+Encode
+</button>
+
+<div class="result-box" id="base64Result"></div>
+
+</div>
+  <div id="colorTool" class="tool-panel">
+
+<h2>🎨 Color Picker</h2>
+
+<div class="description">
+Choose a color and view its HEX value.
+</div>
+
+<input type="color" id="colorPicker">
+
+<button class="action-btn" onclick="showColor()">
+Show Color
+</button>
+
+<div class="result-box" id="colorResult"></div>
+
+</div>
+  <div id="randomTool" class="tool-panel">
+
+<h2>🎲 Random Number Generator</h2>
+
+<div class="description">
+Generate a random number between minimum and maximum values.
+</div>
+
+<input type="number" id="randMin" placeholder="Minimum">
+
+<input type="number" id="randMax" placeholder="Maximum">
+
+<button class="action-btn" onclick="generateRandom()">
+Generate
+</button>
+
+<div class="result-box" id="randomResult"></div>
+
+</div>
+  <div id="passwordTool" class="tool-panel">
+
+<h2>🔐 Password Generator</h2>
+
+<div class="description">
+Generate a strong random password.
+</div>
+
+<input type="number" id="passLength" value="12">
+
+<button class="action-btn" onclick="generatePassword()">
+Generate Password
+</button>
+
+<div class="result-box" id="passwordResult"></div>
+
+</div>
+  <div id="qrTool" class="tool-panel">
+
+<h2>📱 QR Generator</h2>
+
+<div class="description">
+Generate QR code from text or URL.
+</div>
+
+<input type="text" id="qrText">
+
+<button class="action-btn" onclick="generateQR()">
+Generate QR
+</button>
+
+<div id="qrContainer" style="margin-top:20px;"></div>
+
+</div>
+  
+
+</main>
+
+</div>
+
+<!-- FOOTER -->
+
+<footer>
+
+<div class="footer-container">
+
+<div>
+<h3>Free Tools Hub</h3>
+<p>
+Professional collection of calculators,
+converters and online utilities.
+</p>
+</div>
+
+<div class="footer-links">
+<a href="#" onclick="openPrivacy()">
+Privacy Policy
+</a>
+
+<a href="#">
+Terms & Conditions
+</a>
+
+<a href="#">
+Contact Us
+</a>
+</div>
+
+</div>
+
+<div class="copyright">
+© 2026 Free Tools Hub. All Rights Reserved.
+</div>
+
+</footer>
+
+<!-- PRIVACY POLICY -->
+
+<div class="modal" id="privacyModal">
+
+<div class="modal-content">
+
+<button class="close-btn"
+onclick="closePrivacy()">
+Close
+</button>
+
+<h2>Privacy Policy</h2>
+
+<br>
+
+<p>
+We do not store your calculations,
+text inputs, generated passwords,
+QR codes or personal information.
+</p>
+
+<br>
+
+<p>
+All processing is performed directly
+inside your browser whenever possible.
+</p>
+
+<br>
+
+<p>
+By using this website you agree
+to our terms and privacy practices.
+</p>
+
+</div>
+
+</div>
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
 <script>
 
-// navigation
-function openTool(id){
-document.getElementById("home").style.display="none";
-document.getElementById(id).style.display="block";
+/* =========================
+   THEME
+========================= */
+function toggleTheme(){
+    document.body.classList.toggle("light");
+    localStorage.setItem(
+        "theme",
+        document.body.classList.contains("light") ? "light" : "dark"
+    );
 }
 
-function back(){
-document.getElementById("home").style.display="grid";
-document.querySelectorAll(".tool").forEach(t=>t.style.display="none");
+window.onload = () => {
+    if(localStorage.getItem("theme") === "light"){
+        document.body.classList.add("light");
+    }
+};
+
+/* =========================
+   TOOL SWITCHER
+========================= */
+function showTool(id){
+
+    document.getElementById("welcome").style.display = "none";
+
+    document.querySelectorAll(".tool-panel").forEach(tool=>{
+        tool.classList.remove("active");
+    });
+
+    const el = document.getElementById(id);
+    if(el){
+        el.classList.add("active");
+    }
 }
 
-// AGE
-function calcAge(){
-let dob=new Date(document.getElementById("dob").value);
-let d=new Date();
-let age=d.getFullYear()-dob.getFullYear();
-document.getElementById("ageRes").innerText=age+" years";
+/* =========================
+   PRIVACY MODAL
+========================= */
+function openPrivacy(){
+    document.getElementById("privacyModal").style.display="block";
 }
 
-// BMI
-function bmi(){
-let w=document.getElementById("w").value;
-let h=document.getElementById("h").value/100;
-let res=w/(h*h);
-document.getElementById("bmiRes").innerText=res.toFixed(2);
+function closePrivacy(){
+    document.getElementById("privacyModal").style.display="none";
 }
 
-// EMI
-function emiCalc(){
-let p=+document.getElementById("loan").value;
-let r=+document.getElementById("rate").value/12/100;
-let n=+document.getElementById("year").value*12;
-let emi=(p*r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1);
-document.getElementById("emiRes").innerText=emi.toFixed(2);
+/* =========================
+   AGE CALCULATOR
+========================= */
+function calculateAge(){
+    const dob = document.getElementById("ageDob").value;
+
+    if(!dob){
+        document.getElementById("ageResult").innerHTML="Please select DOB";
+        return;
+    }
+
+    const birth = new Date(dob);
+    const today = new Date();
+
+    let years = today.getFullYear() - birth.getFullYear();
+    let months = today.getMonth() - birth.getMonth();
+    let days = today.getDate() - birth.getDate();
+
+    if(days < 0){ months--; days += 30; }
+    if(months < 0){ years--; months += 12; }
+
+    document.getElementById("ageResult").innerHTML =
+    `Age: <b>${years}</b> Years <b>${months}</b> Months <b>${days}</b> Days`;
 }
 
-// GST
-function gstCalc(){
-let a=+document.getElementById("amt").value;
-let g=+document.getElementById("gstRate").value;
-document.getElementById("gstRes").innerText=a+(a*g/100);
+/* =========================
+   BMI
+========================= */
+function calculateBMI(){
+    let w = +document.getElementById("bmiWeight").value;
+    let h = +document.getElementById("bmiHeight").value / 100;
+
+    if(!w || !h){
+        document.getElementById("bmiResult").innerHTML="Enter valid data";
+        return;
+    }
+
+    let bmi = w/(h*h);
+    let status = bmi < 18.5 ? "Underweight" :
+                 bmi < 25 ? "Normal" :
+                 bmi < 30 ? "Overweight" : "Obese";
+
+    document.getElementById("bmiResult").innerHTML =
+    `BMI: <b>${bmi.toFixed(2)}</b> (${status})`;
 }
 
-// Percent
-function percent(){
-let p=+document.getElementById("p1").value;
-let w=+document.getElementById("p2").value;
-document.getElementById("percentRes").innerText=(p/w*100).toFixed(2)+"%";
+/* =========================
+   EMI
+========================= */
+function calculateEMI(){
+    let p = +document.getElementById("emiPrincipal").value;
+    let r = +document.getElementById("emiRate").value / 12 / 100;
+    let n = +document.getElementById("emiYears").value * 12;
+
+    if(!p || !r || !n){
+        document.getElementById("emiResult").innerHTML="Fill all fields";
+        return;
+    }
+
+    let emi = (p*r*Math.pow(1+r,n)) / (Math.pow(1+r,n)-1);
+
+    document.getElementById("emiResult").innerHTML =
+    `Monthly EMI: ₹${emi.toFixed(2)}`;
 }
 
-// Discount
-function discount(){
-let p=+document.getElementById("price").value;
-let d=+document.getElementById("disc").value;
-document.getElementById("discRes").innerText=p-(p*d/100);
+/* =========================
+   GST
+========================= */
+function calculateGST(){
+    let amt = +document.getElementById("gstAmount").value;
+    let gst = +document.getElementById("gstRate").value;
+
+    if(!amt || !gst){
+        document.getElementById("gstResult").innerHTML="Enter values";
+        return;
+    }
+
+    let gstAmt = amt * gst / 100;
+    let total = amt + gstAmt;
+
+    document.getElementById("gstResult").innerHTML =
+    `GST: ₹${gstAmt.toFixed(2)} <br> Total: ₹${total.toFixed(2)}`;
 }
 
-// Word
-function wordCount(){
-let t=document.getElementById("wordTxt").value.trim();
-let w=t?t.split(/\s+/).length:0;
-document.getElementById("wordRes").innerText=w+" words";
+/* =========================
+   SIP
+========================= */
+function calculateSIP(){
+    let p = +document.getElementById("sipAmount").value;
+    let r = +document.getElementById("sipRate").value / 12 / 100;
+    let n = +document.getElementById("sipYears").value * 12;
+
+    if(!p || !r || !n){
+        document.getElementById("sipResult").innerHTML="Fill all fields";
+        return;
+    }
+
+    let fv = p * ((Math.pow(1+r,n)-1)/r) * (1+r);
+
+    document.getElementById("sipResult").innerHTML =
+    `Future Value: ₹${fv.toFixed(2)}`;
 }
 
-// Char
-function charCount(){
-let t=document.getElementById("charTxt").value;
-document.getElementById("charRes").innerText=t.length+" chars";
+/* =========================
+   LOAN
+========================= */
+function calculateLoan(){
+    let p = +document.getElementById("loanPrincipal").value;
+    let r = +document.getElementById("loanRate").value / 12 / 100;
+    let n = +document.getElementById("loanYears").value * 12;
+
+    if(!p || !r || !n){
+        document.getElementById("loanResult").innerHTML="Fill all fields";
+        return;
+    }
+
+    let emi = (p*r*Math.pow(1+r,n)) / (Math.pow(1+r,n)-1);
+
+    document.getElementById("loanResult").innerHTML =
+    `Loan EMI: ₹${emi.toFixed(2)}`;
 }
 
-// Password
-function passGen(){
-let c="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$!";
-let p="";
-for(let i=0;i<12;i++){
-p+=c[Math.floor(Math.random()*c.length)];
-}
-document.getElementById("passRes").innerText=p;
-}
-
-// Random
-function rand(){
-document.getElementById("randRes").innerText=Math.floor(Math.random()*10000);
+/* =========================
+   TEXT TOOLS
+========================= */
+function wordCounter(){
+    let text = document.getElementById("wordText").value.trim();
+    let count = text ? text.split(/\s+/).length : 0;
+    document.getElementById("wordResult").innerHTML = `Words: ${count}`;
 }
 
-// SIP
-function sipCalc(){
-let p=+document.getElementById("sipAmt").value;
-let r=+document.getElementById("sipRate").value/12/100;
-let n=+document.getElementById("sipYear").value*12;
-let fv=p*((Math.pow(1+r,n)-1)/r)*(1+r);
-document.getElementById("sipRes").innerText=fv.toFixed(2);
+function characterCounter(){
+    let text = document.getElementById("charText").value;
+    document.getElementById("charResult").innerHTML =
+    `Characters: ${text.length}`;
 }
 
-// Loan same EMI logic
-function loanCalc(){
-emiCalc();
-document.getElementById("loanRes").innerText=document.getElementById("emiRes").innerText;
-}
-
-// URL encode
-function encode(){
-document.getElementById("urlRes").innerText=encodeURIComponent(document.getElementById("urlTxt").value);
-}
-
-// Base64
-function b64enc(){
-document.getElementById("b64Res").innerText=btoa(document.getElementById("b64").value);
-}
-
-// JSON
+/* =========================
+   JSON
+========================= */
 function formatJSON(){
-try{
-let obj=JSON.parse(document.getElementById("jsonTxt").value);
-document.getElementById("jsonRes").innerText=JSON.stringify(obj,null,2);
-}catch(e){
-document.getElementById("jsonRes").innerText="Invalid JSON";
-}
+    try{
+        let obj = JSON.parse(document.getElementById("jsonInput").value);
+        document.getElementById("jsonResult").textContent =
+        JSON.stringify(obj, null, 4);
+    }catch(e){
+        document.getElementById("jsonResult").textContent = "Invalid JSON";
+    }
 }
 
-// Color
+/* =========================
+   ENCODERS
+========================= */
+function encodeURL(){
+    let text = document.getElementById("urlInput").value;
+    document.getElementById("urlResult").innerHTML =
+    encodeURIComponent(text);
+}
+
+function base64Encode(){
+    let text = document.getElementById("base64Input").value;
+    document.getElementById("base64Result").innerHTML =
+    btoa(text);
+}
+
+/* =========================
+   UTILS
+========================= */
 function showColor(){
-let c=document.getElementById("colorPick").value;
-document.getElementById("colorRes").innerText=c;
+    let color = document.getElementById("colorPicker").value;
+    document.getElementById("colorResult").innerHTML =
+    `HEX: ${color}<br><div style="width:80px;height:40px;background:${color};border-radius:8px;"></div>`;
 }
 
-// QR
-function genQR(){
-document.getElementById("qrBox").innerHTML="";
-new QRCode(document.getElementById("qrBox"),document.getElementById("qrTxt").value);
+function generateRandom(){
+    let min = +document.getElementById("randMin").value;
+    let max = +document.getElementById("randMax").value;
+
+    if(isNaN(min) || isNaN(max) || min > max){
+        document.getElementById("randomResult").innerHTML="Invalid range";
+        return;
+    }
+
+    let num = Math.floor(Math.random()*(max-min+1))+min;
+    document.getElementById("randomResult").innerHTML = num;
+}
+
+function generatePassword(){
+    let length = +document.getElementById("passLength").value;
+
+    let chars =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&*!";
+
+    let pass = "";
+    for(let i=0;i<length;i++){
+        pass += chars[Math.floor(Math.random()*chars.length)];
+    }
+
+    document.getElementById("passwordResult").innerHTML = pass;
+}
+
+/* =========================
+   QR
+========================= */
+function generateQR(){
+    let text = document.getElementById("qrText").value;
+    let box = document.getElementById("qrContainer");
+
+    box.innerHTML = "";
+
+    if(!text){
+        box.innerHTML = "Enter text";
+        return;
+    }
+
+    new QRCode(box, {
+        text: text,
+        width: 180,
+        height: 180
+    });
 }
 
 </script>
-
 </body>
 </html>
