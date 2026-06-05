@@ -178,3 +178,223 @@ window.addEventListener("load", () => {
     );
 
 });
+
+
+/* ====================================
+   TOOL WORKSPACE
+==================================== */
+
+const workspace =
+document.getElementById("workspaceContent");
+
+const toolTemplates = {
+
+age: `
+<h2>🎂 Age Calculator</h2>
+
+<input type="date" id="dob">
+
+<button class="primary-btn"
+onclick="calculateAge()">
+Calculate Age
+</button>
+
+<div id="ageResult"></div>
+`,
+
+bmi: `
+<h2>⚖️ BMI Calculator</h2>
+
+<input
+type="number"
+id="weight"
+placeholder="Weight (kg)">
+
+<input
+type="number"
+id="height"
+placeholder="Height (cm)">
+
+<button
+class="primary-btn"
+onclick="calculateBMI()">
+Calculate BMI
+</button>
+
+<div id="bmiResult"></div>
+`,
+
+word: `
+<h2>🔤 Word Counter</h2>
+
+<textarea
+id="wordText"
+rows="8"></textarea>
+
+<button
+class="primary-btn"
+onclick="countWords()">
+Count Words
+</button>
+
+<div id="wordResult"></div>
+`,
+
+password: `
+<h2>🔐 Password Generator</h2>
+
+<input
+type="number"
+id="passLength"
+value="12">
+
+<button
+class="primary-btn"
+onclick="generatePasswordTool()">
+Generate
+</button>
+
+<div id="passResult"></div>
+`
+
+};
+
+document.querySelectorAll(".nav-item")
+.forEach(btn => {
+
+btn.addEventListener("click", () => {
+
+const text =
+btn.textContent.trim();
+
+if(text.includes("Age")){
+
+workspace.innerHTML =
+toolTemplates.age;
+
+}
+
+else if(text.includes("BMI")){
+
+workspace.innerHTML =
+toolTemplates.bmi;
+
+}
+
+else if(text.includes("Word")){
+
+workspace.innerHTML =
+toolTemplates.word;
+
+}
+
+else if(text.includes("Password")){
+
+workspace.innerHTML =
+toolTemplates.password;
+
+}
+
+});
+
+});
+
+function calculateAge(){
+
+const dob =
+document.getElementById("dob").value;
+
+if(!dob) return;
+
+const birth =
+new Date(dob);
+
+const today =
+new Date();
+
+let age =
+today.getFullYear() -
+birth.getFullYear();
+
+document.getElementById(
+"ageResult"
+).innerHTML =
+`Age: ${age} years`;
+
+}
+
+function calculateBMI(){
+
+const weight =
+parseFloat(
+document.getElementById("weight").value
+);
+
+const height =
+parseFloat(
+document.getElementById("height").value
+)/100;
+
+if(!weight || !height) return;
+
+const bmi =
+weight/(height*height);
+
+document.getElementById(
+"bmiResult"
+).innerHTML =
+`BMI: ${bmi.toFixed(2)}`;
+
+}
+
+function countWords(){
+
+const text =
+document.getElementById(
+"wordText"
+).value.trim();
+
+const count =
+text === ""
+? 0
+: text.split(/\s+/).length;
+
+document.getElementById(
+"wordResult"
+).innerHTML =
+`Words: ${count}`;
+
+}
+
+function generatePasswordTool(){
+
+const length =
+parseInt(
+document.getElementById(
+"passLength"
+).value
+);
+
+const chars =
+"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%";
+
+let password = "";
+
+for(let i=0;i<length;i++){
+
+password +=
+chars.charAt(
+Math.floor(
+Math.random()*chars.length
+)
+);
+
+}
+
+document.getElementById(
+"passResult"
+).innerHTML =
+password;
+
+}
+
