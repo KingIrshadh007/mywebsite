@@ -840,11 +840,14 @@ to our terms and privacy practices.
 
 </div>
   
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<script>
 /* EXTRA FEATURES */
 function showToast(msg){
  const t=document.getElementById('toast');
- t.textContent=msg;t.style.display='block';
+ t.textContent=msg;
+ t.style.display='block';
  setTimeout(()=>t.style.display='none',2000);
 }
 
@@ -857,25 +860,22 @@ function copyText(id){
 
 function downloadQR(){
  const img=document.querySelector('#qrContainer img') || document.querySelector('#qrContainer canvas');
- if(!img){showToast('Generate QR first');return;}
- let url=img.src;
- if(img.tagName==='CANVAS') url=img.toDataURL();
- const a=document.createElement('a');
- a.href=url;a.download='qrcode.png';a.click();
-}
-
-document.addEventListener('DOMContentLoaded',()=>{
- const search=document.getElementById('toolSearch');
- if(search){
-   search.addEventListener('input',function(){
-      const q=this.value.toLowerCase();
-      document.querySelectorAll('.tool-link').forEach(btn=>{
-        btn.style.display=btn.textContent.toLowerCase().includes(q)?'block':'none';
-      });
-   });
+ if(!img){
+   showToast('Generate QR first');
+   return;
  }
-});
 
+ let url=img.src;
+
+ if(img.tagName==='CANVAS'){
+   url=img.toDataURL();
+ }
+
+ const a=document.createElement('a');
+ a.href=url;
+ a.download='qrcode.png';
+ a.click();
+}
 </script>
 
 <script>
@@ -943,7 +943,14 @@ function calculateAge(){
     let months = today.getMonth() - birth.getMonth();
     let days = today.getDate() - birth.getDate();
 
-    if(days < 0){ months--; days += 30; }
+    if(days < 0){
+    months--;
+
+    const previousMonth =
+        new Date(today.getFullYear(), today.getMonth(), 0);
+
+    days += previousMonth.getDate();
+}
     if(months < 0){ years--; months += 12; }
 
     document.getElementById("ageResult").innerHTML =
@@ -957,7 +964,7 @@ function calculateBMI(){
     let w = +document.getElementById("bmiWeight").value;
     let h = +document.getElementById("bmiHeight").value / 100;
 
-    if(!w || !h){
+    if(!w || !h || w <= 0 || h <= 0){
         document.getElementById("bmiResult").innerHTML="Enter valid data";
         return;
     }
@@ -979,7 +986,7 @@ function calculateEMI(){
     let r = +document.getElementById("emiRate").value / 12 / 100;
     let n = +document.getElementById("emiYears").value * 12;
 
-    if(!p || !r || !n){
+    if(!p || !r || !n || p <= 0 || r <= 0 || n <= 0){
         document.getElementById("emiResult").innerHTML="Fill all fields";
         return;
     }
@@ -997,7 +1004,7 @@ function calculateGST(){
     let amt = +document.getElementById("gstAmount").value;
     let gst = +document.getElementById("gstRate").value;
 
-    if(!amt || !gst){
+    if(!amt || !gst || amt < 0 || gst < 0){
         document.getElementById("gstResult").innerHTML="Enter values";
         return;
     }
@@ -1017,7 +1024,7 @@ function calculateSIP(){
     let r = +document.getElementById("sipRate").value / 12 / 100;
     let n = +document.getElementById("sipYears").value * 12;
 
-    if(!p || !r || !n){
+    if(!p || !r || !n || p <= 0 || r <= 0 || n <= 0){
         document.getElementById("sipResult").innerHTML="Fill all fields";
         return;
     }
@@ -1036,7 +1043,7 @@ function calculateLoan(){
     let r = +document.getElementById("loanRate").value / 12 / 100;
     let n = +document.getElementById("loanYears").value * 12;
 
-    if(!p || !r || !n){
+    if(!p || !r || !n || p <= 0 || r <= 0 || n <= 0){
         document.getElementById("loanResult").innerHTML="Fill all fields";
         return;
     }
@@ -1086,8 +1093,15 @@ function encodeURL(){
 
 function base64Encode(){
     let text = document.getElementById("base64Input").value;
-    document.getElementById("base64Result").innerHTML =
-    btoa(text);
+
+    try{
+        document.getElementById("base64Result").innerHTML =
+        btoa(unescape(encodeURIComponent(text)));
+    }
+    catch(err){
+        document.getElementById("base64Result").innerHTML =
+        "Encoding Error";
+    }
 }
 
 /* =========================
@@ -1120,7 +1134,10 @@ function generatePassword(){
 
     let pass = "";
     for(let i=0;i<length;i++){
-        pass += chars[Math.floor(Math.random()*chars.length)];
+        const array = new Uint32Array(1);
+crypto.getRandomValues(array);
+
+pass += chars[array[0] % chars.length];
     }
 
     document.getElementById("passwordResult").innerHTML = pass;
@@ -1130,6 +1147,11 @@ function generatePassword(){
    QR
 ========================= */
 function generateQR(){
+  if(typeof QRCode === "undefined"){
+    document.getElementById("qrContainer").innerHTML =
+    "QR Library failed to load";
+    return;
+}
     let text = document.getElementById("qrText").value;
     let box = document.getElementById("qrContainer");
 
@@ -1146,42 +1168,6 @@ function generateQR(){
         height: 180
     });
 }
-
-
-/* EXTRA FEATURES */
-function showToast(msg){
- const t=document.getElementById('toast');
- t.textContent=msg;t.style.display='block';
- setTimeout(()=>t.style.display='none',2000);
-}
-
-function copyText(id){
- const el=document.getElementById(id);
- const txt=el.innerText || el.textContent;
- navigator.clipboard.writeText(txt);
- showToast('Copied successfully');
-}
-
-function downloadQR(){
- const img=document.querySelector('#qrContainer img') || document.querySelector('#qrContainer canvas');
- if(!img){showToast('Generate QR first');return;}
- let url=img.src;
- if(img.tagName==='CANVAS') url=img.toDataURL();
- const a=document.createElement('a');
- a.href=url;a.download='qrcode.png';a.click();
-}
-
-document.addEventListener('DOMContentLoaded',()=>{
- const search=document.getElementById('toolSearch');
- if(search){
-   search.addEventListener('input',function(){
-      const q=this.value.toLowerCase();
-      document.querySelectorAll('.tool-link').forEach(btn=>{
-        btn.style.display=btn.textContent.toLowerCase().includes(q)?'block':'none';
-      });
-   });
- }
-});
 
 </script>
 </body>
