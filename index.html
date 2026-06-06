@@ -6,6 +6,15 @@
 
 <title>Free Tools Hub</title>
 
+<meta name="description" content="Free Tools Hub - Calculators, Converters, Generators and Utility Tools">
+<meta name="keywords" content="calculator, bmi, emi, gst, sip, qr generator, password generator, tools">
+<meta name="author" content="Free Tools Hub">
+<meta property="og:title" content="Free Tools Hub">
+<meta property="og:description" content="Free collection of calculators, converters and online utilities.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
@@ -303,6 +312,21 @@ display:none;
 
 }
 
+
+.toast{
+position:fixed;right:20px;bottom:20px;background:var(--accent);
+color:#fff;padding:12px 18px;border-radius:10px;z-index:10000;
+display:none;
+}
+.copy-btn{
+margin-top:10px;margin-left:8px;background:var(--secondary);
+color:#fff;border:none;padding:8px 12px;border-radius:8px;cursor:pointer;
+}
+.ad-box{
+margin-top:25px;padding:20px;border:2px dashed var(--border);
+text-align:center;border-radius:12px;
+}
+
 </style>
 </head>
 
@@ -339,6 +363,7 @@ display:none;
 <!-- SIDEBAR -->
 
 <aside class="sidebar">
+<input type="text" id="toolSearch" placeholder="🔍 Search tools..." style="margin-bottom:15px;">
 
 <h3>📊 Calculators</h3>
 
@@ -624,9 +649,7 @@ Formats JSON into readable structure.
 Format JSON
 </button>
 
-<div class="result-box">
-<pre id="jsonResult"></pre>
-</div>
+<div class="result-box"><pre id="jsonResult"></pre></div><button class="copy-btn" onclick="copyText('jsonResult')">Copy JSON</button>
 
 </div>
   <div id="urlTool" class="tool-panel">
@@ -643,7 +666,7 @@ Convert text into URL-safe format.
 Encode URL
 </button>
 
-<div class="result-box" id="urlResult"></div>
+<div class="result-box" id="urlResult"></div><button class="copy-btn" onclick="copyText('urlResult')">Copy</button>
 
 </div>
   <div id="base64Tool" class="tool-panel">
@@ -660,7 +683,7 @@ Convert plain text to Base64 format.
 Encode
 </button>
 
-<div class="result-box" id="base64Result"></div>
+<div class="result-box" id="base64Result"></div><button class="copy-btn" onclick="copyText('base64Result')">Copy</button>
 
 </div>
   <div id="colorTool" class="tool-panel">
@@ -713,7 +736,7 @@ Generate a strong random password.
 Generate Password
 </button>
 
-<div class="result-box" id="passwordResult"></div>
+<div class="result-box" id="passwordResult"></div><button class="copy-btn" onclick="copyText('passwordResult')">Copy Password</button>
 
 </div>
   <div id="qrTool" class="tool-panel">
@@ -730,7 +753,7 @@ Generate QR code from text or URL.
 Generate QR
 </button>
 
-<div id="qrContainer" style="margin-top:20px;"></div>
+<div id="qrContainer" style="margin-top:20px;"></div><button class="copy-btn" onclick="downloadQR()">Download QR</button>
 
 </div>
   
@@ -738,6 +761,8 @@ Generate QR
 </main>
 
 </div>
+
+<div class="ad-box">Google AdSense Placeholder (728x90)</div>
 
 <!-- FOOTER -->
 
@@ -774,6 +799,7 @@ Contact Us
 </div>
 
 </footer>
+<div id="toast" class="toast">Copied!</div>
 
 <!-- PRIVACY POLICY -->
 
@@ -814,7 +840,43 @@ to our terms and privacy practices.
 
 </div>
   
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js">
+/* EXTRA FEATURES */
+function showToast(msg){
+ const t=document.getElementById('toast');
+ t.textContent=msg;t.style.display='block';
+ setTimeout(()=>t.style.display='none',2000);
+}
+
+function copyText(id){
+ const el=document.getElementById(id);
+ const txt=el.innerText || el.textContent;
+ navigator.clipboard.writeText(txt);
+ showToast('Copied successfully');
+}
+
+function downloadQR(){
+ const img=document.querySelector('#qrContainer img') || document.querySelector('#qrContainer canvas');
+ if(!img){showToast('Generate QR first');return;}
+ let url=img.src;
+ if(img.tagName==='CANVAS') url=img.toDataURL();
+ const a=document.createElement('a');
+ a.href=url;a.download='qrcode.png';a.click();
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+ const search=document.getElementById('toolSearch');
+ if(search){
+   search.addEventListener('input',function(){
+      const q=this.value.toLowerCase();
+      document.querySelectorAll('.tool-link').forEach(btn=>{
+        btn.style.display=btn.textContent.toLowerCase().includes(q)?'block':'none';
+      });
+   });
+ }
+});
+
+</script>
 
 <script>
 
@@ -1084,6 +1146,42 @@ function generateQR(){
         height: 180
     });
 }
+
+
+/* EXTRA FEATURES */
+function showToast(msg){
+ const t=document.getElementById('toast');
+ t.textContent=msg;t.style.display='block';
+ setTimeout(()=>t.style.display='none',2000);
+}
+
+function copyText(id){
+ const el=document.getElementById(id);
+ const txt=el.innerText || el.textContent;
+ navigator.clipboard.writeText(txt);
+ showToast('Copied successfully');
+}
+
+function downloadQR(){
+ const img=document.querySelector('#qrContainer img') || document.querySelector('#qrContainer canvas');
+ if(!img){showToast('Generate QR first');return;}
+ let url=img.src;
+ if(img.tagName==='CANVAS') url=img.toDataURL();
+ const a=document.createElement('a');
+ a.href=url;a.download='qrcode.png';a.click();
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+ const search=document.getElementById('toolSearch');
+ if(search){
+   search.addEventListener('input',function(){
+      const q=this.value.toLowerCase();
+      document.querySelectorAll('.tool-link').forEach(btn=>{
+        btn.style.display=btn.textContent.toLowerCase().includes(q)?'block':'none';
+      });
+   });
+ }
+});
 
 </script>
 </body>
