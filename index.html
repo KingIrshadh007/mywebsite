@@ -852,10 +852,23 @@ function showToast(msg){
 }
 
 function copyText(id){
+
  const el=document.getElementById(id);
+
+ if(!el){
+   showToast('Nothing to copy');
+   return;
+ }
+
  const txt=el.innerText || el.textContent;
- navigator.clipboard.writeText(txt);
- showToast('Copied successfully');
+
+ navigator.clipboard.writeText(txt)
+ .then(()=>{
+   showToast('Copied successfully');
+ })
+ .catch(()=>{
+   showToast('Copy failed');
+ });
 }
 
 function downloadQR(){
@@ -1168,6 +1181,19 @@ function generateQR(){
         height: 180
     });
 }
+
+document.getElementById("toolSearch").addEventListener("input", function () {
+
+    const search = this.value.toLowerCase();
+
+    document.querySelectorAll(".tool-link").forEach(btn => {
+
+        btn.style.display =
+            btn.textContent.toLowerCase().includes(search)
+            ? "block"
+            : "none";
+    });
+});
 
 </script>
 </body>
