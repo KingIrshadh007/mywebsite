@@ -952,6 +952,12 @@ function calculateAge(){
     const birth = new Date(dob);
     const today = new Date();
 
+    if(birth > today){
+        document.getElementById("ageResult").innerHTML =
+        "Date of birth cannot be in the future";
+        return;
+    }
+
     let years = today.getFullYear() - birth.getFullYear();
     let months = today.getMonth() - birth.getMonth();
     let days = today.getDate() - birth.getDate();
@@ -999,7 +1005,18 @@ function calculateEMI(){
     let r = +document.getElementById("emiRate").value / 12 / 100;
     let n = +document.getElementById("emiYears").value * 12;
 
-    if(!p || !r || !n || p <= 0 || r <= 0 || n <= 0){
+    if(!p || p <= 0 || n <= 0){
+        document.getElementById("emiResult").innerHTML="Fill all fields";
+        return;
+    }
+
+    if(r === 0){
+        document.getElementById("emiResult").innerHTML =
+        `Monthly EMI: ₹${(p/n).toFixed(2)}`;
+        return;
+    }
+
+    /* EMI_RATE_OK */
         document.getElementById("emiResult").innerHTML="Fill all fields";
         return;
     }
@@ -1017,7 +1034,7 @@ function calculateGST(){
     let amt = +document.getElementById("gstAmount").value;
     let gst = +document.getElementById("gstRate").value;
 
-    if(!amt || !gst || amt < 0 || gst < 0){
+    if(isNaN(amt) || isNaN(gst) || amt < 0 || gst < 0){
         document.getElementById("gstResult").innerHTML="Enter values";
         return;
     }
@@ -1037,7 +1054,18 @@ function calculateSIP(){
     let r = +document.getElementById("sipRate").value / 12 / 100;
     let n = +document.getElementById("sipYears").value * 12;
 
-    if(!p || !r || !n || p <= 0 || r <= 0 || n <= 0){
+    if(!p || p <= 0 || n <= 0){
+        document.getElementById("sipResult").innerHTML="Fill all fields";
+        return;
+    }
+
+    if(r === 0){
+        document.getElementById("sipResult").innerHTML =
+        `Future Value: ₹${(p*n).toFixed(2)}`;
+        return;
+    }
+
+    /* SIP_RATE_OK */
         document.getElementById("sipResult").innerHTML="Fill all fields";
         return;
     }
@@ -1056,7 +1084,18 @@ function calculateLoan(){
     let r = +document.getElementById("loanRate").value / 12 / 100;
     let n = +document.getElementById("loanYears").value * 12;
 
-    if(!p || !r || !n || p <= 0 || r <= 0 || n <= 0){
+    if(!p || p <= 0 || n <= 0){
+        document.getElementById("loanResult").innerHTML="Fill all fields";
+        return;
+    }
+
+    if(r === 0){
+        document.getElementById("loanResult").innerHTML =
+        `Loan EMI: ₹${(p/n).toFixed(2)}`;
+        return;
+    }
+
+    /* LOAN_RATE_OK */
         document.getElementById("loanResult").innerHTML="Fill all fields";
         return;
     }
@@ -1130,7 +1169,11 @@ function generateRandom(){
     let min = +document.getElementById("randMin").value;
     let max = +document.getElementById("randMax").value;
 
-    if(isNaN(min) || isNaN(max) || min > max){
+    if(
+document.getElementById("randMin").value === "" ||
+document.getElementById("randMax").value === "" ||
+min > max
+){
         document.getElementById("randomResult").innerHTML="Invalid range";
         return;
     }
@@ -1141,6 +1184,12 @@ function generateRandom(){
 
 function generatePassword(){
     let length = +document.getElementById("passLength").value;
+
+    if(length < 4 || length > 128){
+        document.getElementById("passwordResult").innerHTML =
+        "Length must be between 4 and 128";
+        return;
+    }
 
     let chars =
     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&*!";
