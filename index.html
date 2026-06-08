@@ -817,10 +817,6 @@ Download QR
 <input type="text" id="qrText">
 
 <button class="action-btn" onclick="generateQR()">
-Generate QR
-</button>
-
-<div id="qrContainer" style="margin-top:20px;"></div><button class="copy-btn" onclick="downloadQR()">Download QR</button>
 
 </div>
   
@@ -1017,46 +1013,28 @@ function toggleTheme(){
 window.addEventListener("load", () => {    if(localStorage.getItem("theme") === "light"){
         document.body.classList.add("light");
     }
-};
+}};
 
 /* =========================
    TOOL SWITCHER
 ========================= */
 function showTool(id){
-if(id === "welcome"){
-    document.getElementById("welcome").style.display="block";
-    return;
-}
 
-    document.getElementById("welcome").style.display="none";
+    const welcome = document.getElementById("welcome");
+    const tools = document.querySelectorAll(".tool-panel");
 
-    document.querySelectorAll(".tool-panel").forEach(tool=>{
-        tool.classList.remove("active");
-    });
+    tools.forEach(t => t.classList.remove("active"));
 
-    const el=document.getElementById(id);
+    if(id === "welcome"){
+        welcome.style.display = "block";
+        return;
+    }
 
+    welcome.style.display = "none";
+
+    const el = document.getElementById(id);
     if(el){
-
         el.classList.add("active");
-
-        setTimeout(()=>{
-
-            const headerHeight =
-            document.querySelector("header").offsetHeight;
-
-            const y =
-            el.getBoundingClientRect().top +
-            window.pageYOffset -
-            headerHeight -
-            20;
-
-            window.scrollTo({
-                top:y,
-                behavior:"smooth"
-            });
-
-        },100);
     }
 }
 /* =========================
