@@ -462,18 +462,55 @@ Word Counter
 Character Counter
 </button>
 
-<button class="tool-link" onclick="showTool('jsonTool')">
+<h3>🛠 Developer Tools</h3>
+
+  <button class="tool-link" onclick="showTool('jsonTool')">
 JSON Formatter
 </button>
+  <button class="tool-link" onclick="showTool('jsonValidatorTool')">
+JSON Validator
+</button>
 
-<h3>🔗 Encoding Tools</h3>
+<button class="tool-link" onclick="showTool('jsonMinifierTool')">
+JSON Minifier
+</button>
 
 <button class="tool-link" onclick="showTool('urlTool')">
 URL Encoder
 </button>
+  <button class="tool-link" onclick="showTool('urlDecodeTool')">
+URL Decoder
+</button>
 
 <button class="tool-link" onclick="showTool('base64Tool')">
 Base64 Encoder
+</button>
+  <button class="tool-link" onclick="showTool('base64DecodeTool')">
+Base64 Decoder
+</button>
+
+<button class="tool-link" onclick="showTool('uuidTool')">
+UUID Generator
+</button>
+
+<button class="tool-link" onclick="showTool('md5Tool')">
+MD5 Generator
+</button>
+
+<button class="tool-link" onclick="showTool('shaTool')">
+SHA256 Generator
+</button>
+
+<button class="tool-link" onclick="showTool('htmlFormatterTool')">
+HTML Formatter
+</button>
+
+<button class="tool-link" onclick="showTool('cssMinifierTool')">
+CSS Minifier
+</button>
+
+<button class="tool-link" onclick="showTool('jsMinifierTool')">
+JavaScript Minifier
 </button>
 
 <h3>🎨 Utility Tools</h3>
@@ -1105,6 +1142,252 @@ Calculate
 </button>
 
 <div class="result-box" id="scientificResult"></div>
+
+</div>
+
+  <div id="base64DecodeTool" class="tool-panel">
+
+<h2>📦 Base64 Decoder</h2>
+
+<div class="description">
+Convert Base64 encoded text back into readable text.
+</div>
+
+<textarea id="base64DecodeInput" rows="8"></textarea>
+
+<button class="action-btn" onclick="base64Decode()">
+Decode
+</button>
+
+<div class="result-box" id="base64DecodeResult"></div>
+
+</div>
+  <div id="urlDecodeTool" class="tool-panel">
+
+<h2>🔗 URL Decoder</h2>
+
+<div class="description">
+Convert URL encoded text back into normal text.
+</div>
+
+<textarea id="urlDecodeInput" rows="6"></textarea>
+
+<button class="action-btn" onclick="decodeURLTool()">
+Decode URL
+</button>
+
+<div class="result-box" id="urlDecodeResult"></div>
+
+</div>
+
+  <div id="jsonValidatorTool" class="tool-panel">
+
+<h2>✅ JSON Validator</h2>
+
+<div class="description">
+Validate JSON syntax and structure.
+</div>
+
+<textarea id="jsonValidatorInput" rows="10"></textarea>
+
+<button class="action-btn" onclick="validateJSON()">
+Validate JSON
+</button>
+
+<div class="result-box" id="jsonValidatorResult"></div>
+
+</div>
+  <div id="jsonMinifierTool" class="tool-panel">
+
+<h2>🗜 JSON Minifier</h2>
+
+<div class="description">
+Remove spaces and line breaks from JSON.
+</div>
+
+<textarea id="jsonMinifierInput" rows="10"></textarea>
+
+<button class="action-btn" onclick="minifyJSON()">
+Minify JSON
+</button>
+
+<div class="result-box">
+<pre id="jsonMinifierResult"></pre>
+</div>
+
+</div>
+  <div id="uuidTool" class="tool-panel">
+
+<h2>🆔 UUID Generator</h2>
+
+<div class="description">
+Generate unique UUID identifiers.
+</div>
+
+<button class="action-btn" onclick="generateUUID()">
+Generate UUID
+</button>
+
+<div class="result-box" id="uuidResult"></div>
+
+</div>
+  <div id="shaTool" class="tool-panel">
+
+<h2>🔐 SHA256 Generator</h2>
+
+<textarea id="shaInput" rows="6"></textarea>
+
+<button class="action-btn" onclick="generateSHA256()">
+Generate SHA256
+</button>
+
+<div class="result-box" id="shaResult"></div>
+
+</div>
+
+  <div id="md5Tool" class="tool-panel">
+
+<h2>🔐 MD5 Generator</h2>
+
+<div class="description">
+<b>What is MD5?</b><br>
+MD5 (Message Digest Algorithm 5) generates a 128-bit hash value.
+
+<br><br>
+
+<b>Common Uses:</b>
+<ul>
+<li>File integrity checks</li>
+<li>Checksums</li>
+<li>Data verification</li>
+</ul>
+
+<b>Note:</b> MD5 is not considered secure for passwords or cryptographic security.
+</div>
+
+<label>Enter Text</label>
+<textarea id="md5Input" rows="6"></textarea>
+
+<button class="action-btn" onclick="generateMD5()">
+Generate MD5
+</button>
+
+<div class="result-box" id="md5Result"></div>
+
+<button class="copy-btn" onclick="copyText('md5Result')">
+Copy Hash
+</button>
+
+</div>
+
+  <div id="htmlFormatterTool" class="tool-panel">
+
+<h2>🌐 HTML Formatter</h2>
+
+<div class="description">
+<b>What is an HTML Formatter?</b><br>
+Formats HTML code into a more readable structure with proper line breaks.
+
+<br><br>
+
+<b>Useful For:</b>
+<ul>
+<li>Web developers</li>
+<li>Debugging HTML</li>
+<li>Learning HTML structure</li>
+</ul>
+</div>
+
+<label>HTML Code</label>
+
+<textarea id="htmlInput" rows="10"
+placeholder="<div><h1>Hello</h1></div>"></textarea>
+
+<button class="action-btn" onclick="formatHTML()">
+Format HTML
+</button>
+
+<div class="result-box">
+<pre id="htmlResult"></pre>
+</div>
+
+<button class="copy-btn" onclick="copyText('htmlResult')">
+Copy HTML
+</button>
+
+</div>
+
+  <div id="cssMinifierTool" class="tool-panel">
+
+<h2>🎨 CSS Minifier</h2>
+
+<div class="description">
+<b>What is CSS Minification?</b><br>
+Removes unnecessary spaces, comments and line breaks from CSS code to reduce file size.
+
+<br><br>
+
+<b>Benefits:</b>
+<ul>
+<li>Faster website loading</li>
+<li>Smaller file size</li>
+<li>Better performance</li>
+</ul>
+</div>
+
+<label>CSS Code</label>
+
+<textarea id="cssInput" rows="10"
+placeholder="body { color: red; }"></textarea>
+
+<button class="action-btn" onclick="minifyCSS()">
+Minify CSS
+</button>
+
+<div class="result-box">
+<pre id="cssResult"></pre>
+</div>
+
+<button class="copy-btn" onclick="copyText('cssResult')">
+Copy CSS
+</button>
+
+</div>
+
+  <div id="jsMinifierTool" class="tool-panel">
+
+<h2>⚡ JavaScript Minifier</h2>
+
+<div class="description">
+<b>What is JavaScript Minification?</b><br>
+Reduces JavaScript file size by removing comments and extra spaces.
+
+<br><br>
+
+<b>Benefits:</b>
+<ul>
+<li>Improves page speed</li>
+<li>Reduces bandwidth usage</li>
+<li>Optimizes website performance</li>
+</ul>
+</div>
+
+<label>JavaScript Code</label>
+
+<textarea id="jsInput" rows="10"
+placeholder="function hello(){ console.log('Hello'); }"></textarea>
+
+<button class="action-btn" onclick="minifyJS()">
+Minify JavaScript
+</button>
+
+<div class="result-box">
+<pre id="jsResult"></pre>
+</div>
+
+<button class="copy-btn" onclick="copyText('jsResult')">
+Copy JavaScript
+</button>
 
 </div>
 
@@ -1931,7 +2214,166 @@ Result:
 <b>${result}</b>
 `;
 }
-  
+  function base64Decode(){
+
+try{
+
+const text =
+document.getElementById("base64DecodeInput").value;
+
+const result =
+decodeURIComponent(
+escape(atob(text))
+);
+
+document.getElementById("base64DecodeResult").innerText =
+result;
+
+}catch{
+
+document.getElementById("base64DecodeResult").innerText =
+"Invalid Base64";
+
+}
+
+}
+  function decodeURLTool(){
+
+try{
+
+const text =
+document.getElementById("urlDecodeInput").value;
+
+document.getElementById("urlDecodeResult").innerText =
+decodeURIComponent(text);
+
+}catch{
+
+document.getElementById("urlDecodeResult").innerText =
+"Invalid URL Encoding";
+
+}
+
+}
+  function validateJSON(){
+
+try{
+
+JSON.parse(
+document.getElementById("jsonValidatorInput").value
+);
+
+document.getElementById("jsonValidatorResult").innerHTML =
+"✅ Valid JSON";
+
+}catch(e){
+
+document.getElementById("jsonValidatorResult").innerHTML =
+"❌ Invalid JSON";
+
+}
+
+}
+  function minifyJSON(){
+
+try{
+
+const obj =
+JSON.parse(
+document.getElementById("jsonMinifierInput").value
+);
+
+document.getElementById("jsonMinifierResult").textContent =
+JSON.stringify(obj);
+
+}catch{
+
+document.getElementById("jsonMinifierResult").textContent =
+"Invalid JSON";
+
+}
+
+}
+  function generateUUID(){
+
+document.getElementById("uuidResult").innerText =
+crypto.randomUUID();
+
+}
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.19.0/js/md5.min.js"></script>
+  function generateMD5(){
+
+const text =
+document.getElementById("md5Input").value;
+
+document.getElementById("md5Result").innerText =
+md5(text);
+
+}
+  async function generateSHA256(){
+
+const text =
+document.getElementById("shaInput").value;
+
+const data =
+new TextEncoder().encode(text);
+
+const hash =
+await crypto.subtle.digest(
+"SHA-256",
+data
+);
+
+const result =
+Array.from(new Uint8Array(hash))
+.map(b=>b.toString(16).padStart(2,"0"))
+.join("");
+
+document.getElementById("shaResult").innerText =
+result;
+
+}
+  function formatHTML(){
+
+const text =
+document.getElementById("htmlInput").value;
+
+document.getElementById("htmlResult").textContent =
+text
+.replace(/></g,">\n<");
+
+}
+  function minifyCSS(){
+
+const css =
+document.getElementById("cssInput").value;
+
+const result =
+css
+.replace(/\/\*[\s\S]*?\*\//g,"")
+.replace(/\s+/g," ")
+.trim();
+
+document.getElementById("cssResult").textContent =
+result;
+
+}
+  function minifyJS(){
+
+const js =
+document.getElementById("jsInput").value;
+
+const result =
+js
+.replace(/\/\/.*$/gm,"")
+.replace(/\s+/g," ")
+.trim();
+
+document.getElementById("jsResult").textContent =
+result;
+
+}
 
 </script>
 </body>
