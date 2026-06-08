@@ -992,14 +992,24 @@ function showTool(id){
         el.classList.add("active");
 
         setTimeout(()=>{
-            el.scrollIntoView({
-                behavior:"smooth",
-                block:"start"
+
+            const headerHeight =
+            document.querySelector("header").offsetHeight;
+
+            const y =
+            el.getBoundingClientRect().top +
+            window.pageYOffset -
+            headerHeight -
+            20;
+
+            window.scrollTo({
+                top:y,
+                behavior:"smooth"
             });
+
         },100);
     }
 }
-
 /* =========================
    PRIVACY MODAL
 ========================= */
