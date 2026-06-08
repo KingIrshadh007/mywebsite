@@ -432,6 +432,25 @@ PPF Calculator
 <button class="tool-link" onclick="showTool('dateTool')">
 Date Calculator
 </button>
+  <button class="tool-link" onclick="showTool('taxTool')">
+Income Tax Calculator
+</button>
+
+<button class="tool-link" onclick="showTool('hraTool')">
+HRA Calculator
+</button>
+
+<button class="tool-link" onclick="showTool('epfTool')">
+EPF Calculator
+</button>
+
+<button class="tool-link" onclick="showTool('gratuityTool')">
+Gratuity Calculator
+</button>
+
+<button class="tool-link" onclick="showTool('scientificTool')">
+Scientific Calculator
+</button>
 
 <h3>📝 Text Tools</h3>
 
@@ -941,6 +960,151 @@ Calculate Difference
 </button>
 
 <div class="result-box" id="dateResult"></div>
+
+</div>
+
+  <div id="taxTool" class="tool-panel">
+
+<h2>🧾 Income Tax Calculator</h2>
+
+<div class="description">
+<b>What is Income Tax?</b><br>
+Income tax is the tax paid on annual earnings.
+
+<br><br>
+
+<b>Use Cases:</b>
+<ul>
+<li>Salary planning</li>
+<li>Tax estimation</li>
+<li>Financial planning</li>
+</ul>
+</div>
+
+<label>Annual Income (₹)</label>
+<input type="number" id="taxIncome">
+
+<button class="action-btn" onclick="calculateTax()">
+Calculate Tax
+</button>
+
+<div class="result-box" id="taxResult"></div>
+
+</div>
+
+  <div id="hraTool" class="tool-panel">
+
+<h2>🏠 HRA Calculator</h2>
+
+<div class="description">
+<b>What is HRA?</b><br>
+House Rent Allowance helps salaried employees calculate tax exemptions on rent.
+
+</div>
+
+<label>Basic Salary (₹)</label>
+<input type="number" id="hraBasic">
+
+<label>HRA Received (₹)</label>
+<input type="number" id="hraReceived">
+
+<label>Monthly Rent Paid (₹)</label>
+<input type="number" id="hraRent">
+
+<button class="action-btn" onclick="calculateHRA()">
+Calculate HRA
+</button>
+
+<div class="result-box" id="hraResult"></div>
+
+</div>
+  <div id="epfTool" class="tool-panel">
+
+<h2>🏦 EPF Calculator</h2>
+
+<div class="description">
+<b>What is EPF?</b><br>
+Employees Provident Fund helps employees build retirement savings.
+
+</div>
+
+<label>Monthly Basic Salary (₹)</label>
+<input type="number" id="epfSalary">
+
+<label>Years of Contribution</label>
+<input type="number" id="epfYears">
+
+<button class="action-btn" onclick="calculateEPF()">
+Calculate EPF
+</button>
+
+<div class="result-box" id="epfResult"></div>
+
+</div>
+  <div id="gratuityTool" class="tool-panel">
+
+<h2>💼 Gratuity Calculator</h2>
+
+<div class="description">
+<b>What is Gratuity?</b><br>
+Gratuity is a benefit paid to employees for long-term service.
+
+</div>
+
+<label>Last Drawn Salary (₹)</label>
+<input type="number" id="gratuitySalary">
+
+<label>Years of Service</label>
+<input type="number" id="gratuityYears">
+
+<button class="action-btn" onclick="calculateGratuity()">
+Calculate Gratuity
+</button>
+
+<div class="result-box" id="gratuityResult"></div>
+
+</div>
+
+  <div id="scientificTool" class="tool-panel">
+
+<h2>🔬 Scientific Calculator</h2>
+
+<div class="description">
+<b>What is a Scientific Calculator?</b><br>
+Perform advanced mathematical calculations.
+
+Examples:
+<ul>
+<li>Square Root</li>
+<li>Power</li>
+<li>Sine</li>
+<li>Cosine</li>
+<li>Tangent</li>
+</ul>
+</div>
+
+<label>Number</label>
+<input type="number" id="sciNumber">
+
+<select id="sciOperation">
+
+<option value="sqrt">Square Root</option>
+
+<option value="square">Square</option>
+
+<option value="sin">Sin</option>
+
+<option value="cos">Cos</option>
+
+<option value="tan">Tan</option>
+
+</select>
+
+<button class="action-btn" onclick="calculateScientific()">
+Calculate
+</button>
+
+<div class="result-box" id="scientificResult"></div>
 
 </div>
 
@@ -1614,6 +1778,160 @@ Difference:
 <b>${days}</b> Days
 `;
 }
+  function calculateTax(){
+
+let income =
++document.getElementById("taxIncome").value;
+
+if(income <= 0){
+
+document.getElementById("taxResult").innerHTML =
+"Enter valid income";
+
+return;
+}
+
+let tax = 0;
+
+if(income > 1200000){
+tax = (income - 1200000) * 0.10;
+}
+
+document.getElementById("taxResult").innerHTML =
+`
+Estimated Tax:
+<b>₹${tax.toFixed(2)}</b>
+`;
+}
+  function calculateHRA(){
+
+let basic =
++document.getElementById("hraBasic").value;
+
+let received =
++document.getElementById("hraReceived").value;
+
+let rent =
++document.getElementById("hraRent").value;
+
+if(basic<=0 || received<=0 || rent<=0){
+
+document.getElementById("hraResult").innerHTML =
+"Enter valid values";
+
+return;
+}
+
+let exemption =
+Math.min(
+received,
+rent*12 - (basic*0.10)
+);
+
+document.getElementById("hraResult").innerHTML =
+`
+Estimated HRA Exemption:
+
+<b>₹${Math.max(0,exemption).toFixed(2)}</b>
+`;
+}
+
+  function calculateEPF(){
+
+let salary =
++document.getElementById("epfSalary").value;
+
+let years =
++document.getElementById("epfYears").value;
+
+if(salary<=0 || years<=0){
+
+document.getElementById("epfResult").innerHTML =
+"Enter valid values";
+
+return;
+}
+
+let monthlyContribution =
+salary * 0.12;
+
+let total =
+monthlyContribution * 12 * years;
+
+document.getElementById("epfResult").innerHTML =
+`
+Estimated EPF Contribution:
+
+<b>₹${total.toFixed(2)}</b>
+`;
+}
+  function calculateGratuity(){
+
+let salary =
++document.getElementById("gratuitySalary").value;
+
+let years =
++document.getElementById("gratuityYears").value;
+
+if(salary<=0 || years<=0){
+
+document.getElementById("gratuityResult").innerHTML =
+"Enter valid values";
+
+return;
+}
+
+let gratuity =
+(salary * 15 * years) / 26;
+
+document.getElementById("gratuityResult").innerHTML =
+`
+Estimated Gratuity:
+
+<b>₹${gratuity.toFixed(2)}</b>
+`;
+}
+  function calculateScientific(){
+
+let num =
++document.getElementById("sciNumber").value;
+
+let op =
+document.getElementById("sciOperation").value;
+
+let result = 0;
+
+switch(op){
+
+case "sqrt":
+result = Math.sqrt(num);
+break;
+
+case "square":
+result = Math.pow(num,2);
+break;
+
+case "sin":
+result = Math.sin(num);
+break;
+
+case "cos":
+result = Math.cos(num);
+break;
+
+case "tan":
+result = Math.tan(num);
+break;
+}
+
+document.getElementById("scientificResult").innerHTML =
+`
+Result:
+
+<b>${result}</b>
+`;
+}
+  
 
 </script>
 </body>
