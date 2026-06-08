@@ -56,11 +56,13 @@ transition:.3s;
 /* HEADER */
 
 header{
-height:70px;
+min-height:70px;
 display:flex;
 align-items:center;
 justify-content:space-between;
-padding:0 25px;
+padding:12px 20px;
+flex-wrap:wrap;
+gap:10px;
 background:var(--card);
 border-bottom:1px solid var(--border);
 position:sticky;
@@ -150,6 +152,7 @@ background:var(--card-hover);
 .content{
 flex:1;
 padding:30px;
+overflow-x:hidden;
 }
 
 .welcome-card{
@@ -173,6 +176,8 @@ display:none;
 background:var(--card);
 padding:25px;
 border-radius:15px;
+width:100%;
+overflow-wrap:break-word;
 }
 
 .tool-panel.active{
@@ -202,6 +207,7 @@ border-radius:10px;
 border:1px solid var(--border);
 background:var(--bg);
 color:var(--text);
+font-size:16px;
 }
 
 button.action-btn{
@@ -238,6 +244,7 @@ display:flex;
 justify-content:space-between;
 flex-wrap:wrap;
 gap:20px;
+align-items:flex-start;
 }
 
 .footer-links a{
@@ -306,8 +313,21 @@ border-right:none;
 border-bottom:1px solid var(--border);
 }
 
+.content{
+padding:15px;
+}
+
+.footer-container{
+flex-direction:column;
+}
+
 .nav-links{
-display:none;
+display:flex;
+width:100%;
+justify-content:center;
+flex-wrap:wrap;
+gap:10px;
+font-size:14px;
 }
 
 }
@@ -323,8 +343,14 @@ margin-top:10px;margin-left:8px;background:var(--secondary);
 color:#fff;border:none;padding:8px 12px;border-radius:8px;cursor:pointer;
 }
 .ad-box{
-margin-top:25px;padding:20px;border:2px dashed var(--border);
-text-align:center;border-radius:12px;
+margin-top:25px;
+padding:20px;
+border:2px dashed var(--border);
+text-align:center;
+border-radius:12px;
+width:100%;
+max-width:100%;
+overflow:hidden;
 }
 
 </style>
@@ -856,38 +882,76 @@ function copyText(id){
  const el=document.getElementById(id);
 
  if(!el){
-   showToast('Nothing to copy');
+   showToast("Nothing to copy");
    return;
  }
 
  const txt=el.innerText || el.textContent;
 
- navigator.clipboard.writeText(txt)
- .then(()=>{
-   showToast('Copied successfully');
- })
- .catch(()=>{
-   showToast('Copy failed');
- });
+ if(navigator.clipboard){
+
+   navigator.clipboard.writeText(txt)
+   .then(()=>{
+      showToast("Copied successfully");
+   })
+   .catch(()=>{
+      fallbackCopy(txt);
+   });
+
+ }else{
+   fallbackCopy(txt);
+ }
+}
+
+function fallbackCopy(text){
+
+ const area=document.createElement("textarea");
+
+ area.value=text;
+
+ document.body.appendChild(area);
+
+ area.select();
+
+ try{
+   document.execCommand("copy");
+   showToast("Copied successfully");
+ }catch{
+   showToast("Copy failed");
+ }
+
+ document.body.removeChild(area);
 }
 
 function downloadQR(){
- const img=document.querySelector('#qrContainer img') || document.querySelector('#qrContainer canvas');
- if(!img){
+
+ const canvas =
+ document.querySelector('#qrContainer canvas');
+
+ const img =
+ document.querySelector('#qrContainer img');
+
+ if(!canvas && !img){
    showToast('Generate QR first');
    return;
  }
 
- let url=img.src;
+ let url;
 
- if(img.tagName==='CANVAS'){
-   url=img.toDataURL();
+ if(canvas){
+   url = canvas.toDataURL('image/png');
+ }else{
+   url = img.src;
  }
 
  const a=document.createElement('a');
+
  a.href=url;
  a.download='qrcode.png';
+
+ document.body.appendChild(a);
  a.click();
+ document.body.removeChild(a);
 }
 </script>
 
@@ -915,15 +979,24 @@ window.onload = () => {
 ========================= */
 function showTool(id){
 
-    document.getElementById("welcome").style.display = "none";
+    document.getElementById("welcome").style.display="none";
 
     document.querySelectorAll(".tool-panel").forEach(tool=>{
         tool.classList.remove("active");
     });
 
-    const el = document.getElementById(id);
+    const el=document.getElementById(id);
+
     if(el){
+
         el.classList.add("active");
+
+        setTimeout(()=>{
+            el.scrollIntoView({
+                behavior:"smooth",
+                block:"start"
+            });
+        },100);
     }
 }
 
