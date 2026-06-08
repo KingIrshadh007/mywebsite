@@ -879,14 +879,20 @@ function showToast(msg){
 
 function copyText(id){
 
- const el=document.getElementById(id);
+ const el = document.getElementById(id);
 
  if(!el){
    showToast("Nothing to copy");
    return;
  }
 
- const txt=el.innerText || el.textContent;
+ const txt = (el.innerText || el.textContent || "").trim();
+
+ // 🚨 prevent empty copy
+ if(!txt || txt === ""){
+   showToast("Nothing to copy");
+   return;
+ }
 
  if(navigator.clipboard){
 
@@ -902,7 +908,6 @@ function copyText(id){
    fallbackCopy(txt);
  }
 }
-
 function fallbackCopy(text){
 
  const area=document.createElement("textarea");
