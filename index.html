@@ -1016,10 +1016,7 @@ function calculateEMI(){
         return;
     }
 
-    /* EMI_RATE_OK */
-        document.getElementById("emiResult").innerHTML="Fill all fields";
-        return;
-    }
+    
 
     let emi = (p*r*Math.pow(1+r,n)) / (Math.pow(1+r,n)-1);
 
@@ -1065,10 +1062,7 @@ function calculateSIP(){
         return;
     }
 
-    /* SIP_RATE_OK */
-        document.getElementById("sipResult").innerHTML="Fill all fields";
-        return;
-    }
+    
 
     let fv = p * ((Math.pow(1+r,n)-1)/r) * (1+r);
 
@@ -1095,10 +1089,7 @@ function calculateLoan(){
         return;
     }
 
-    /* LOAN_RATE_OK */
-        document.getElementById("loanResult").innerHTML="Fill all fields";
-        return;
-    }
+    
 
     let emi = (p*r*Math.pow(1+r,n)) / (Math.pow(1+r,n)-1);
 
@@ -1231,7 +1222,9 @@ function generateQR(){
     });
 }
 
-document.getElementById("toolSearch").addEventListener("input", function () {
+const toolSearch = document.getElementById("toolSearch");
+if(toolSearch){
+toolSearch.addEventListener("input", function () {
 
     const search = this.value.toLowerCase();
 
@@ -1243,6 +1236,7 @@ document.getElementById("toolSearch").addEventListener("input", function () {
             : "none";
     });
 });
+}
 
 </script>
 </body>
