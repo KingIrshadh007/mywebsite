@@ -402,7 +402,7 @@ BMI Calculator
 </button>
 
 <button class="tool-link" onclick="showTool('emiTool')">
-EMI Calculator
+Loan / EMI Calculator
 </button>
 
 <button class="tool-link" onclick="showTool('gstTool')">
@@ -411,10 +411,6 @@ GST Calculator
 
 <button class="tool-link" onclick="showTool('sipTool')">
 SIP Calculator
-</button>
-
-<button class="tool-link" onclick="showTool('loanTool')">
-Loan Calculator
 </button>
 
 <h3>📝 Text Tools</h3>
@@ -442,6 +438,10 @@ Base64 Encoder
 </button>
 
 <h3>🎨 Utility Tools</h3>
+
+  <button class="tool-link" onclick="showTool('seoTool')">
+SEO Meta Generator
+</button>
 
 <button class="tool-link" onclick="showTool('colorTool')">
 Color Picker
@@ -603,7 +603,6 @@ Calculate SIP
 <div class="result-box" id="sipResult"></div>
 
 </div>
-  <div id="loanTool" class="tool-panel">
 
 <h2>💳 Loan Calculator</h2>
 
@@ -765,7 +764,30 @@ Generate Password
 <div class="result-box" id="passwordResult"></div><button class="copy-btn" onclick="copyText('passwordResult')">Copy Password</button>
 
 </div>
-  <div id="qrTool" class="tool-panel">
+
+    <div id="seoTool" class="tool-panel">
+
+<h2>🔍 SEO Meta Tag Generator</h2>
+
+<div class="description">
+Generate SEO title, description and keywords for your website to improve Google ranking.
+</div>
+
+<label>Website Name</label>
+<input type="text" id="seoName" placeholder="e.g. Free Tools Hub">
+
+<label>Main Topic / Keyword</label>
+<input type="text" id="seoTopic" placeholder="e.g. calculator tools">
+
+<button class="action-btn" onclick="generateSEO()">
+Generate SEO Tags
+</button>
+
+<div class="result-box" id="seoResult">
+Your SEO output will appear here.
+</div>
+
+</div>
 
 <h2>📱 QR Generator</h2>
 
@@ -1238,6 +1260,27 @@ function base64Encode(){
 /* =========================
    UTILS
 ========================= */
+function generateSEO(){
+    let name = document.getElementById("seoName").value;
+    let topic = document.getElementById("seoTopic").value;
+
+    if(!name || !topic){
+        document.getElementById("seoResult").innerHTML =
+        "Please fill all fields";
+        return;
+    }
+
+    let title = `${name} - Best Free ${topic} Online Tools`;
+    let description = `Use ${topic} tools on ${name}. Fast, free and easy online utilities for daily use.`;
+    let keywords = `${topic}, ${name}, free tools, online tools, calculator`;
+
+    document.getElementById("seoResult").innerHTML = `
+<b>Title:</b> ${title}<br><br>
+<b>Description:</b> ${description}<br><br>
+<b>Keywords:</b> ${keywords}
+`;
+}
+  
 function showColor(){
     let color = document.getElementById("colorPicker").value;
     document.getElementById("colorResult").innerHTML =
