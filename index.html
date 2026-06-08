@@ -579,7 +579,7 @@ Calculate GST
 <div class="result-box" id="gstResult"></div>
 
 </div>
-  <div id="sipTool" class="tool-panel">
+<div id="sipTool" class="tool-panel">
 
 <h2>📈 SIP Calculator</h2>
 
@@ -604,6 +604,9 @@ Calculate SIP
 
 </div>
 
+<!-- ✅ FIXED: Loan tool must have its own wrapper -->
+<div id="loanTool" class="tool-panel">
+
 <h2>💳 Loan Calculator</h2>
 
 <div class="description">
@@ -626,6 +629,7 @@ Calculate Loan EMI
 <div class="result-box" id="loanResult"></div>
 
 </div>
+  
   <div id="wordTool" class="tool-panel">
 
 <h2>🔢 Word Counter</h2>
@@ -787,12 +791,27 @@ Generate SEO Tags
 Your SEO output will appear here.
 </div>
 
-</div>
+<div id="qrTool" class="tool-panel">
 
 <h2>📱 QR Generator</h2>
 
 <div class="description">
 Generate QR code from text or URL.
+</div>
+
+<label>Enter Text</label>
+<input type="text" id="qrText">
+
+<button class="action-btn" onclick="generateQR()">
+Generate QR
+</button>
+
+<div id="qrContainer" style="margin-top:20px;"></div>
+
+<button class="copy-btn" onclick="downloadQR()">
+Download QR
+</button>
+
 </div>
 
 <input type="text" id="qrText">
@@ -995,8 +1014,7 @@ function toggleTheme(){
     );
 }
 
-window.onload = () => {
-    if(localStorage.getItem("theme") === "light"){
+window.addEventListener("load", () => {    if(localStorage.getItem("theme") === "light"){
         document.body.classList.add("light");
     }
 };
@@ -1005,6 +1023,10 @@ window.onload = () => {
    TOOL SWITCHER
 ========================= */
 function showTool(id){
+if(id === "welcome"){
+    document.getElementById("welcome").style.display="block";
+    return;
+}
 
     document.getElementById("welcome").style.display="none";
 
