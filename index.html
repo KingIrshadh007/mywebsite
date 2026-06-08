@@ -795,10 +795,6 @@ Your SEO output will appear here.
 
 <h2>📱 QR Generator</h2>
 
-<div class="description">
-Generate QR code from text or URL.
-</div>
-
 <label>Enter Text</label>
 <input type="text" id="qrText">
 
@@ -811,12 +807,6 @@ Generate QR
 <button class="copy-btn" onclick="downloadQR()">
 Download QR
 </button>
-
-</div>
-
-<input type="text" id="qrText">
-
-<button class="action-btn" onclick="generateQR()">
 
 </div>
   
@@ -1010,16 +1000,16 @@ function toggleTheme(){
     );
 }
 
-window.addEventListener("load", () => {    if(localStorage.getItem("theme") === "light"){
+window.addEventListener("load", () => {
+    if (localStorage.getItem("theme") === "light") {
         document.body.classList.add("light");
     }
-}};
+});
 
 /* =========================
    TOOL SWITCHER
 ========================= */
 function showTool(id){
-
     const welcome = document.getElementById("welcome");
     const tools = document.querySelectorAll(".tool-panel");
 
