@@ -413,6 +413,26 @@ GST Calculator
 SIP Calculator
 </button>
 
+<button class="tool-link" onclick="showTool('percentageTool')">
+Percentage Calculator
+</button>
+
+<button class="tool-link" onclick="showTool('fdTool')">
+FD Calculator
+</button>
+
+<button class="tool-link" onclick="showTool('rdTool')">
+RD Calculator
+</button>
+
+<button class="tool-link" onclick="showTool('ppfTool')">
+PPF Calculator
+</button>
+
+<button class="tool-link" onclick="showTool('dateTool')">
+Date Calculator
+</button>
+
 <h3>📝 Text Tools</h3>
 
 <button class="tool-link" onclick="showTool('wordTool')">
@@ -755,7 +775,174 @@ Generate QR
 <div id="qrContainer" style="margin-top:20px;"></div><button class="copy-btn" onclick="downloadQR()">Download QR</button>
 
 </div>
-  
+
+  <div id="percentageTool" class="tool-panel">
+
+<h2>📊 Percentage Calculator</h2>
+
+<div class="description">
+<b>What is Percentage?</b><br>
+A percentage represents a value out of 100.
+
+<br><br>
+
+<b>Common Uses:</b>
+<ul>
+<li>Exam score calculations</li>
+<li>Discount calculations</li>
+<li>Profit & loss calculations</li>
+<li>Tax calculations</li>
+</ul>
+</div>
+
+<label>Value</label>
+<input type="number" id="percentValue">
+
+<label>Total</label>
+<input type="number" id="percentTotal">
+
+<button class="action-btn" onclick="calculatePercentage()">
+Calculate Percentage
+</button>
+
+<div class="result-box" id="percentageResult"></div>
+
+</div>
+
+  <div id="fdTool" class="tool-panel">
+
+<h2>🏦 FD Calculator</h2>
+
+<div class="description">
+<b>What is a Fixed Deposit (FD)?</b><br>
+A Fixed Deposit allows you to invest a lump sum amount for a fixed period and earn interest.
+
+<br><br>
+
+<b>Use Cases:</b>
+<ul>
+<li>Safe investment planning</li>
+<li>Retirement savings</li>
+<li>Short-term financial goals</li>
+</ul>
+</div>
+
+<label>Deposit Amount (₹)</label>
+<input type="number" id="fdAmount">
+
+<label>Interest Rate (%)</label>
+<input type="number" id="fdRate">
+
+<label>Investment Period (Years)</label>
+<input type="number" id="fdYears">
+
+<button class="action-btn" onclick="calculateFD()">
+Calculate FD
+</button>
+
+<div class="result-box" id="fdResult"></div>
+
+</div>
+  <div id="rdTool" class="tool-panel">
+
+<h2>💰 RD Calculator</h2>
+
+<div class="description">
+<b>What is a Recurring Deposit?</b><br>
+A Recurring Deposit lets you invest a fixed amount every month and earn interest.
+
+<br><br>
+
+<b>Ideal For:</b>
+<ul>
+<li>Monthly savings plans</li>
+<li>Students</li>
+<li>Salary earners</li>
+</ul>
+</div>
+
+<label>Monthly Deposit (₹)</label>
+<input type="number" id="rdAmount">
+
+<label>Interest Rate (%)</label>
+<input type="number" id="rdRate">
+
+<label>Investment Period (Years)</label>
+<input type="number" id="rdYears">
+
+<button class="action-btn" onclick="calculateRD()">
+Calculate RD
+</button>
+
+<div class="result-box" id="rdResult"></div>
+
+</div>
+  <div id="ppfTool" class="tool-panel">
+
+<h2>📈 PPF Calculator</h2>
+
+<div class="description">
+<b>What is PPF?</b><br>
+Public Provident Fund (PPF) is a government-backed long-term investment scheme.
+
+<br><br>
+
+<b>Benefits:</b>
+<ul>
+<li>Tax benefits</li>
+<li>Safe investment</li>
+<li>Long-term wealth creation</li>
+</ul>
+</div>
+
+<label>Yearly Investment (₹)</label>
+<input type="number" id="ppfAmount">
+
+<label>Interest Rate (%)</label>
+<input type="number" id="ppfRate" value="7.1">
+
+<label>Investment Period (Years)</label>
+<input type="number" id="ppfYears" value="15">
+
+<button class="action-btn" onclick="calculatePPF()">
+Calculate PPF
+</button>
+
+<div class="result-box" id="ppfResult"></div>
+
+</div>
+  <div id="dateTool" class="tool-panel">
+
+<h2>📅 Date Calculator</h2>
+
+<div class="description">
+<b>What is a Date Calculator?</b><br>
+Find the number of days between two dates.
+
+<br><br>
+
+<b>Useful For:</b>
+<ul>
+<li>Project planning</li>
+<li>Event tracking</li>
+<li>Age calculations</li>
+<li>Deadline calculations</li>
+</ul>
+</div>
+
+<label>Start Date</label>
+<input type="date" id="startDate">
+
+<label>End Date</label>
+<input type="date" id="endDate">
+
+<button class="action-btn" onclick="calculateDateDifference()">
+Calculate Difference
+</button>
+
+<div class="result-box" id="dateResult"></div>
+
+</div>
 
 </main>
 
@@ -1270,6 +1457,162 @@ toolSearch.addEventListener("input", function () {
             : "none";
     });
 });
+}
+
+function calculatePercentage(){
+
+let value =
++document.getElementById("percentValue").value;
+
+let total =
++document.getElementById("percentTotal").value;
+
+if(total <= 0){
+
+document.getElementById("percentageResult").innerHTML =
+"Please enter valid values.";
+
+return;
+}
+
+let percentage = (value / total) * 100;
+
+document.getElementById("percentageResult").innerHTML =
+`
+<b>${value}</b> is
+<b>${percentage.toFixed(2)}%</b>
+of <b>${total}</b>.
+`;
+}
+  function calculateFD(){
+
+let principal =
++document.getElementById("fdAmount").value;
+
+let rate =
++document.getElementById("fdRate").value / 100;
+
+let years =
++document.getElementById("fdYears").value;
+
+if(principal <= 0 || years <= 0){
+
+document.getElementById("fdResult").innerHTML =
+"Please enter valid values.";
+
+return;
+}
+
+let maturity =
+principal * Math.pow((1 + rate), years);
+
+let interest =
+maturity - principal;
+
+document.getElementById("fdResult").innerHTML =
+`
+Maturity Amount:
+<b>₹${maturity.toFixed(2)}</b>
+
+<br><br>
+
+Interest Earned:
+<b>₹${interest.toFixed(2)}</b>
+`;
+}
+  function calculateRD(){
+
+let monthly =
++document.getElementById("rdAmount").value;
+
+let rate =
++document.getElementById("rdRate").value / 100 / 12;
+
+let months =
++document.getElementById("rdYears").value * 12;
+
+if(monthly <= 0 || months <= 0){
+
+document.getElementById("rdResult").innerHTML =
+"Please enter valid values.";
+
+return;
+}
+
+let maturity =
+monthly *
+((Math.pow(1 + rate, months) - 1) / rate);
+
+document.getElementById("rdResult").innerHTML =
+`
+Estimated Maturity Value:
+
+<b>₹${maturity.toFixed(2)}</b>
+`;
+}
+  function calculatePPF(){
+
+let yearly =
++document.getElementById("ppfAmount").value;
+
+let rate =
++document.getElementById("ppfRate").value / 100;
+
+let years =
++document.getElementById("ppfYears").value;
+
+if(yearly <= 0 || years <= 0){
+
+document.getElementById("ppfResult").innerHTML =
+"Please enter valid values.";
+
+return;
+}
+
+let total = 0;
+
+for(let i=0;i<years;i++){
+
+total = (total + yearly) * (1 + rate);
+
+}
+
+document.getElementById("ppfResult").innerHTML =
+`
+Estimated PPF Maturity:
+
+<b>₹${total.toFixed(2)}</b>
+`;
+}
+
+  function calculateDateDifference(){
+
+const start =
+new Date(document.getElementById("startDate").value);
+
+const end =
+new Date(document.getElementById("endDate").value);
+
+if(isNaN(start) || isNaN(end)){
+
+document.getElementById("dateResult").innerHTML =
+"Select both dates.";
+
+return;
+}
+
+const diff =
+Math.abs(end - start);
+
+const days =
+Math.floor(diff / (1000 * 60 * 60 * 24));
+
+document.getElementById("dateResult").innerHTML =
+`
+Difference:
+
+<b>${days}</b> Days
+`;
 }
 
 </script>
