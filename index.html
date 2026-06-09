@@ -1700,27 +1700,35 @@ function calculateBMI(){
    EMI
 ========================= */
 function calculateEMI(){
-    let p = +document.getElementById("emiPrincipal").value;
-    let r = +document.getElementById("emiRate").value / 12 / 100;
-    let n = +document.getElementById("emiYears").value * 12;
+    let P = +document.getElementById("emiPrincipal").value;
+    let annualRate = +document.getElementById("emiRate").value;
+    let years = +document.getElementById("emiYears").value;
 
-    if(!p || p <= 0 || n <= 0){
-        document.getElementById("emiResult").innerHTML="Fill all fields";
+    if(P <= 0 || annualRate < 0 || years <= 0){
+        document.getElementById("emiResult").innerHTML = "Fill valid values";
         return;
     }
+
+    let r = annualRate / 12 / 100;
+    let n = years * 12;
+
+    let emi;
 
     if(r === 0){
-        document.getElementById("emiResult").innerHTML =
-        `Monthly EMI: ₹${(p/n).toFixed(2)}`;
-        return;
+        emi = P / n;
+    } else {
+        emi = (P * r * Math.pow(1 + r, n)) /
+              (Math.pow(1 + r, n) - 1);
     }
 
-    
+    let totalPayment = emi * n;
+    let interest = totalPayment - P;
 
-    let emi = (p*r*Math.pow(1+r,n)) / (Math.pow(1+r,n)-1);
-
-    document.getElementById("emiResult").innerHTML =
-    `Monthly EMI: ₹${emi.toFixed(2)}`;
+    document.getElementById("emiResult").innerHTML = `
+        Monthly EMI: <b>₹${emi.toFixed(2)}</b><br>
+        Total Interest: <b>₹${interest.toFixed(2)}</b><br>
+        Total Payment: <b>₹${totalPayment.toFixed(2)}</b>
+    `;
 }
 
 /* =========================
@@ -1746,27 +1754,28 @@ function calculateGST(){
    SIP
 ========================= */
 function calculateSIP(){
-    let p = +document.getElementById("sipAmount").value;
-    let r = +document.getElementById("sipRate").value / 12 / 100;
-    let n = +document.getElementById("sipYears").value * 12;
+    let P = +document.getElementById("sipAmount").value;
+    let annualRate = +document.getElementById("sipRate").value;
+    let years = +document.getElementById("sipYears").value;
 
-    if(!p || p <= 0 || n <= 0){
-        document.getElementById("sipResult").innerHTML="Fill all fields";
+    if(P <= 0 || annualRate <= 0 || years <= 0){
+        document.getElementById("sipResult").innerHTML = "Fill valid values";
         return;
     }
 
-    if(r === 0){
-        document.getElementById("sipResult").innerHTML =
-        `Future Value: ₹${(p*n).toFixed(2)}`;
-        return;
-    }
+    let r = annualRate / 12 / 100;
+    let n = years * 12;
 
-    
+    let fv = P * ((Math.pow(1 + r, n) - 1) / r) * (1 + r);
 
-    let fv = p * ((Math.pow(1+r,n)-1)/r) * (1+r);
+    let invested = P * n;
+    let gain = fv - invested;
 
-    document.getElementById("sipResult").innerHTML =
-    `Future Value: ₹${fv.toFixed(2)}`;
+    document.getElementById("sipResult").innerHTML = `
+        Future Value: <b>₹${fv.toFixed(2)}</b><br>
+        Invested: <b>₹${invested.toFixed(2)}</b><br>
+        Gains: <b>₹${gain.toFixed(2)}</b>
+    `;
 }
 
 /* =========================
@@ -1940,69 +1949,44 @@ of <b>${total}</b>.
 `;
 }
   function calculateFD(){
+    let P = +document.getElementById("fdAmount").value;
+    let rate = +document.getElementById("fdRate").value;
+    let years = +document.getElementById("fdYears").value;
 
-let principal =
-+document.getElementById("fdAmount").value;
+    if(P <= 0 || rate <= 0 || years <= 0){
+        document.getElementById("fdResult").innerHTML = "Enter valid values";
+        return;
+    }
 
-let rate =
-+document.getElementById("fdRate").value / 100;
+    let r = rate / 100;
+    let n = 4; // quarterly compounding
 
-let years =
-+document.getElementById("fdYears").value;
+    let maturity = P * Math.pow(1 + r/n, n * years);
+    let interest = maturity - P;
 
-if(principal <= 0 || years <= 0){
-
-document.getElementById("fdResult").innerHTML =
-"Please enter valid values.";
-
-return;
-}
-
-/* Annual compounding */
-let maturity = principal * Math.pow(1 + rate, years);
-
-let interest = maturity - principal;
-
-document.getElementById("fdResult").innerHTML =
-`
-Maturity Amount:
-<b>₹${maturity.toFixed(2)}</b>
-
-<br><br>
-
-Interest Earned:
-<b>₹${interest.toFixed(2)}</b>
-`;
+    document.getElementById("fdResult").innerHTML = `
+        Maturity: <b>₹${maturity.toFixed(2)}</b><br>
+        Interest: <b>₹${interest.toFixed(2)}</b>
+    `;
 }
   function calculateRD(){
+    let P = +document.getElementById("rdAmount").value;
+    let annualRate = +document.getElementById("rdRate").value;
+    let years = +document.getElementById("rdYears").value;
 
-let monthly =
-+document.getElementById("rdAmount").value;
+    if(P <= 0 || annualRate <= 0 || years <= 0){
+        document.getElementById("rdResult").innerHTML = "Enter valid values";
+        return;
+    }
 
-let rate =
-+document.getElementById("rdRate").value / 100 / 12;
+    let r = annualRate / 400; // quarterly interest
+    let n = years * 12;
 
-let months =
-+document.getElementById("rdYears").value * 12;
+    let maturity = P * ((Math.pow(1 + r, n) - 1) / (1 - Math.pow(1 + r, -1/3)));
 
-if(monthly <= 0 || months <= 0){
-
-document.getElementById("rdResult").innerHTML =
-"Please enter valid values.";
-
-return;
-}
-
-let maturity =
-monthly *
-((Math.pow(1 + rate, months) - 1) / rate);
-
-document.getElementById("rdResult").innerHTML =
-`
-Estimated Maturity Value:
-
-<b>₹${maturity.toFixed(2)}</b>
-`;
+    document.getElementById("rdResult").innerHTML = `
+        Maturity Value: <b>₹${maturity.toFixed(2)}</b>
+    `;
 }
   function calculatePPF(){
 
@@ -2069,29 +2053,25 @@ Difference:
 `;
 }
   function calculateTax(){
+    let income = +document.getElementById("taxIncome").value;
 
-let income =
-+document.getElementById("taxIncome").value;
+    if(income <= 0){
+        document.getElementById("taxResult").innerHTML = "Enter valid income";
+        return;
+    }
 
-if(income <= 0){
+    let tax = 0;
 
-document.getElementById("taxResult").innerHTML =
-"Enter valid income";
+    if(income <= 300000) tax = 0;
+    else if(income <= 600000) tax = (income - 300000) * 0.05;
+    else if(income <= 900000) tax = 15000 + (income - 600000) * 0.10;
+    else if(income <= 1200000) tax = 45000 + (income - 900000) * 0.15;
+    else if(income <= 1500000) tax = 90000 + (income - 1200000) * 0.20;
+    else tax = 150000 + (income - 1500000) * 0.30;
 
-return;
-}
-
-let tax = 0;
-
-if(income > 1200000){
-tax = (income - 1200000) * 0.10;
-}
-
-document.getElementById("taxResult").innerHTML =
-`
-Estimated Tax:
-<b>₹${tax.toFixed(2)}</b>
-`;
+    document.getElementById("taxResult").innerHTML = `
+        Estimated Tax: <b>₹${tax.toFixed(2)}</b>
+    `;
 }
   function calculateHRA(){
 
@@ -2126,34 +2106,24 @@ Estimated HRA Exemption:
 `;
 }
 
-  function calculateEPF(){
+ function calculateEPF(){
+    let salary = +document.getElementById("epfSalary").value;
+    let years = +document.getElementById("epfYears").value;
 
-let salary =
-+document.getElementById("epfSalary").value;
+    if(salary <= 0 || years <= 0){
+        document.getElementById("epfResult").innerHTML = "Enter valid values";
+        return;
+    }
 
-let years =
-+document.getElementById("epfYears").value;
+    let employee = salary * 0.12;
+    let employer = salary * 0.0367;
+    let monthlyTotal = employee + employer;
 
-if(salary<=0 || years<=0){
+    let total = monthlyTotal * 12 * years;
 
-document.getElementById("epfResult").innerHTML =
-"Enter valid values";
-
-return;
-}
-
-let monthlyContribution =
-salary * 0.12;
-
-let total =
-monthlyContribution * 12 * years;
-
-document.getElementById("epfResult").innerHTML =
-`
-Estimated EPF Contribution:
-
-<b>₹${total.toFixed(2)}</b>
-`;
+    document.getElementById("epfResult").innerHTML = `
+        Total EPF (Est.): <b>₹${total.toFixed(2)}</b>
+    `;
 }
   function calculateGratuity(){
 
