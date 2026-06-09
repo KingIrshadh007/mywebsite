@@ -540,6 +540,26 @@ Password Generator
 QR Generator
 </button>
 
+ <button class="tool-link" onclick="showTool('unitTool')">
+Unit Converter
+</button>
+
+ <button class="tool-link" onclick="showTool('timezoneTool')">
+Time Zone Converter
+</button>
+
+ <button class="tool-link" onclick="showTool('countdownTool')">
+Countdown Timer
+</button>
+
+ <button class="tool-link" onclick="showTool('stopwatchTool')">
+Stopwatch
+</button>
+
+ <button class="tool-link" onclick="showTool('namePickerTool')">
+Random Name Picker
+</button>
+
 </aside>
 
 <!-- CONTENT -->
@@ -1403,6 +1423,122 @@ Copy JavaScript
 
 </div>
 
+ <div id="unitTool" class="tool-panel">
+
+<h2>📏 Unit Converter</h2>
+
+<div class="description">
+Convert Length units instantly.
+</div>
+
+<input type="number" id="unitValue" placeholder="Enter Value">
+
+<select id="unitType">
+<option value="kmToM">Kilometers → Meters</option>
+<option value="mToKm">Meters → Kilometers</option>
+<option value="cmToM">Centimeters → Meters</option>
+<option value="mToCm">Meters → Centimeters</option>
+</select>
+
+<button class="action-btn" onclick="convertUnit()">
+Convert
+</button>
+
+<div class="result-box" id="unitResult"></div>
+
+</div>
+
+ <div id="timezoneTool" class="tool-panel">
+
+<h2>🌍 Time Zone Converter</h2>
+
+<div class="description">
+Convert IST to UTC and UTC to IST.
+</div>
+
+<input type="time" id="timezoneInput">
+
+<select id="timezoneType">
+<option value="istToUtc">IST → UTC</option>
+<option value="utcToIst">UTC → IST</option>
+</select>
+
+<button class="action-btn" onclick="convertTimezone()">
+Convert Time
+</button>
+
+<div class="result-box" id="timezoneResult"></div>
+
+</div>
+
+ <div id="countdownTool" class="tool-panel">
+
+<h2>⏳ Countdown Timer</h2>
+
+<div class="description">
+Set a countdown timer in seconds.
+</div>
+
+<input type="number" id="countdownSeconds"
+placeholder="Seconds">
+
+<button class="action-btn" onclick="startCountdown()">
+Start Countdown
+</button>
+
+<div class="result-box" id="countdownResult">
+Ready
+</div>
+
+</div>
+ <div id="stopwatchTool" class="tool-panel">
+
+<h2>⏱ Stopwatch</h2>
+
+<div class="description">
+Start, stop and reset stopwatch.
+</div>
+
+<button class="action-btn"
+onclick="startStopwatch()">
+Start
+</button>
+
+<button class="action-btn"
+onclick="stopStopwatch()">
+Stop
+</button>
+
+<button class="action-btn"
+onclick="resetStopwatch()">
+Reset
+</button>
+
+<div class="result-box" id="stopwatchResult">
+00:00:00
+</div>
+
+</div>
+
+ <div id="namePickerTool" class="tool-panel">
+
+<h2>🎲 Random Name Picker</h2>
+
+<div class="description">
+Enter names separated by commas.
+</div>
+
+<textarea id="namePickerInput"
+rows="8"
+placeholder="John, David, Sarah, Alex"></textarea>
+
+<button class="action-btn" onclick="pickRandomName()">
+Pick Name
+</button>
+
+<div class="result-box" id="namePickerResult"></div>
+
+</div>
 </main>
 
 </div>
@@ -2452,6 +2588,199 @@ js
 
 document.getElementById("jsResult").textContent =
 result;
+
+}
+
+ function convertUnit(){
+
+let value =
++document.getElementById("unitValue").value;
+
+let type =
+document.getElementById("unitType").value;
+
+if(isNaN(value)){
+
+document.getElementById("unitResult").innerHTML =
+"Enter value";
+
+return;
+}
+
+let result;
+
+switch(type){
+
+case "kmToM":
+result = value * 1000;
+break;
+
+case "mToKm":
+result = value / 1000;
+break;
+
+case "cmToM":
+result = value / 100;
+break;
+
+case "mToCm":
+result = value * 100;
+break;
+
+}
+
+document.getElementById("unitResult").innerHTML =
+`Result: <b>${result}</b>`;
+
+}
+
+ function convertTimezone(){
+
+let time =
+document.getElementById("timezoneInput").value;
+
+if(!time){
+
+document.getElementById("timezoneResult").innerHTML =
+"Select time";
+
+return;
+}
+
+let parts = time.split(":");
+
+let date = new Date();
+
+date.setHours(parts[0]);
+date.setMinutes(parts[1]);
+
+let type =
+document.getElementById("timezoneType").value;
+
+if(type === "istToUtc"){
+date.setMinutes(date.getMinutes()-330);
+}else{
+date.setMinutes(date.getMinutes()+330);
+}
+
+document.getElementById("timezoneResult").innerHTML =
+date.toTimeString().slice(0,5);
+
+}
+
+ let countdownInterval;
+
+function startCountdown(){
+
+clearInterval(countdownInterval);
+
+let seconds =
++document.getElementById("countdownSeconds").value;
+
+if(seconds <= 0){
+
+document.getElementById("countdownResult").innerHTML =
+"Enter valid seconds";
+
+return;
+}
+
+countdownInterval = setInterval(()=>{
+
+document.getElementById("countdownResult").innerHTML =
+seconds + " sec";
+
+seconds--;
+
+if(seconds < 0){
+
+clearInterval(countdownInterval);
+
+document.getElementById("countdownResult").innerHTML =
+"⏰ Time Up!";
+
+}
+
+},1000);
+
+}
+
+ let stopwatchSeconds = 0;
+let stopwatchInterval;
+
+function updateStopwatch(){
+
+let hrs =
+String(Math.floor(stopwatchSeconds/3600))
+.padStart(2,'0');
+
+let mins =
+String(Math.floor((stopwatchSeconds%3600)/60))
+.padStart(2,'0');
+
+let secs =
+String(stopwatchSeconds%60)
+.padStart(2,'0');
+
+document.getElementById("stopwatchResult").innerHTML =
+`${hrs}:${mins}:${secs}`;
+
+}
+
+function startStopwatch(){
+
+clearInterval(stopwatchInterval);
+
+stopwatchInterval =
+setInterval(()=>{
+
+stopwatchSeconds++;
+
+updateStopwatch();
+
+},1000);
+
+}
+
+function stopStopwatch(){
+
+clearInterval(stopwatchInterval);
+
+}
+
+function resetStopwatch(){
+
+clearInterval(stopwatchInterval);
+
+stopwatchSeconds = 0;
+
+updateStopwatch();
+
+}
+
+ function pickRandomName(){
+
+let names =
+document.getElementById("namePickerInput")
+.value
+.split(",")
+
+.map(name=>name.trim())
+.filter(name=>name);
+
+if(names.length === 0){
+
+document.getElementById("namePickerResult").innerHTML =
+"Enter names";
+
+return;
+}
+
+let winner =
+names[Math.floor(Math.random()*names.length)];
+
+document.getElementById("namePickerResult").innerHTML =
+`Selected: <b>${winner}</b>`;
 
 }
 
