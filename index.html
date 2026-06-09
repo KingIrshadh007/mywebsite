@@ -2065,9 +2065,11 @@ Difference:
   let userCountry = "global";
 
 function setCountry(){
-  userCountry = document.getElementById("countrySelect").value.toLowerCase();
+  userCountry = document
+    .getElementById("countrySelect")
+    .value
+    .toLowerCase();
 }
-
 function calculateTax(){
 
   let income = +document.getElementById("taxIncome").value;
