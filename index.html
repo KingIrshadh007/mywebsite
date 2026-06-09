@@ -106,6 +106,13 @@ cursor:pointer;
 color:white;
 }
 
+<select id="countrySelect" onchange="setCountry()">
+  <option value="global">🌍 Global</option>
+  <option value="india">🇮🇳 India</option>
+  <option value="usa">🇺🇸 USA</option>
+  <option value="uk">🇬🇧 UK</option>
+</select>
+
 /* MAIN */
 
 .main-layout{
@@ -2053,25 +2060,36 @@ Difference:
 `;
 }
   function calculateTax(){
-    let income = +document.getElementById("taxIncome").value;
 
-    if(income <= 0){
-        document.getElementById("taxResult").innerHTML = "Enter valid income";
-        return;
-    }
+let income = +document.getElementById("taxIncome").value;
+if(income <= 0){
+  document.getElementById("taxResult").innerHTML = "Enter valid income";
+  return;
+}
 
-    let tax = 0;
+let tax = 0;
 
-    if(income <= 300000) tax = 0;
-    else if(income <= 600000) tax = (income - 300000) * 0.05;
-    else if(income <= 900000) tax = 15000 + (income - 600000) * 0.10;
-    else if(income <= 1200000) tax = 45000 + (income - 900000) * 0.15;
-    else if(income <= 1500000) tax = 90000 + (income - 1200000) * 0.20;
-    else tax = 150000 + (income - 1500000) * 0.30;
+// 🇮🇳 India (simple slab demo)
+if(userCountry === "india"){
+  if(income > 1200000){
+    tax = (income - 1200000) * 0.10;
+  }
+}
 
-    document.getElementById("taxResult").innerHTML = `
-        Estimated Tax: <b>₹${tax.toFixed(2)}</b>
-    `;
+// 🇺🇸 USA (very simplified)
+else if(userCountry === "usa"){
+  if(income > 100000){
+    tax = income * 0.22;
+  }
+}
+
+// 🌍 Global fallback
+else{
+  tax = income * 0.15;
+}
+
+document.getElementById("taxResult").innerHTML =
+`Estimated Tax: <b>₹${tax.toFixed(2)}</b>`;
 }
   function calculateHRA(){
 
@@ -2364,6 +2382,11 @@ js
 document.getElementById("jsResult").textContent =
 result;
 
+}
+  let userCountry = "global";
+
+function setCountry(){
+  userCountry = document.getElementById("countrySelect").value;
 }
 
 </script>
