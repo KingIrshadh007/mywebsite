@@ -2072,90 +2072,39 @@ Difference:
   }
 
   let tax = 0;
+  let originalIncome = income;
 
-  // -------------------------
-  // 🇮🇳 INDIA (simplified new regime style)
-  // -------------------------
   if(userCountry === "india"){
-
-    if(income > 1500000){
-      tax += (income - 1500000) * 0.30;
-      income = 1500000;
-    }
-    if(income > 1200000){
-      tax += (income - 1200000) * 0.20;
-      income = 1200000;
-    }
-    if(income > 900000){
-      tax += (income - 900000) * 0.15;
-      income = 900000;
-    }
-    if(income > 600000){
-      tax += (income - 600000) * 0.10;
-      income = 600000;
-    }
-    if(income > 300000){
-      tax += (income - 300000) * 0.05;
-    }
+    if(income > 1500000){ tax += (income - 1500000) * 0.30; income = 1500000; }
+    if(income > 1200000){ tax += (income - 1200000) * 0.20; income = 1200000; }
+    if(income > 900000){ tax += (income - 900000) * 0.15; income = 900000; }
+    if(income > 600000){ tax += (income - 600000) * 0.10; income = 600000; }
+    if(income > 300000){ tax += (income - 300000) * 0.05; }
   }
 
-  // -------------------------
-  // 🇺🇸 USA (simplified federal brackets)
-  // -------------------------
   else if(userCountry === "usa"){
-
-    if(income > 578125){
-      tax += (income - 578125) * 0.37;
-      income = 578125;
-    }
-    if(income > 231250){
-      tax += (income - 231250) * 0.35;
-      income = 231250;
-    }
-    if(income > 100525){
-      tax += (income - 100525) * 0.24;
-      income = 100525;
-    }
-    if(income > 41775){
-      tax += (income - 41775) * 0.22;
-      income = 41775;
-    }
-    if(income > 11000){
-      tax += (income - 11000) * 0.12;
-    }
+    if(income > 578125){ tax += (income - 578125) * 0.37; income = 578125; }
+    if(income > 231250){ tax += (income - 231250) * 0.35; income = 231250; }
+    if(income > 100525){ tax += (income - 100525) * 0.24; income = 100525; }
+    if(income > 41775){ tax += (income - 41775) * 0.22; income = 41775; }
+    if(income > 11000){ tax += (income - 11000) * 0.12; }
   }
 
-  // -------------------------
-  // 🇬🇧 UK (simplified 2024-style)
-  // -------------------------
   else if(userCountry === "uk"){
-
-    if(income > 125140){
-      tax += (income - 125140) * 0.45;
-      income = 125140;
-    }
-    if(income > 50270){
-      tax += (income - 50270) * 0.40;
-      income = 50270;
-    }
-    if(income > 12570){
-      tax += (income - 12570) * 0.20;
-    }
+    if(income > 125140){ tax += (income - 125140) * 0.45; income = 125140; }
+    if(income > 50270){ tax += (income - 50270) * 0.40; income = 50270; }
+    if(income > 12570){ tax += (income - 12570) * 0.20; }
   }
 
-  // -------------------------
-  // 🌍 GLOBAL fallback
-  // -------------------------
-  else{
-    tax = income * 0.15;
+  else {
+    tax = originalIncome * 0.15;
   }
+
+  let currency = userCountry === "usa" ? "$" :
+                 userCountry === "uk" ? "£" : "₹";
 
   document.getElementById("taxResult").innerHTML =
-    let currency = userCountry === "usa" ? "$" :
-               userCountry === "uk" ? "£" : "₹";
-
-document.getElementById("taxResult").innerHTML =
-`Estimated Tax: <b>${currency}${tax.toFixed(2)}</b>`;
+    `Estimated Tax: <b>${currency}${tax.toFixed(2)}</b>`;
 }
   function calculateHRA(){
 
