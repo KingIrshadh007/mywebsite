@@ -106,13 +106,6 @@ cursor:pointer;
 color:white;
 }
 
-<select id="countrySelect" onchange="setCountry()">
-  <option value="global">🌍 Global</option>
-  <option value="india">🇮🇳 India</option>
-  <option value="usa">🇺🇸 USA</option>
-  <option value="uk">🇬🇧 UK</option>
-</select>
-
 /* MAIN */
 
 .main-layout{
@@ -385,6 +378,12 @@ overflow:hidden;
 </nav>
 
 <div class="header-right">
+ <select id="countrySelect" onchange="setCountry()">
+  <option value="global">🌍 Global</option>
+  <option value="india">🇮🇳 India</option>
+  <option value="usa">🇺🇸 USA</option>
+  <option value="uk">🇬🇧 UK</option>
+</select> 
 <button class="theme-btn" onclick="toggleTheme()">
 🌙 Theme
 </button>
@@ -1504,7 +1503,7 @@ function copyText(id){
    return;
  }
 
- const txt = (el.innerText || el.textContent || "").trim();
+ const txt = el.textContent.trim();
 
  // 🚨 prevent empty copy
  if(!txt || txt === ""){
@@ -1605,7 +1604,7 @@ function showTool(id){
     document.getElementById("welcome").style.display="none";
 
     document.querySelectorAll(".tool-panel").forEach(tool=>{
-        tool.classList.remove("active");
+        document.getElementById("welcome").style.display = "none";
     });
 
     const el=document.getElementById(id);
@@ -1878,9 +1877,12 @@ function generatePassword(){
     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&*!";
 
     let pass = "";
-    for(let i=0;i<length;i++){
-        const array = new Uint32Array(1);
+    const array = new Uint32Array(length);
 crypto.getRandomValues(array);
+
+for (let i = 0; i < length; i++) {
+  pass += chars[array[i] % chars.length];
+}
 
 pass += chars[array[0] % chars.length];
     }
