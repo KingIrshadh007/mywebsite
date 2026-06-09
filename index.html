@@ -2071,27 +2071,23 @@ if(income <= 0){
 
 let tax = 0;
 
-// 🇮🇳 India (simple slab demo)
-if(userCountry === "india"){
-  if(income > 1200000){
+if (userCountry === "india") {
+  if (income > 1200000) {
     tax = (income - 1200000) * 0.10;
   }
 }
-
-// 🇺🇸 USA (very simplified)
-else if(userCountry === "usa"){
-  if(income > 100000){
+else if (userCountry === "usa") {
+  if (income > 100000) {
     tax = income * 0.22;
   }
 }
-
-// 🌍 Global fallback
-else{
-  tax = income * 0.15;
+else if (userCountry === "uk") {
+  if (income > 12570) {
+    tax = (income - 12570) * 0.20; // basic UK-style example
+  }
 }
-
-document.getElementById("taxResult").innerHTML =
-`Estimated Tax: <b>₹${tax.toFixed(2)}</b>`;
+else {
+  tax = income * 0.15; // global fallback
 }
   function calculateHRA(){
 
