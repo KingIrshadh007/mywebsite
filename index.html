@@ -1474,6 +1474,7 @@ to our terms and privacy practices.
 </div>
   
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.19.0/js/md5.min.js"></script>
 
 <script>
 /* EXTRA FEATURES */
@@ -1807,7 +1808,11 @@ function base64Encode(){
 
     try{
         document.getElementById("base64Result").innerHTML =
-        btoa(unescape(encodeURIComponent(text)));
+        btoa(
+String.fromCharCode(
+...new TextEncoder().encode(text)
+)
+);
     }
     catch(err){
         document.getElementById("base64Result").innerHTML =
@@ -1950,11 +1955,10 @@ document.getElementById("fdResult").innerHTML =
 return;
 }
 
-let maturity =
-principal * Math.pow((1 + rate), years);
+/* Annual compounding */
+let maturity = principal * Math.pow(1 + rate, years);
 
-let interest =
-maturity - principal;
+let interest = maturity - principal;
 
 document.getElementById("fdResult").innerHTML =
 `
@@ -2108,7 +2112,7 @@ return;
 let exemption =
 Math.min(
 received,
-rent*12 - (basic*0.10)
+(rent * 12) - ((basic * 12) * 0.10)
 );
 
 document.getElementById("hraResult").innerHTML =
@@ -2193,17 +2197,16 @@ break;
 case "square":
 result = Math.pow(num,2);
 break;
-
 case "sin":
-result = Math.sin(num);
+result = Math.sin(num * Math.PI / 180);
 break;
 
 case "cos":
-result = Math.cos(num);
+result = Math.cos(num * Math.PI / 180);
 break;
 
 case "tan":
-result = Math.tan(num);
+result = Math.tan(num * Math.PI / 180);
 break;
 }
 
@@ -2221,10 +2224,13 @@ try{
 const text =
 document.getElementById("base64DecodeInput").value;
 
-const result =
-decodeURIComponent(
-escape(atob(text))
+const bytes = Uint8Array.from(
+atob(text),
+c => c.charCodeAt(0)
 );
+
+const result =
+new TextDecoder().decode(bytes);
 
 document.getElementById("base64DecodeResult").innerText =
 result;
@@ -2296,12 +2302,24 @@ document.getElementById("jsonMinifierResult").textContent =
 }
   function generateUUID(){
 
+if (crypto.randomUUID){
+
 document.getElementById("uuidResult").innerText =
 crypto.randomUUID();
 
+}else{
+
+document.getElementById("uuidResult").innerText =
+'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'
+.replace(/[xy]/g,function(c){
+const r=Math.random()*16|0;
+const v=c==='x'?r:(r&0x3|0x8);
+return v.toString(16);
+});
+
 }
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.19.0/js/md5.min.js"></script>
+}
   function generateMD5(){
 
 const text =
@@ -2366,7 +2384,7 @@ document.getElementById("jsInput").value;
 
 const result =
 js
-.replace(/\/\/.*$/gm,"")
+.replace(/\/\*[\s\S]*?\*\//g,"")
 .replace(/\s+/g," ")
 .trim();
 
