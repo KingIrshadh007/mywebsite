@@ -461,7 +461,25 @@ Gratuity Calculator
 Scientific Calculator
 </button>
 
-<h3>📝 Text Tools</h3>
+<h3>📝 Seo Tools</h3>
+
+ <button class="tool-link" onclick="showTool('metaTool')">
+Meta Tag Generator
+</button>
+
+ <button class="tool-link" onclick="showTool('sitemapTool')">
+Sitemap Generator
+</button>
+ <button class="tool-link" onclick="showTool('robotsTool')">
+Robots.txt Generator
+</button>
+ <button class="tool-link" onclick="showTool('ogTool')">
+Open Graph Generator
+</button>
+ <button class="tool-link" onclick="showTool('keywordTool')">
+Keyword Density Checker
+</button>
+ 
 
 <button class="tool-link" onclick="showTool('wordTool')">
 Word Counter
@@ -1537,6 +1555,139 @@ Pick Name
 </button>
 
 <div class="result-box" id="namePickerResult"></div>
+
+</div>
+
+ <div id="metaTool" class="tool-panel">
+
+<h2>🏷 Meta Tag Generator</h2>
+
+<div class="description">
+Generate SEO meta tags for your website.
+</div>
+
+<label>Website Title</label>
+<input type="text" id="metaTitle">
+
+<label>Description</label>
+<textarea id="metaDescription"></textarea>
+
+<label>Keywords</label>
+<input type="text" id="metaKeywords">
+
+<button class="action-btn" onclick="generateMetaTags()">
+Generate Meta Tags
+</button>
+
+<div class="result-box">
+<pre id="metaResult"></pre>
+</div>
+
+<button class="copy-btn" onclick="copyText('metaResult')">
+Copy Tags
+</button>
+
+</div>
+
+ <div id="sitemapTool" class="tool-panel">
+
+<h2>🗺 Sitemap Generator</h2>
+
+<div class="description">
+Enter URLs (one per line) to generate sitemap.xml.
+</div>
+
+<textarea id="sitemapUrls" rows="10"></textarea>
+
+<button class="action-btn" onclick="generateSitemap()">
+Generate Sitemap
+</button>
+
+<div class="result-box">
+<pre id="sitemapResult"></pre>
+</div>
+
+<button class="copy-btn" onclick="copyText('sitemapResult')">
+Copy Sitemap
+</button>
+
+</div>
+
+ <div id="robotsTool" class="tool-panel">
+
+<h2>🤖 Robots.txt Generator</h2>
+
+<div class="description">
+Generate robots.txt for search engines.
+</div>
+
+<label>Sitemap URL</label>
+<input type="text" id="robotsSitemap">
+
+<button class="action-btn" onclick="generateRobots()">
+Generate Robots.txt
+</button>
+
+<div class="result-box">
+<pre id="robotsResult"></pre>
+</div>
+
+<button class="copy-btn" onclick="copyText('robotsResult')">
+Copy Robots
+</button>
+
+</div>
+
+ <div id="ogTool" class="tool-panel">
+
+<h2>📱 Open Graph Generator</h2>
+
+<div class="description">
+Generate social sharing Open Graph tags.
+</div>
+
+<label>Title</label>
+<input type="text" id="ogTitle">
+
+<label>Description</label>
+<textarea id="ogDescription"></textarea>
+
+<label>Image URL</label>
+<input type="text" id="ogImage">
+
+<button class="action-btn" onclick="generateOG()">
+Generate Tags
+</button>
+
+<div class="result-box">
+<pre id="ogResult"></pre>
+</div>
+
+<button class="copy-btn" onclick="copyText('ogResult')">
+Copy Tags
+</button>
+
+</div>
+
+ <div id="keywordTool" class="tool-panel">
+
+<h2>🔍 Keyword Density Checker</h2>
+
+<div class="description">
+Check keyword usage frequency in content.
+</div>
+
+<textarea id="keywordText" rows="10"></textarea>
+
+<input type="text"
+id="keywordWord"
+placeholder="Enter keyword">
+
+<button class="action-btn" onclick="checkKeywordDensity()">
+Check Density
+</button>
+
+<div class="result-box" id="keywordResult"></div>
 
 </div>
 </main>
@@ -2781,6 +2932,129 @@ names[Math.floor(Math.random()*names.length)];
 
 document.getElementById("namePickerResult").innerHTML =
 `Selected: <b>${winner}</b>`;
+
+}
+
+ function generateMetaTags(){
+
+const title =
+document.getElementById("metaTitle").value;
+
+const description =
+document.getElementById("metaDescription").value;
+
+const keywords =
+document.getElementById("metaKeywords").value;
+
+document.getElementById("metaResult").textContent =
+`<title>${title}</title>
+
+<meta name="description" content="${description}">
+
+<meta name="keywords" content="${keywords}">`;
+
+}
+
+ function generateSitemap(){
+
+const urls =
+document.getElementById("sitemapUrls")
+.value
+.split("\n")
+.filter(url => url.trim());
+
+let xml =
+`<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`;
+
+urls.forEach(url=>{
+
+xml += `
+<url>
+<loc>${url.trim()}</loc>
+</url>`;
+
+});
+
+xml += `
+</urlset>`;
+
+document.getElementById("sitemapResult").textContent =
+xml;
+
+}
+
+ function generateRobots(){
+
+const sitemap =
+document.getElementById("robotsSitemap").value;
+
+document.getElementById("robotsResult").textContent =
+`User-agent: *
+
+Allow: /
+
+Sitemap: ${sitemap}`;
+
+}
+
+ function generateOG(){
+
+const title =
+document.getElementById("ogTitle").value;
+
+const description =
+document.getElementById("ogDescription").value;
+
+const image =
+document.getElementById("ogImage").value;
+
+document.getElementById("ogResult").textContent =
+`<meta property="og:title" content="${title}">
+<meta property="og:description" content="${description}">
+<meta property="og:image" content="${image}">
+<meta property="og:type" content="website">`;
+
+}
+
+ function checkKeywordDensity(){
+
+const text =
+document.getElementById("keywordText")
+.value
+.toLowerCase();
+
+const keyword =
+document.getElementById("keywordWord")
+.value
+.toLowerCase()
+.trim();
+
+if(!text || !keyword){
+
+document.getElementById("keywordResult").innerHTML =
+"Enter content and keyword";
+
+return;
+}
+
+const words =
+text.split(/\s+/);
+
+const count =
+words.filter(word => word === keyword).length;
+
+const density =
+(count / words.length) * 100;
+
+document.getElementById("keywordResult").innerHTML =
+`
+Keyword Count: <b>${count}</b>
+
+<br><br>
+
+Density: <b>${density.toFixed(2)}%</b>
+`;
 
 }
 
