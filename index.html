@@ -1604,20 +1604,18 @@ window.onload = () => {
 ========================= */
 function showTool(id){
 
-    document.getElementById("welcome").style.display="none";
+    document.getElementById("welcome").style.display = "none";
 
     document.querySelectorAll(".tool-panel").forEach(tool=>{
-        document.getElementById("welcome").style.display = "none";
+        tool.classList.remove("active");
     });
 
-    const el=document.getElementById(id);
+    const el = document.getElementById(id);
 
     if(el){
-
         el.classList.add("active");
 
         setTimeout(()=>{
-
             const headerHeight =
             document.querySelector("header").offsetHeight;
 
@@ -1627,11 +1625,7 @@ function showTool(id){
             headerHeight -
             20;
 
-            window.scrollTo({
-                top:y,
-                behavior:"smooth"
-            });
-
+            window.scrollTo({ top: y, behavior: "smooth" });
         },100);
     }
 }
@@ -1881,18 +1875,14 @@ function generatePassword(){
 
     let pass = "";
     const array = new Uint32Array(length);
-crypto.getRandomValues(array);
+    crypto.getRandomValues(array);
 
-for (let i = 0; i < length; i++) {
-  pass += chars[array[i] % chars.length];
-}
-
-pass += chars[array[0] % chars.length];
+    for (let i = 0; i < length; i++) {
+        pass += chars[array[i] % chars.length];
     }
 
     document.getElementById("passwordResult").innerHTML = pass;
 }
-
 /* =========================
    QR
 ========================= */
@@ -1987,17 +1977,25 @@ of <b>${total}</b>.
     let years = +document.getElementById("rdYears").value;
 
     if(P <= 0 || annualRate <= 0 || years <= 0){
-        document.getElementById("rdResult").innerHTML = "Enter valid values";
+        document.getElementById("rdResult").innerHTML =
+        "Enter valid values";
         return;
     }
 
-    let r = annualRate / 400; // quarterly interest
-    let n = years * 12;
+    let r = annualRate / 100 / 4; // quarterly interest rate
+    let n = years * 12; // total months
 
-    let maturity = P * ((Math.pow(1 + r, n) - 1) / (1 - Math.pow(1 + r, -1/3)));
+    // RD maturity formula (widely used approximation)
+    let maturity =
+        P * (
+            (Math.pow(1 + r, n) - 1) /
+            (1 - Math.pow(1 + r, -1/3))
+        );
 
     document.getElementById("rdResult").innerHTML = `
-        Maturity Value: <b>₹${maturity.toFixed(2)}</b>
+        Maturity Value: <b>₹${maturity.toFixed(2)}</b><br>
+        Total Invested: <b>₹${(P * n).toFixed(2)}</b><br>
+        Interest Earned: <b>₹${(maturity - P * n).toFixed(2)}</b>
     `;
 }
   function calculatePPF(){
@@ -2153,7 +2151,11 @@ Difference:
   }
 
   document.getElementById("taxResult").innerHTML =
-    `Estimated Tax: <b>₹${tax.toFixed(2)}</b>`;
+    let currency = userCountry === "usa" ? "$" :
+               userCountry === "uk" ? "£" : "₹";
+
+document.getElementById("taxResult").innerHTML =
+`Estimated Tax: <b>${currency}${tax.toFixed(2)}</b>`;
 }
   function calculateHRA(){
 
