@@ -1711,19 +1711,26 @@ converters and online utilities.
 </div>
 
 <div class="footer-links">
-<a href="#" onclick="openPrivacy()">
-Privacy Policy
-</a>
 
-<a href="#">
-Terms & Conditions
-</a>
+<a href="#" onclick="openAbout()">About Us</a>
 
-<a href="#">
-Contact Us
-</a>
+<a href="#" onclick="openPrivacy()">Privacy Policy</a>
+
+<a href="#" onclick="openTerms()">Terms & Conditions</a>
+
+<a href="#" onclick="openDisclaimer()">Disclaimer</a>
+
+<a href="#" onclick="openCookie()">Cookie Policy</a>
+
+<a href="#" onclick="openFAQ()">FAQ</a>
+
+<a href="#" onclick="openHowTo()">How To Use</a>
+
+<a href="#" onclick="openSiteMap()">Sitemap</a>
+
+<a href="#" onclick="openContact()">Contact Us</a>
+
 </div>
-
 </div>
 
 <div class="copyright">
@@ -1770,6 +1777,145 @@ to our terms and privacy practices.
 
 </div>
 
+</div>
+
+ <!-- ABOUT MODAL -->
+
+<div class="modal" id="aboutModal">
+<div class="modal-content">
+<button class="close-btn" onclick="closeAbout()">Close</button>
+
+<h2>About Us</h2>
+
+<p>
+Free Tools Hub provides free calculators,
+developer tools, SEO tools, converters and
+online utilities for everyone.
+</p>
+
+<p>
+Our goal is to make useful tools accessible
+without registration or downloads.
+</p>
+
+</div>
+</div>
+
+<!-- CONTACT MODAL -->
+
+<div class="modal" id="contactModal">
+<div class="modal-content">
+<button class="close-btn" onclick="closeContact()">Close</button>
+
+<h2>Contact Us</h2>
+
+<p>Email: support@yourdomain.com</p>
+
+<p>
+For suggestions, bug reports and business
+inquiries please contact us.
+</p>
+
+</div>
+</div>
+
+<!-- TERMS MODAL -->
+
+<div class="modal" id="termsModal">
+<div class="modal-content">
+<button class="close-btn" onclick="closeTerms()">Close</button>
+
+<h2>Terms & Conditions</h2>
+
+<p>
+By using this website you agree to these terms.
+All tools are provided for informational use.
+</p>
+
+</div>
+</div>
+
+<!-- DISCLAIMER MODAL -->
+
+<div class="modal" id="disclaimerModal">
+<div class="modal-content">
+<button class="close-btn" onclick="closeDisclaimer()">Close</button>
+
+<h2>Disclaimer</h2>
+
+<p>
+Tool results are estimates only.
+Always verify important calculations with professionals.
+</p>
+
+</div>
+</div>
+
+<!-- COOKIE MODAL -->
+
+<div class="modal" id="cookieModal">
+<div class="modal-content">
+<button class="close-btn" onclick="closeCookie()">Close</button>
+
+<h2>Cookie Policy</h2>
+
+<p>
+Cookies may be used to improve user experience
+and website performance.
+</p>
+
+</div>
+</div>
+
+<!-- FAQ MODAL -->
+
+<div class="modal" id="faqModal">
+<div class="modal-content">
+<button class="close-btn" onclick="closeFAQ()">Close</button>
+
+<h2>FAQ</h2>
+
+<p><b>Are tools free?</b><br>Yes.</p>
+
+<p><b>Need registration?</b><br>No.</p>
+
+<p><b>Mobile supported?</b><br>Yes.</p>
+
+</div>
+</div>
+
+<!-- HOW TO USE MODAL -->
+
+<div class="modal" id="howToModal">
+<div class="modal-content">
+<button class="close-btn" onclick="closeHowTo()">Close</button>
+
+<h2>How To Use</h2>
+
+<ol>
+<li>Select a tool.</li>
+<li>Enter values.</li>
+<li>Click calculate.</li>
+<li>View result.</li>
+</ol>
+
+</div>
+</div>
+
+<!-- SITEMAP MODAL -->
+
+<div class="modal" id="siteMapModal">
+<div class="modal-content">
+<button class="close-btn" onclick="closeSiteMap()">Close</button>
+
+<h2>Website Sitemap</h2>
+
+<p>Calculators</p>
+<p>SEO Tools</p>
+<p>Developer Tools</p>
+<p>Utility Tools</p>
+
+</div>
 </div>
   
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
@@ -1926,7 +2072,61 @@ function openPrivacy(){
 function closePrivacy(){
     document.getElementById("privacyModal").style.display="none";
 }
+function openAbout(){
+document.getElementById("aboutModal").style.display="block";
+}
+function closeAbout(){
+document.getElementById("aboutModal").style.display="none";
+}
 
+function openContact(){
+document.getElementById("contactModal").style.display="block";
+}
+function closeContact(){
+document.getElementById("contactModal").style.display="none";
+}
+
+function openTerms(){
+document.getElementById("termsModal").style.display="block";
+}
+function closeTerms(){
+document.getElementById("termsModal").style.display="none";
+}
+
+function openDisclaimer(){
+document.getElementById("disclaimerModal").style.display="block";
+}
+function closeDisclaimer(){
+document.getElementById("disclaimerModal").style.display="none";
+}
+
+function openCookie(){
+document.getElementById("cookieModal").style.display="block";
+}
+function closeCookie(){
+document.getElementById("cookieModal").style.display="none";
+}
+
+function openFAQ(){
+document.getElementById("faqModal").style.display="block";
+}
+function closeFAQ(){
+document.getElementById("faqModal").style.display="none";
+}
+
+function openHowTo(){
+document.getElementById("howToModal").style.display="block";
+}
+function closeHowTo(){
+document.getElementById("howToModal").style.display="none";
+}
+
+function openSiteMap(){
+document.getElementById("siteMapModal").style.display="block";
+}
+function closeSiteMap(){
+document.getElementById("siteMapModal").style.display="none";
+}
 /* =========================
    AGE CALCULATOR
 ========================= */
