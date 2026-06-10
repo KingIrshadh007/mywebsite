@@ -528,7 +528,6 @@ Word Counter
 <button class="tool-link" onclick="showTool('charTool')">
 Character Counter
 </button>
-
 <h3 id="developerTools">⚙️ Developer Tools</h3>
 
   <button class="tool-link" onclick="showTool('jsonTool')">
@@ -580,7 +579,7 @@ CSS Minifier
 JavaScript Minifier
 </button>
 
-<h3 id="utilityTools">🎨 Utility Tools</h3>
+<h3 id="utilityTools">🧰 Utility Tools</h3>
 
 <button class="tool-link" onclick="showTool('colorTool')">
 Color Picker
@@ -2128,20 +2127,9 @@ function scrollToCategory(id){
         return;
     }
 
-    const header = document.querySelector("header");
-
-    const headerHeight =
-        header ? header.offsetHeight : 80;
-
-    const y =
-        target.getBoundingClientRect().top +
-        window.pageYOffset -
-        headerHeight -
-        20;
-
-    window.scrollTo({
-        top: y,
-        behavior: "smooth"
+    target.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
     });
 }
 function openAbout(){
