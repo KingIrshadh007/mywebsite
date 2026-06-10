@@ -2066,23 +2066,23 @@ if(!tool) return;
 
 tool.classList.add("active");
 
-setTimeout(()=>{
+requestAnimationFrame(()=>{
+
+const header =
+document.querySelector("header");
 
 const headerHeight =
-document.querySelector("header").offsetHeight;
+header ? header.offsetHeight : 80;
 
-const y =
-tool.getBoundingClientRect().top +
-window.pageYOffset -
-headerHeight -
-20;
+const toolTop =
+tool.offsetTop;
 
 window.scrollTo({
-top:y,
-behavior:"smooth"
+top: toolTop - headerHeight - 20,
+behavior: "smooth"
 });
 
-},50);
+});
 
 }
 /* =========================
