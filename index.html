@@ -364,6 +364,21 @@ scroll-behavior:smooth;
 .tool-panel{
 scroll-margin-top:100px;
 }
+
+ html{
+scroll-behavior:smooth;
+}
+
+header{
+position:sticky;
+top:0;
+z-index:999;
+}
+
+#welcome,
+.tool-panel{
+scroll-margin-top:100px;
+}
 </style>
 </head>
 
@@ -2053,29 +2068,43 @@ window.onload = () => {
 ========================= */
 function showTool(id){
 
-console.log("Clicked:", id);
-
 document.getElementById("welcome").style.display = "none";
 
-document.querySelectorAll(".tool-panel").forEach(tool=>{
+document.querySelectorAll(".tool-panel")
+.forEach(tool=>{
 tool.classList.remove("active");
 });
 
-const tool = document.getElementById(id);
+const tool =
+document.getElementById(id);
 
-if(!tool){
-console.log("Tool not found");
-return;
-}
+if(!tool) return;
 
 tool.classList.add("active");
 
-console.log("Offset Top:", tool.offsetTop);
+setTimeout(()=>{
+
+const header =
+document.querySelector("header");
+
+const headerHeight =
+header ? header.offsetHeight : 80;
+
+const content =
+document.querySelector(".content");
+
+const y =
+content.getBoundingClientRect().top +
+window.pageYOffset -
+headerHeight -
+15;
 
 window.scrollTo({
-top: tool.offsetTop - 100,
-behavior: "smooth"
+top:y,
+behavior:"smooth"
 });
+
+},100);
 
 }
 /* =========================
@@ -2095,32 +2124,32 @@ document.querySelectorAll(".tool-panel")
 tool.classList.remove("active");
 });
 
-const welcome =
-document.getElementById("welcome");
+document.getElementById("welcome").style.display = "block";
 
-welcome.style.display="block";
+const headerHeight =
+document.querySelector("header").offsetHeight;
 
 window.scrollTo({
-top:0,
-behavior:"smooth"
+top: 0,
+behavior: "smooth"
 });
 
 }
 function scrollToCategory(id){
 
-const section =
+const target =
 document.getElementById(id);
 
-if(!section) return;
+if(!target) return;
 
 const headerHeight =
 document.querySelector("header").offsetHeight;
 
 const y =
-section.getBoundingClientRect().top +
+target.getBoundingClientRect().top +
 window.pageYOffset -
 headerHeight -
-20;
+15;
 
 window.scrollTo({
 top:y,
