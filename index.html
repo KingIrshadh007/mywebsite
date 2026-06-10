@@ -368,13 +368,30 @@ overflow:hidden;
 <div class="logo">
 ⚡ Free Tools Hub
 </div>
-
 <nav class="nav-links">
-<a href="#">Home</a>
-<a href="#">Calculators</a>
-<a href="#">Converters</a>
-<a href="#">Generators</a>
-<a href="#">About</a>
+
+<a href="#" onclick="goHome()">🏠 Home</a>
+
+<a href="#" onclick="scrollToCategory('calculators')">
+📊 Calculators
+</a>
+
+<a href="#" onclick="scrollToCategory('seo')">
+📝 SEO Tools
+</a>
+
+<a href="#" onclick="scrollToCategory('developer')">
+⚙️ Developer Tools
+</a>
+
+<a href="#" onclick="scrollToCategory('utility')">
+🎨 Utility Tools
+</a>
+
+<a href="#" onclick="openAbout()">
+ℹ️ About Us
+</a>
+
 </nav>
 
 <div class="header-right">
@@ -400,8 +417,8 @@ overflow:hidden;
 <aside class="sidebar">
 <input type="text" id="toolSearch" placeholder="🔍 Search tools..." style="margin-bottom:15px;">
 
-<h3>📊 Calculators</h3>
-
+<h3 id="calculators">📊 Calculators</h3>
+ 
 <button class="tool-link" onclick="showTool('ageTool')">
 Age Calculator
 </button>
@@ -461,7 +478,7 @@ Gratuity Calculator
 Scientific Calculator
 </button>
 
-<h3>📝 Seo Tools</h3>
+<h3 id="seo">📝 SEO Tools</h3>
 
  <button class="tool-link" onclick="showTool('metaTool')">
 Meta Tag Generator
@@ -489,7 +506,7 @@ Word Counter
 Character Counter
 </button>
 
-<h3>⚙️ Developer Tools</h3>
+<h3 id="developer">⚙️ Developer Tools</h3>
 
   <button class="tool-link" onclick="showTool('jsonTool')">
 JSON Formatter
@@ -540,7 +557,7 @@ CSS Minifier
 JavaScript Minifier
 </button>
 
-<h3>🎨 Utility Tools</h3>
+<h3 id="utility">🎨 Utility Tools</h3>
 
 <button class="tool-link" onclick="showTool('colorTool')">
 Color Picker
@@ -2071,6 +2088,37 @@ function openPrivacy(){
 
 function closePrivacy(){
     document.getElementById("privacyModal").style.display="none";
+}
+ function goHome(){
+
+document.querySelectorAll(".tool-panel")
+.forEach(tool=>{
+tool.classList.remove("active");
+});
+
+document.getElementById("welcome").style.display="block";
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
+
+function scrollToCategory(id){
+
+const section =
+document.getElementById(id);
+
+if(section){
+
+section.scrollIntoView({
+behavior:"smooth",
+block:"start"
+});
+
+}
+
 }
 function openAbout(){
 document.getElementById("aboutModal").style.display="block";
