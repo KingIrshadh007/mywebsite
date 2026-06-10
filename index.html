@@ -401,15 +401,15 @@ scroll-margin-top:100px;
 📊 Calculators
 </a>
 
- <a href="#" onclick="scrollToCategory('seo tools');return false;">
+ <a href="#" onclick="scrollToCategory('seoTools');return false;">
 📝 SEO Tools
 </a>
 
- <a href="#" onclick="scrollToCategory('developer tools');return false;">
+<a href="#" onclick="scrollToCategory('developerTools');return false;">
 ⚙️ Developer Tools
 </a>
 
- <a href="#" onclick="scrollToCategory('utility tools');return false;">
+ <a href="#" onclick="scrollToCategory('utilityTools');return false;">
 🎨 Utility Tools
 </a>
 
@@ -501,7 +501,7 @@ Gratuity Calculator
 Scientific Calculator
 </button>
 
-<h3 id="seo">📝 SEO Tools</h3>
+<h3 id="seoTools">📝 SEO Tools</h3>
 
  <button class="tool-link" onclick="showTool('metaTool')">
 Meta Tag Generator
@@ -529,7 +529,7 @@ Word Counter
 Character Counter
 </button>
 
-<h3 id="developer">⚙️ Developer Tools</h3>
+<h3 id="developerTools">⚙️ Developer Tools</h3>
 
   <button class="tool-link" onclick="showTool('jsonTool')">
 JSON Formatter
@@ -580,7 +580,7 @@ CSS Minifier
 JavaScript Minifier
 </button>
 
-<h3 id="utility">🎨 Utility Tools</h3>
+<h3 id="utilityTools">🎨 Utility Tools</h3>
 
 <button class="tool-link" onclick="showTool('colorTool')">
 Color Picker
@@ -2121,25 +2121,28 @@ behavior: "smooth"
 }
 function scrollToCategory(id){
 
-const target =
-document.getElementById(id);
+    const target = document.getElementById(id);
 
-if(!target) return;
+    if(!target){
+        console.log("ID not found:", id);
+        return;
+    }
 
-const headerHeight =
-document.querySelector("header").offsetHeight;
+    const header = document.querySelector("header");
 
-const y =
-target.getBoundingClientRect().top +
-window.pageYOffset -
-headerHeight -
-15;
+    const headerHeight =
+        header ? header.offsetHeight : 80;
 
-window.scrollTo({
-top:y,
-behavior:"smooth"
-});
+    const y =
+        target.getBoundingClientRect().top +
+        window.pageYOffset -
+        headerHeight -
+        20;
 
+    window.scrollTo({
+        top: y,
+        behavior: "smooth"
+    });
 }
 function openAbout(){
 document.getElementById("aboutModal").style.display="block";
@@ -3326,7 +3329,20 @@ Density: <b>${density.toFixed(2)}%</b>
 `;
 
 }
+html{
+    scroll-behavior:smooth;
+}
 
+header{
+    position:sticky;
+    top:0;
+    z-index:999;
+}
+
+.sidebar h3{
+    scroll-margin-top:100px;
+}
+ 
 </script>
 </body>
 </html>
