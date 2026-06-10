@@ -397,7 +397,9 @@ scroll-margin-top:100px;
 
 <a href="#" onclick="goHome()">🏠 Home</a>
 
-<a href="#" onclick="showTool('ageTool')">📊 Calculators</a>
+<a href="#" onclick="scrollToCategory('calculators');return false;">
+📊 Calculators
+</a>
 
 <a href="#" onclick="showTool('metaTool')">📝 SEO Tools</a>
 
@@ -647,7 +649,7 @@ Calculate your exact age from your date of birth.
 The calculator compares your birth date with today's date.
 </div>
 
-<label>Date of Birth</label>
+<label for="ageDob">Date of Birth</label>
 <input type="date" id="ageDob">
 
 <button class="action-btn" onclick="calculateAge()">
@@ -2069,36 +2071,18 @@ window.onload = () => {
 ========================= */
 function showTool(id){
 
-document.getElementById("welcome").style.display = "none";
+document.getElementById("welcome").style.display="none";
 
 document.querySelectorAll(".tool-panel")
 .forEach(tool=>{
 tool.classList.remove("active");
 });
 
-const tool = document.getElementById(id);
+const tool=document.getElementById(id);
 
-if(!tool) return;
-
+if(tool){
 tool.classList.add("active");
-
-requestAnimationFrame(() => {
-
-const headerHeight =
-document.querySelector("header").offsetHeight;
-
-const top =
-tool.getBoundingClientRect().top +
-window.pageYOffset -
-headerHeight -
-20;
-
-window.scrollTo({
-top: top,
-behavior: "smooth"
-});
-
-});
+}
 
 }
 /* =========================
