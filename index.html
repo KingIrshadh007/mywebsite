@@ -156,6 +156,7 @@ background:var(--card-hover);
 flex:1;
 padding:30px;
 overflow-x:hidden;
+min-height:100vh;
 }
 
 .welcome-card{
@@ -432,7 +433,7 @@ scroll-margin-top:100px;
 <input type="text" id="toolSearch" placeholder="🔍 Search tools..." style="margin-bottom:15px;">
 
 <h3 id="calculators">📊 Calculators</h3>
- 
+
 <button class="tool-link" onclick="showTool('ageTool')">
 Age Calculator
 </button>
@@ -2075,14 +2076,16 @@ document.querySelectorAll(".tool-panel")
 tool.classList.remove("active");
 });
 
-const tool =
-document.getElementById(id);
+const tool = document.getElementById(id);
 
 if(!tool) return;
 
 tool.classList.add("active");
 
-setTimeout(()=>{
+/* Scroll page to top of content area */
+
+const content =
+document.querySelector(".content");
 
 const header =
 document.querySelector("header");
@@ -2090,21 +2093,13 @@ document.querySelector("header");
 const headerHeight =
 header ? header.offsetHeight : 80;
 
-const content =
-document.querySelector(".content");
-
 const y =
-content.getBoundingClientRect().top +
-window.pageYOffset -
-headerHeight -
-15;
+content.offsetTop - headerHeight - 10;
 
 window.scrollTo({
 top:y,
 behavior:"smooth"
 });
-
-},100);
 
 }
 /* =========================
