@@ -2053,35 +2053,28 @@ window.onload = () => {
 ========================= */
 function showTool(id){
 
+console.log("Clicked:", id);
+
 document.getElementById("welcome").style.display = "none";
 
-document.querySelectorAll(".tool-panel")
-.forEach(tool=>{
+document.querySelectorAll(".tool-panel").forEach(tool=>{
 tool.classList.remove("active");
 });
 
 const tool = document.getElementById(id);
 
-if(!tool) return;
+if(!tool){
+console.log("Tool not found");
+return;
+}
 
 tool.classList.add("active");
 
-requestAnimationFrame(()=>{
-
-const header =
-document.querySelector("header");
-
-const headerHeight =
-header ? header.offsetHeight : 80;
-
-const toolTop =
-tool.offsetTop;
+console.log("Offset Top:", tool.offsetTop);
 
 window.scrollTo({
-top: toolTop - headerHeight - 20,
+top: tool.offsetTop - 100,
 behavior: "smooth"
-});
-
 });
 
 }
