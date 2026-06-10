@@ -2082,23 +2082,22 @@ if(!tool) return;
 
 tool.classList.add("active");
 
-/* Scroll page to top of content area */
-
-const content =
-document.querySelector(".content");
-
-const header =
-document.querySelector("header");
+requestAnimationFrame(() => {
 
 const headerHeight =
-header ? header.offsetHeight : 80;
+document.querySelector("header").offsetHeight;
 
-const y =
-content.offsetTop - headerHeight - 10;
+const top =
+tool.getBoundingClientRect().top +
+window.pageYOffset -
+headerHeight -
+20;
 
 window.scrollTo({
-top:y,
-behavior:"smooth"
+top: top,
+behavior: "smooth"
+});
+
 });
 
 }
