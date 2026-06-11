@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PPF Calculator - Free Tools Hub</title>
+
+<meta name="description" content="Calculate your PPF maturity amount and total returns instantly.">
+
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header>
+    <div class="logo">⚡ Free Tools Hub</div>
+
+    <nav>
+        <a href="../index.html">🏠 Home</a>
+    </nav>
+</header>
+
+<main class="content">
+
+<div class="tool-panel active">
+
+<h1>🏛️ PPF Calculator</h1>
+
+<div class="description">
+Calculate your Public Provident Fund maturity amount and wealth creation.
+</div>
+
+<label>Yearly Investment (₹)</label>
+<input type="number" id="ppfAmount">
+
+<label>Interest Rate (%)</label>
+<input type="number" id="ppfRate" value="7.1">
+
+<label>Investment Period (Years)</label>
+<input type="number" id="ppfYears" value="15">
+
+<button class="action-btn" onclick="calculatePPF()">
+Calculate PPF
+</button>
+
+<div class="result-box" id="ppfResult">
+Your PPF result will appear here.
+</div>
+
+<h2>What is PPF?</h2>
+
+<p>
+PPF (Public Provident Fund) is a long-term government-backed savings scheme offering tax benefits and guaranteed returns.
+</p>
+
+<h2>Benefits of PPF</h2>
+
+<ul>
+<li>Tax-free returns</li>
+<li>Government-backed security</li>
+<li>Long-term wealth creation</li>
+<li>Suitable for retirement planning</li>
+</ul>
+
+</div>
+
+</main>
+
+<script src="../js/ppf-calculator.js"></script>
+
+</body>
+</html>
