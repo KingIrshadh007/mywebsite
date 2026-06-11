@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>RD Calculator - Free Tools Hub</title>
+
+<meta name="description" content="Calculate Recurring Deposit maturity amount and interest earned.">
+
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header>
+    <div class="logo">⚡ Free Tools Hub</div>
+
+    <nav>
+        <a href="../index.html">🏠 Home</a>
+    </nav>
+</header>
+
+<main class="content">
+
+<div class="tool-panel active">
+
+<h1>💰 RD Calculator</h1>
+
+<div class="description">
+Calculate your Recurring Deposit maturity value based on monthly deposits.
+</div>
+
+<label>Monthly Deposit (₹)</label>
+<input type="number" id="rdAmount">
+
+<label>Interest Rate (%)</label>
+<input type="number" id="rdRate">
+
+<label>Duration (Years)</label>
+<input type="number" id="rdYears">
+
+<button class="action-btn" onclick="calculateRD()">
+Calculate RD
+</button>
+
+<div class="result-box" id="rdResult">
+Your RD result will appear here.
+</div>
+
+<h2>What is RD?</h2>
+
+<p>
+A Recurring Deposit (RD) allows you to invest a fixed amount every month and earn interest over time.
+</p>
+
+</div>
+
+</main>
+
+<script src="../js/rd-calculator.js"></script>
+
+</body>
+</html>
