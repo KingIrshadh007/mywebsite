@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SIP Calculator - Free Tools Hub</title>
+
+<meta name="description" content="Calculate SIP returns and future investment value instantly.">
+<meta name="keywords" content="SIP Calculator, Mutual Fund SIP, Investment Calculator, SIP Return">
+
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header>
+    <div class="logo">⚡ Free Tools Hub</div>
+
+    <nav>
+        <a href="../index.html">🏠 Home</a>
+    </nav>
+</header>
+
+<main class="content">
+
+<div class="tool-panel active">
+
+<h1>📈 SIP Calculator</h1>
+
+<div class="description">
+Calculate future value of your SIP investment based on monthly contribution and expected returns.
+</div>
+
+<label>Monthly Investment (₹)</label>
+<input type="number" id="sipAmount" placeholder="Enter Monthly Investment">
+
+<label>Expected Return (% p.a.)</label>
+<input type="number" id="sipRate" placeholder="Expected Annual Return">
+
+<label>Investment Period (Years)</label>
+<input type="number" id="sipYears" placeholder="Investment Duration">
+
+<button class="action-btn" onclick="calculateSIP()">
+Calculate SIP
+</button>
+
+<div class="result-box" id="sipResult">
+Your SIP result will appear here.
+</div>
+
+<h2>What is SIP?</h2>
+
+<p>
+SIP (Systematic Investment Plan) allows you to invest a fixed amount regularly into mutual funds and build wealth through compounding.
+</p>
+
+<h2>Benefits of SIP</h2>
+
+<ul>
+<li>Disciplined investing</li>
+<li>Power of compounding</li>
+<li>Affordable monthly investments</li>
+<li>Long-term wealth creation</li>
+</ul>
+
+</div>
+
+</main>
+
+<script src="../js/sip-calculator.js"></script>
+
+</body>
+</html>
