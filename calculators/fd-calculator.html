@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>FD Calculator - Free Tools Hub</title>
+
+<meta name="description" content="Calculate Fixed Deposit maturity amount and interest earned instantly.">
+
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header>
+    <div class="logo">⚡ Free Tools Hub</div>
+
+    <nav>
+        <a href="../index.html">🏠 Home</a>
+    </nav>
+</header>
+
+<main class="content">
+
+<div class="tool-panel active">
+
+<h1>🏦 FD Calculator</h1>
+
+<div class="description">
+Calculate Fixed Deposit maturity value and interest earned.
+</div>
+
+<label>Deposit Amount (₹)</label>
+<input type="number" id="fdPrincipal">
+
+<label>Interest Rate (%)</label>
+<input type="number" id="fdRate">
+
+<label>Time Period (Years)</label>
+<input type="number" id="fdYears">
+
+<button class="action-btn" onclick="calculateFD()">
+Calculate FD
+</button>
+
+<div class="result-box" id="fdResult">
+Your FD result will appear here.
+</div>
+
+<h2>What is a Fixed Deposit?</h2>
+
+<p>
+A Fixed Deposit (FD) is an investment where money is deposited for a fixed period and earns guaranteed interest.
+</p>
+
+</div>
+
+</main>
+
+<script src="../js/fd-calculator.js"></script>
+
+</body>
+</html>
