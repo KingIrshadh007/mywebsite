@@ -397,21 +397,13 @@ scroll-margin-top:100px;
 
 <a href="#" onclick="goHome()">🏠 Home</a>
 
-<a href="#" onclick="scrollToCategory('calculators');return false;">
-📊 Calculators
-</a>
+<a href="#" onclick="showTool('ageTool')">📊 Calculators</a>
 
- <a href="#" onclick="scrollToCategory('seoTools');return false;">
-📝 SEO Tools
-</a>
+<a href="#" onclick="showTool('metaTool')">📝 SEO Tools</a>
 
-<a href="#" onclick="scrollToCategory('developerTools');return false;">
-⚙️ Developer Tools
-</a>
+<a href="#" onclick="showTool('jsonTool')">⚙️ Developer Tools</a>
 
- <a href="#" onclick="scrollToCategory('utilityTools');return false;">
-🎨 Utility Tools
-</a>
+<a href="#" onclick="showTool('colorTool')">🎨 Utility Tools</a>
 
 <a href="#" onclick="openAbout()">ℹ️ About Us</a>
 
@@ -501,7 +493,7 @@ Gratuity Calculator
 Scientific Calculator
 </button>
 
-<h3 id="seoTools">📝 SEO Tools</h3>
+<h3 id="seo">📝 SEO Tools</h3>
 
  <button class="tool-link" onclick="showTool('metaTool')">
 Meta Tag Generator
@@ -529,7 +521,7 @@ Word Counter
 Character Counter
 </button>
 
-<h3 id="developerTools">⚙️ Developer Tools</h3>
+<h3 id="developer">⚙️ Developer Tools</h3>
 
   <button class="tool-link" onclick="showTool('jsonTool')">
 JSON Formatter
@@ -580,7 +572,7 @@ CSS Minifier
 JavaScript Minifier
 </button>
 
-<h3 id="utilityTools">🎨 Utility Tools</h3>
+<h3 id="utility">🎨 Utility Tools</h3>
 
 <button class="tool-link" onclick="showTool('colorTool')">
 Color Picker
@@ -655,7 +647,7 @@ Calculate your exact age from your date of birth.
 The calculator compares your birth date with today's date.
 </div>
 
-<label for="ageDob">Date of Birth</label>
+<label>Date of Birth</label>
 <input type="date" id="ageDob">
 
 <button class="action-btn" onclick="calculateAge()">
@@ -2077,18 +2069,37 @@ window.onload = () => {
 ========================= */
 function showTool(id){
 
-document.getElementById("welcome").style.display="none";
+document.getElementById("welcome").style.display = "none";
 
 document.querySelectorAll(".tool-panel")
 .forEach(tool=>{
 tool.classList.remove("active");
 });
 
-const tool=document.getElementById(id);
+const tool = document.getElementById(id);
 
-if(tool){
+if(!tool) return;
+
 tool.classList.add("active");
-}
+
+/* Scroll page to top of content area */
+
+const content =
+document.querySelector(".content");
+
+const header =
+document.querySelector("header");
+
+const headerHeight =
+header ? header.offsetHeight : 80;
+
+const y =
+content.offsetTop - headerHeight - 10;
+
+window.scrollTo({
+top:y,
+behavior:"smooth"
+});
 
 }
 /* =========================
@@ -2121,28 +2132,25 @@ behavior: "smooth"
 }
 function scrollToCategory(id){
 
-    const target = document.getElementById(id);
+const target =
+document.getElementById(id);
 
-    if(!target){
-        console.log("ID not found:", id);
-        return;
-    }
+if(!target) return;
 
-    const header = document.querySelector("header");
+const headerHeight =
+document.querySelector("header").offsetHeight;
 
-    const headerHeight =
-        header ? header.offsetHeight : 80;
+const y =
+target.getBoundingClientRect().top +
+window.pageYOffset -
+headerHeight -
+15;
 
-    const y =
-        target.getBoundingClientRect().top +
-        window.pageYOffset -
-        headerHeight -
-        20;
+window.scrollTo({
+top:y,
+behavior:"smooth"
+});
 
-    window.scrollTo({
-        top: y,
-        behavior: "smooth"
-    });
 }
 function openAbout(){
 document.getElementById("aboutModal").style.display="block";
@@ -3329,20 +3337,7 @@ Density: <b>${density.toFixed(2)}%</b>
 `;
 
 }
-html{
-    scroll-behavior:smooth;
-}
 
-header{
-    position:sticky;
-    top:0;
-    z-index:999;
-}
-
-.sidebar h3{
-    scroll-margin-top:100px;
-}
- 
 </script>
 </body>
 </html>
