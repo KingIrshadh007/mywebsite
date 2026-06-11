@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>EMI Calculator - Free Tools Hub</title>
+
+<meta name="description" content="Calculate your loan EMI instantly with our free EMI calculator.">
+<meta name="keywords" content="EMI Calculator, Loan EMI, Home Loan EMI, Personal Loan EMI">
+
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header>
+    <div class="logo">⚡ Free Tools Hub</div>
+
+    <nav>
+        <a href="../index.html">🏠 Home</a>
+    </nav>
+</header>
+
+<main class="content">
+
+<div class="tool-panel active">
+
+<h1>🏦 EMI Calculator</h1>
+
+<div class="description">
+Calculate your monthly EMI for home loans, personal loans, car loans and more.
+</div>
+
+<label>Loan Amount (₹)</label>
+<input type="number" id="emiAmount" placeholder="Enter Loan Amount">
+
+<label>Interest Rate (%)</label>
+<input type="number" id="emiRate" placeholder="Annual Interest Rate">
+
+<label>Loan Tenure (Years)</label>
+<input type="number" id="emiYears" placeholder="Loan Duration">
+
+<button class="action-btn" onclick="calculateEMI()">
+Calculate EMI
+</button>
+
+<div class="result-box" id="emiResult">
+Your EMI result will appear here.
+</div>
+
+<h2>What is EMI?</h2>
+
+<p>
+EMI (Equated Monthly Installment) is the fixed amount paid every month towards repayment of a loan.
+</p>
+
+<h2>How to Use</h2>
+
+<ul>
+<li>Enter loan amount</li>
+<li>Enter annual interest rate</li>
+<li>Enter loan tenure in years</li>
+<li>Click Calculate EMI</li>
+</ul>
+
+</div>
+
+</main>
+
+<script src="../js/emi-calculator.js"></script>
+
+</body>
+</html>
