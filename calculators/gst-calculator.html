@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>GST Calculator - Free Tools Hub</title>
+
+<meta name="description" content="Calculate GST amount and total price instantly using our free GST Calculator.">
+<meta name="keywords" content="GST Calculator, GST India, Tax Calculator, GST Amount">
+
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header>
+    <div class="logo">⚡ Free Tools Hub</div>
+
+    <nav>
+        <a href="../index.html">🏠 Home</a>
+    </nav>
+</header>
+
+<main class="content">
+
+<div class="tool-panel active">
+
+<h1>🧾 GST Calculator</h1>
+
+<div class="description">
+Calculate GST amount and total invoice value instantly.
+</div>
+
+<label>Amount (₹)</label>
+<input type="number" id="gstAmount" placeholder="Enter Amount">
+
+<label>GST Rate (%)</label>
+<input type="number" id="gstRate" placeholder="Enter GST Rate">
+
+<button class="action-btn" onclick="calculateGST()">
+Calculate GST
+</button>
+
+<div class="result-box" id="gstResult">
+Your GST result will appear here.
+</div>
+
+<h2>What is GST?</h2>
+
+<p>
+GST (Goods and Services Tax) is an indirect tax levied on the supply of goods and services in India.
+</p>
+
+<h2>Common GST Rates</h2>
+
+<ul>
+<li>5%</li>
+<li>12%</li>
+<li>18%</li>
+<li>28%</li>
+</ul>
+
+</div>
+
+</main>
+
+<script src="../js/gst-calculator.js"></script>
+
+</body>
+</html>
