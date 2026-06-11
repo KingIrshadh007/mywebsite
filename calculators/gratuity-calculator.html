@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Gratuity Calculator - Free Tools Hub</title>
+
+<meta name="description" content="Calculate your gratuity amount based on salary and years of service.">
+
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header>
+    <div class="logo">⚡ Free Tools Hub</div>
+
+    <nav>
+        <a href="../index.html">🏠 Home</a>
+    </nav>
+</header>
+
+<main class="content">
+
+<div class="tool-panel active">
+
+<h1>🎁 Gratuity Calculator</h1>
+
+<div class="description">
+Calculate the gratuity amount payable based on your last drawn salary and years of service.
+</div>
+
+<label>Last Drawn Monthly Salary (₹)</label>
+<input type="number" id="gratuitySalary">
+
+<label>Years of Service</label>
+<input type="number" id="gratuityYears">
+
+<button class="action-btn" onclick="calculateGratuity()">
+Calculate Gratuity
+</button>
+
+<div class="result-box" id="gratuityResult">
+Your gratuity result will appear here.
+</div>
+
+<h2>What is Gratuity?</h2>
+
+<p>
+Gratuity is a lump-sum benefit paid by an employer to an employee for long-term service, typically after completing at least 5 years of continuous employment.
+</p>
+
+</div>
+
+</main>
+
+<script src="../js/gratuity-calculator.js"></script>
+
+</body>
+</html>
