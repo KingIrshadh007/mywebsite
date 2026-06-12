@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Character Counter - Free Tools Hub</title>
+
+<meta name="description" content="Count characters, words and spaces instantly.">
+
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header>
+<div class="logo">⚡ Free Tools Hub</div>
+
+<nav>
+<a href="../index.html">🏠 Home</a>
+</nav>
+</header>
+
+<main class="content">
+
+<div class="tool-panel active">
+
+<h1>🔤 Character Counter</h1>
+
+<div class="description">
+Count characters, characters without spaces, words and lines instantly.
+</div>
+
+<label>Enter Text</label>
+
+<textarea
+id="characterCounterText"
+rows="12"
+placeholder="Type or paste text here..."
+oninput="countCharacters()"></textarea>
+
+<div
+class="result-box"
+id="characterCounterResult">
+
+Characters: 0<br>
+Characters (No Spaces): 0<br>
+Words: 0<br>
+Lines: 0
+
+</div>
+
+<h2>What is a Character Counter?</h2>
+
+<p>
+A character counter helps writers, students, SEO professionals and social media users monitor text length.
+</p>
+
+</div>
+
+</main>
+
+<script src="../js/character-counter.js"></script>
+
+</body>
+</html>
