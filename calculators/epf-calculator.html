@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>EPF Calculator - Free Tools Hub</title>
+
+<meta name="description" content="Calculate Employee Provident Fund (EPF) contributions and retirement savings.">
+
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header>
+    <div class="logo">⚡ Free Tools Hub</div>
+
+    <nav>
+        <a href="../index.html">🏠 Home</a>
+    </nav>
+</header>
+
+<main class="content">
+
+<div class="tool-panel active">
+
+<h1>🏦 EPF Calculator</h1>
+
+<div class="description">
+Calculate your Employee Provident Fund contributions and estimated savings.
+</div>
+
+<label>Basic Monthly Salary (₹)</label>
+<input type="number" id="epfSalary">
+
+<label>Years of Service</label>
+<input type="number" id="epfYears">
+
+<button class="action-btn" onclick="calculateEPF()">
+Calculate EPF
+</button>
+
+<div class="result-box" id="epfResult">
+Your EPF result will appear here.
+</div>
+
+<h2>What is EPF?</h2>
+
+<p>
+Employee Provident Fund (EPF) is a retirement savings scheme where both employee and employer contribute a portion of salary.
+</p>
+
+</div>
+
+</main>
+
+<script src="../js/epf-calculator.js"></script>
+
+</body>
+</html>
