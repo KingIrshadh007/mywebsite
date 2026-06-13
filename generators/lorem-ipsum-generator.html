@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Lorem Ipsum Generator - Free Tools Hub</title>
+
+<meta name="description" content="Generate Lorem Ipsum placeholder text instantly.">
+
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header>
+
+<div class="logo">⚡ Free Tools Hub</div>
+
+<nav>
+<a href="../index.html">🏠 Home</a>
+</nav>
+
+</header>
+
+<main class="content">
+
+<div class="tool-panel active">
+
+<h1>📄 Lorem Ipsum Generator</h1>
+
+<div class="description">
+Generate placeholder text for websites, designs and mockups.
+</div>
+
+<label>Number of Paragraphs</label>
+
+<input
+type="number"
+id="paragraphCount"
+value="3"
+min="1"
+max="20">
+
+<button
+class="action-btn"
+onclick="generateLorem()">
+Generate
+</button>
+
+<button
+class="action-btn"
+onclick="copyLorem()">
+Copy
+</button>
+
+<div class="result-box">
+
+<textarea
+id="loremResult"
+rows="12"
+readonly></textarea>
+
+</div>
+
+</div>
+
+</main>
+
+<script src="../js/lorem-ipsum-generator.js"></script>
+
+</body>
+</html>
