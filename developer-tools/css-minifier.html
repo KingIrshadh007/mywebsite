@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CSS Minifier - Free Tools Hub</title>
+
+<meta name="description" content="Minify CSS code by removing comments, spaces and line breaks.">
+
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header>
+<div class="logo">⚡ Free Tools Hub</div>
+
+<nav>
+<a href="../index.html">🏠 Home</a>
+</nav>
+</header>
+
+<main class="content">
+
+<div class="tool-panel active">
+
+<h1>🎨 CSS Minifier</h1>
+
+<div class="description">
+Minify CSS code to reduce file size and improve website performance.
+</div>
+
+<label>CSS Code</label>
+
+<textarea
+id="cssInput"
+rows="12"
+placeholder="body { color: red; }"></textarea>
+
+<button
+class="action-btn"
+onclick="minifyCSS()">
+Minify CSS
+</button>
+
+<div class="result-box">
+
+<textarea
+id="cssResult"
+rows="12"
+readonly></textarea>
+
+</div>
+
+<h2>What is CSS Minification?</h2>
+
+<p>
+CSS minification removes comments, spaces and unnecessary characters without changing functionality.
+</p>
+
+</div>
+
+</main>
+
+<script src="../js/css-minifier.js"></script>
+
+</body>
+</html>
