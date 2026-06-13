@@ -1,1 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Base64 Encoder Decoder - Free Tools Hub</title>
+
+<meta name="description" content="Encode and decode Base64 text instantly.">
+
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header>
+<div class="logo">⚡ Free Tools Hub</div>
+
+<nav>
+<a href="../index.html">🏠 Home</a>
+</nav>
+</header>
+
+<main class="content">
+
+<div class="tool-panel active">
+
+<h1>🔐 Base64 Encoder & Decoder</h1>
+
+<div class="description">
+Encode text to Base64 or decode Base64 back to plain text.
+</div>
+
+<label>Input</label>
+
+<textarea
+id="base64Input"
+rows="10"
+placeholder="Enter text here..."></textarea>
+
+<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:15px;">
+
+<button
+class="action-btn"
+onclick="encodeBase64()">
+Encode
+</button>
+
+<button
+class="action-btn"
+onclick="decodeBase64()">
+Decode
+</button>
+
+<button
+class="action-btn"
+onclick="copyBase64Result()">
+Copy
+</button>
+
+<button
+class="action-btn"
+onclick="clearBase64()">
+Clear
+</button>
+
+</div>
+
+<div class="result-box">
+
+<textarea
+id="base64Result"
+rows="10"
+readonly></textarea>
+
+</div>
+
+</div>
+
+</main>
+
+<script src="../js/base64-encoder-decoder.js"></script>
+
+</body>
+</html>
