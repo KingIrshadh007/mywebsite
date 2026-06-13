@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Color Converter - Free Tools Hub</title>
+
+<meta name="description" content="Convert HEX colors to RGB and RGB to HEX instantly.">
+
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header>
+<div class="logo">⚡ Free Tools Hub</div>
+
+<nav>
+<a href="../index.html">🏠 Home</a>
+</nav>
+</header>
+
+<main class="content">
+
+<div class="tool-panel active">
+
+<h1>🎨 Color Converter</h1>
+
+<div class="description">
+Convert HEX colors to RGB and RGB colors to HEX.
+</div>
+
+<label>HEX Color</label>
+
+<input
+type="text"
+id="hexInput"
+placeholder="#FF0000">
+
+<button
+class="action-btn"
+onclick="hexToRgb()">
+HEX → RGB
+</button>
+
+<hr style="margin:20px 0;">
+
+<label>RGB Color</label>
+
+<input
+type="number"
+id="red"
+placeholder="Red">
+
+<input
+type="number"
+id="green"
+placeholder="Green">
+
+<input
+type="number"
+id="blue"
+placeholder="Blue">
+
+<button
+class="action-btn"
+onclick="rgbToHex()">
+RGB → HEX
+</button>
+
+<div
+class="result-box"
+id="colorResult">
+Result will appear here.
+</div>
+
+</div>
+
+</main>
+
+<script src="../js/color-converter.js"></script>
+
+</body>
+</html>
