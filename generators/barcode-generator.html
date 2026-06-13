@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Barcode Generator - Free Tools Hub</title>
+
+<meta name="description" content="Generate barcodes instantly for products, inventory and tracking.">
+
+<link rel="stylesheet" href="../css/style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script>
+
+</head>
+<body>
+
+<header>
+
+<div class="logo">⚡ Free Tools Hub</div>
+
+<nav>
+<a href="../index.html">🏠 Home</a>
+</nav>
+
+</header>
+
+<main class="content">
+
+<div class="tool-panel active">
+
+<h1>🏷️ Barcode Generator</h1>
+
+<div class="description">
+Generate CODE128 barcodes instantly.
+</div>
+
+<label>Enter Text / Number</label>
+
+<input
+type="text"
+id="barcodeInput"
+placeholder="123456789">
+
+<button
+class="action-btn"
+onclick="generateBarcode()">
+Generate Barcode
+</button>
+
+<button
+class="action-btn"
+onclick="downloadBarcode()">
+Download Barcode
+</button>
+
+<div style="margin-top:20px;">
+
+<svg id="barcode"></svg>
+
+</div>
+
+</div>
+
+</main>
+
+<script src="../js/barcode-generator.js"></script>
+
+</body>
+</html>
