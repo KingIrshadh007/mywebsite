@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>UUID Generator - Free Tools Hub</title>
+
+<meta name="description" content="Generate random UUIDs instantly.">
+
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header>
+
+<div class="logo">⚡ Free Tools Hub</div>
+
+<nav>
+<a href="../index.html">🏠 Home</a>
+</nav>
+
+</header>
+
+<main class="content">
+
+<div class="tool-panel active">
+
+<h1>🆔 UUID Generator</h1>
+
+<div class="description">
+Generate Version 4 UUIDs instantly for applications, databases and APIs.
+</div>
+
+<label>Number of UUIDs</label>
+
+<input
+type="number"
+id="uuidCount"
+value="1"
+min="1"
+max="100">
+
+<button
+class="action-btn"
+onclick="generateUUIDs()">
+Generate UUID
+</button>
+
+<button
+class="action-btn"
+onclick="copyUUIDs()">
+Copy
+</button>
+
+<div class="result-box">
+
+<textarea
+id="uuidResult"
+rows="10"
+readonly></textarea>
+
+</div>
+
+<h2>Example UUID</h2>
+
+<p>
+550e8400-e29b-41d4-a716-446655440000
+</p>
+
+</div>
+
+</main>
+
+<script src="../js/uuid-generator.js"></script>
+
+</body>
+</html>
