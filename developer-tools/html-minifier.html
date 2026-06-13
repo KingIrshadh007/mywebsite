@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>HTML Minifier - Free Tools Hub</title>
+
+<meta name="description" content="Minify HTML code by removing unnecessary spaces and comments.">
+
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header>
+<div class="logo">⚡ Free Tools Hub</div>
+
+<nav>
+<a href="../index.html">🏠 Home</a>
+</nav>
+</header>
+
+<main class="content">
+
+<div class="tool-panel active">
+
+<h1>📄 HTML Minifier</h1>
+
+<div class="description">
+Minify HTML code by removing extra spaces, line breaks and comments.
+</div>
+
+<label>HTML Code</label>
+
+<textarea
+id="htmlInput"
+rows="12"
+placeholder="<html>...</html>"></textarea>
+
+<button
+class="action-btn"
+onclick="minifyHTML()">
+Minify HTML
+</button>
+
+<div class="result-box">
+
+<textarea
+id="htmlResult"
+rows="12"
+readonly></textarea>
+
+</div>
+
+<h2>What is HTML Minification?</h2>
+
+<p>
+HTML minification removes unnecessary characters from HTML code without affecting functionality, reducing file size and improving page load speed.
+</p>
+
+</div>
+
+</main>
+
+<script src="../js/html-minifier.js"></script>
+
+</body>
+</html>
