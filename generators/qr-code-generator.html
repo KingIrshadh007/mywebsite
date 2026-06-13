@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>QR Code Generator - Free Tools Hub</title>
+
+<meta name="description" content="Generate QR codes instantly for URLs, text and contact information.">
+
+<link rel="stylesheet" href="../css/style.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+</head>
+<body>
+
+<header>
+
+<div class="logo">⚡ Free Tools Hub</div>
+
+<nav>
+<a href="../index.html">🏠 Home</a>
+</nav>
+
+</header>
+
+<main class="content">
+
+<div class="tool-panel active">
+
+<h1>📱 QR Code Generator</h1>
+
+<div class="description">
+Generate QR codes instantly for websites, text, phone numbers and more.
+</div>
+
+<label>Enter Text or URL</label>
+
+<input
+type="text"
+id="qrInput"
+placeholder="https://example.com">
+
+<button
+class="action-btn"
+onclick="generateQR()">
+Generate QR Code
+</button>
+
+<button
+class="action-btn"
+onclick="downloadQR()">
+Download QR
+</button>
+
+<div
+id="qrCode"
+style="
+margin-top:20px;
+padding:20px;
+background:#fff;
+display:inline-block;
+">
+</div>
+
+</div>
+
+</main>
+
+<script src="../js/qr-code-generator.js"></script>
+
+</body>
+</html>
