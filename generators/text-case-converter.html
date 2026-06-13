@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Text Case Converter - Free Tools Hub</title>
+
+<meta name="description" content="Convert text to uppercase, lowercase, title case and more.">
+
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header>
+
+<div class="logo">⚡ Free Tools Hub</div>
+
+<nav>
+<a href="../index.html">🏠 Home</a>
+</nav>
+
+</header>
+
+<main class="content">
+
+<div class="tool-panel active">
+
+<h1>🔤 Text Case Converter</h1>
+
+<div class="description">
+Convert text into different letter cases instantly.
+</div>
+
+<label>Enter Text</label>
+
+<textarea
+id="caseInput"
+rows="10"
+placeholder="Type or paste text here..."></textarea>
+
+<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:15px;">
+
+<button class="action-btn" onclick="toUpperCaseText()">
+UPPERCASE
+</button>
+
+<button class="action-btn" onclick="toLowerCaseText()">
+lowercase
+</button>
+
+<button class="action-btn" onclick="toTitleCaseText()">
+Title Case
+</button>
+
+<button class="action-btn" onclick="toSentenceCaseText()">
+Sentence Case
+</button>
+
+<button class="action-btn" onclick="copyCaseResult()">
+Copy
+</button>
+
+</div>
+
+<div class="result-box">
+
+<textarea
+id="caseResult"
+rows="10"
+readonly></textarea>
+
+</div>
+
+</div>
+
+</main>
+
+<script src="../js/text-case-converter.js"></script>
+
+</body>
+</html>
