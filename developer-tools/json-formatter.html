@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>JSON Formatter - Free Tools Hub</title>
+
+<meta name="description" content="Format and beautify JSON data instantly.">
+
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header>
+<div class="logo">⚡ Free Tools Hub</div>
+
+<nav>
+<a href="../index.html">🏠 Home</a>
+</nav>
+</header>
+
+<main class="content">
+
+<div class="tool-panel active">
+
+<h1>📦 JSON Formatter</h1>
+
+<div class="description">
+Format, beautify and validate JSON instantly.
+</div>
+
+<label>Paste JSON</label>
+
+<textarea
+id="jsonInput"
+rows="12"
+placeholder='{"name":"John","age":25}'></textarea>
+
+<button
+class="action-btn"
+onclick="formatJSON()">
+Format JSON
+</button>
+
+<button
+class="action-btn"
+onclick="minifyJSON()">
+Minify JSON
+</button>
+
+<div class="result-box">
+<textarea
+id="jsonResult"
+rows="12"
+readonly></textarea>
+</div>
+
+<h2>What is JSON Formatter?</h2>
+
+<p>
+JSON Formatter helps developers validate, beautify and minify JSON data for APIs and applications.
+</p>
+
+</div>
+
+</main>
+
+<script src="../js/json-formatter.js"></script>
+
+</body>
+</html>
