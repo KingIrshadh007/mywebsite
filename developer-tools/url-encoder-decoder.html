@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>URL Encoder Decoder - Free Tools Hub</title>
+
+<meta name="description" content="Encode and decode URLs instantly.">
+
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header>
+<div class="logo">⚡ Free Tools Hub</div>
+
+<nav>
+<a href="../index.html">🏠 Home</a>
+</nav>
+</header>
+
+<main class="content">
+
+<div class="tool-panel active">
+
+<h1>🌐 URL Encoder & Decoder</h1>
+
+<div class="description">
+Encode URLs for safe transmission or decode encoded URLs back to readable format.
+</div>
+
+<label>Input</label>
+
+<textarea
+id="urlInput"
+rows="10"
+placeholder="Enter URL or text here..."></textarea>
+
+<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:15px;">
+
+<button
+class="action-btn"
+onclick="encodeURL()">
+Encode
+</button>
+
+<button
+class="action-btn"
+onclick="decodeURL()">
+Decode
+</button>
+
+<button
+class="action-btn"
+onclick="copyURLResult()">
+Copy
+</button>
+
+<button
+class="action-btn"
+onclick="clearURLTool()">
+Clear
+</button>
+
+</div>
+
+<div class="result-box">
+
+<textarea
+id="urlResult"
+rows="10"
+readonly></textarea>
+
+</div>
+
+<h2>Example</h2>
+
+<p>
+https://example.com/search?q=hello world
+</p>
+
+<p>
+becomes:
+</p>
+
+<p>
+https%3A%2F%2Fexample.com%2Fsearch%3Fq%3Dhello%20world
+</p>
+
+</div>
+
+</main>
+
+<script src="../js/url-encoder-decoder.js"></script>
+
+</body>
+</html>
