@@ -14,6 +14,10 @@ padding:0;
 box-sizing:border-box;
 }
 
+html{
+scroll-behavior:smooth;
+}
+
 body{
 font-family:Segoe UI,sans-serif;
 background:var(--bg);
@@ -34,7 +38,8 @@ align-items:center;
 
 padding:12px 20px;
 
-background:#111827;
+background:#111827ee;
+backdrop-filter:blur(10px);
 
 border-bottom:1px solid var(--border);
 }
@@ -43,6 +48,8 @@ border-bottom:1px solid var(--border);
 font-size:22px;
 font-weight:700;
 }
+
+/* SEARCH */
 
 #toolSearch{
 width:280px;
@@ -55,13 +62,18 @@ border-radius:10px;
 
 background:#1e293b;
 color:white;
+
+outline:none;
+}
+
+#toolSearch::placeholder{
+color:#94a3b8;
 }
 
 /* HERO */
 
 .hero{
 text-align:center;
-
 padding:50px 20px;
 
 background:
@@ -82,6 +94,33 @@ font-size:16px;
 max-width:700px;
 margin:auto;
 }
+
+/* CATEGORY NAV */
+
+.category-nav{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:10px;
+
+padding:20px;
+}
+
+.category-nav a{
+background:#1e293b;
+color:white;
+text-decoration:none;
+
+padding:10px 16px;
+
+border-radius:30px;
+
+font-size:14px;
+
+transition:.3s;
+}
+
+.category-nav a:hover
 
 /* STATS */
 
@@ -113,6 +152,7 @@ text-align:center;
 .stat-card h2{
 font-size:26px;
 margin-bottom:5px;
+color:#60a5fa;
 }
 
 /* SECTIONS */
@@ -128,10 +168,29 @@ font-size:24px;
 margin-bottom:15px;
 }
 
-/* TOOL GRID */
+/* FEATURED */
+
+.featured-tools{
+margin-bottom:25px;
+}
+
+.popular-badge{
+display:inline-block;
+
+padding:4px 10px;
+
+font-size:11px;
+
+border-radius:20px;
+
+background:#3b82f6;
+
+margin-bottom:8px;
+}
+
+/* GRID */
 
 .tools-grid{
-
 display:grid;
 
 grid-template-columns:
@@ -143,7 +202,6 @@ gap:15px;
 /* TOOL CARD */
 
 .tool-card{
-
 display:block;
 
 background:var(--card);
@@ -156,34 +214,53 @@ text-decoration:none;
 
 color:white;
 
+border:1px solid transparent;
+
 transition:.25s;
 }
 
 .tool-card:hover{
-
 background:var(--hover);
 
 transform:translateY(-3px);
+
+border-color:#3b82f6;
+
+box-shadow:
+0 8px 25px rgba(59,130,246,.15);
 }
 
 .tool-card h3{
-
 font-size:16px;
-
 margin-bottom:8px;
 }
 
 .tool-card p{
-
 font-size:13px;
-
 color:var(--text-light);
+}
+
+/* FAQ */
+
+.faq{
+display:grid;
+gap:15px;
+}
+
+.faq-item{
+background:#1e293b;
+padding:18px;
+border-radius:12px;
+}
+
+.faq-item h3{
+margin-bottom:8px;
+font-size:16px;
 }
 
 /* FOOTER */
 
 footer{
-
 margin-top:40px;
 
 padding:25px;
@@ -193,13 +270,35 @@ text-align:center;
 border-top:1px solid var(--border);
 }
 
-footer a{
+footer p{
+margin-bottom:10px;
+}
 
+footer a{
 color:#60a5fa;
 
 text-decoration:none;
 
 margin:0 8px;
+}
+
+footer a:hover{
+text-decoration:underline;
+}
+
+/* SCROLLBAR */
+
+::-webkit-scrollbar{
+width:8px;
+}
+
+::-webkit-scrollbar-track{
+background:#111827;
+}
+
+::-webkit-scrollbar-thumb{
+background:#334155;
+border-radius:10px;
 }
 
 /* MOBILE */
@@ -233,6 +332,12 @@ font-size:20px;
 
 .tools-grid{
 grid-template-columns:1fr;
+}
+
+.category-nav{
+justify-content:flex-start;
+overflow-x:auto;
+padding-bottom:10px;
 }
 
 }
