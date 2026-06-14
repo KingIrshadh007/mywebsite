@@ -584,7 +584,71 @@ Made with ❤️ for everyone.
 </div>
 
 </footer>
+<script>
 
+/* SEARCH */
+
+const searchInput =
+document.getElementById("toolSearch");
+
+searchInput?.addEventListener("input", function(){
+
+const filter =
+this.value.toLowerCase();
+
+document
+.querySelectorAll(".tool-card")
+.forEach(card=>{
+
+const text =
+card.innerText.toLowerCase();
+
+card.style.display =
+text.includes(filter)
+? ""
+: "none";
+
+});
+
+});
+
+
+/* DARK/LIGHT MODE */
+
+const themeToggle =
+document.getElementById("themeToggle");
+
+if(localStorage.getItem("theme")==="light"){
+
+document.body.classList.add("light");
+
+if(themeToggle){
+themeToggle.textContent="☀️";
+}
+
+}
+
+themeToggle?.addEventListener("click",()=>{
+
+document.body.classList.toggle("light");
+
+const light =
+document.body.classList.contains("light");
+
+localStorage.setItem(
+"theme",
+light ? "light" : "dark"
+);
+
+themeToggle.textContent =
+light ? "☀️" : "🌙";
+
+});
+
+</script>
+
+</body>
+</html>
   
 
   
