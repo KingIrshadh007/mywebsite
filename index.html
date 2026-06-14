@@ -586,25 +586,27 @@ Made with ❤️ for everyone.
 </footer>
 <script>
 
-/* SEARCH */
+/* ==========================
+   TOOL SEARCH
+========================== */
 
 const searchInput =
 document.getElementById("toolSearch");
 
-searchInput?.addEventListener("input", function(){
+searchInput.addEventListener("input", () => {
 
-const filter =
-this.value.toLowerCase();
+const search =
+searchInput.value.toLowerCase();
 
 document
 .querySelectorAll(".tool-card")
-.forEach(card=>{
+.forEach(card => {
 
 const text =
 card.innerText.toLowerCase();
 
 card.style.display =
-text.includes(filter)
+text.includes(search)
 ? ""
 : "none";
 
@@ -613,7 +615,9 @@ text.includes(filter)
 });
 
 
-/* DARK/LIGHT MODE */
+/* ==========================
+   DARK MODE TOGGLE
+========================== */
 
 const themeToggle =
 document.getElementById("themeToggle");
@@ -622,9 +626,7 @@ if(localStorage.getItem("theme")==="light"){
 
 document.body.classList.add("light");
 
-if(themeToggle){
 themeToggle.textContent="☀️";
-}
 
 }
 
@@ -642,6 +644,92 @@ light ? "light" : "dark"
 
 themeToggle.textContent =
 light ? "☀️" : "🌙";
+
+});
+
+
+/* ==========================
+   FADE IN ANIMATION
+========================== */
+
+const observer =
+new IntersectionObserver(entries => {
+
+entries.forEach(entry => {
+
+if(entry.isIntersecting){
+
+entry.target.classList.add("show");
+
+}
+
+});
+
+},{
+threshold:0.1
+});
+
+document
+.querySelectorAll(
+".tool-card,.stat-card,.faq-item"
+)
+.forEach(el => {
+
+el.classList.add("hidden");
+
+observer.observe(el);
+
+});
+
+
+/* ==========================
+   TOOL COUNTER ANIMATION
+========================== */
+
+const counters =
+document.querySelectorAll(".stat-card h2");
+
+counters.forEach(counter=>{
+
+const updateCounter = ()=>{
+
+const target =
+counter.innerText.replace("+","");
+
+let count =
++counter.getAttribute("data-count") || 0;
+
+const increment =
+target / 50;
+
+if(count < target){
+
+count += increment;
+
+counter.setAttribute(
+"data-count",
+count
+);
+
+counter.innerText =
+Math.ceil(count)+"+";
+
+setTimeout(updateCounter,20);
+
+}else{
+
+counter.innerText =
+target+"+";
+
+}
+
+};
+
+if(!isNaN(counter.innerText.replace("+",""))){
+
+updateCounter();
+
+}
 
 });
 
