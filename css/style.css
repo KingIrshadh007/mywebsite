@@ -361,3 +361,89 @@ transition:.7s;
 
 left:100%;
 }
+
+/* FEATURES */
+
+.features{
+max-width:1300px;
+margin:50px auto;
+padding:0 20px;
+}
+
+.features-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+}
+
+.feature-card{
+background:var(--card);
+padding:25px;
+border-radius:15px;
+text-align:center;
+font-weight:600;
+transition:.3s;
+}
+
+.feature-card:hover{
+transform:translateY(-5px);
+}
+
+/* SEO CONTENT */
+
+.seo-content{
+max-width:1100px;
+margin:50px auto;
+padding:30px;
+background:var(--card);
+border-radius:15px;
+}
+
+.seo-content p{
+margin-top:15px;
+line-height:1.8;
+}
+
+/* NEWSLETTER */
+
+.newsletter{
+max-width:700px;
+margin:60px auto;
+padding:40px;
+background:linear-gradient(135deg,#2563eb,#06b6d4);
+border-radius:20px;
+text-align:center;
+}
+
+.newsletter input{
+width:100%;
+padding:14px;
+margin-top:15px;
+border:none;
+border-radius:10px;
+}
+
+.newsletter button{
+margin-top:15px;
+padding:14px 30px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+}
+
+/* AD SECTION */
+
+.ad-banner{
+max-width:1200px;
+margin:30px auto;
+padding:0 20px;
+}
+
+.ad-placeholder{
+height:120px;
+background:var(--card);
+border-radius:15px;
+display:flex;
+align-items:center;
+justify-content:center;
+}
