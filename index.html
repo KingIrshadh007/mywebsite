@@ -770,53 +770,41 @@ observer.observe(el);
 /* ==========================
    TOOL COUNTER ANIMATION
 ========================== */
-const counters =
-document.querySelectorAll(".stat-card h2");
 
-counters.forEach(counter=>{
+  const toolsCounter =
+document.getElementById("toolsCounter");
 
-const updateCounter = ()=>{
+let started = false;
 
-const target =
-counter.innerText.replace("+","");
+const observerCounter =
+new IntersectionObserver(entries => {
 
-let count =
-+counter.getAttribute("data-count") || 0;
+if(entries[0].isIntersecting && !started){
 
-const increment =
-target / 50;
+started = true;
 
-if(count < target){
+let count = 0;
+const target = 40;
 
-count += increment;
+const timer = setInterval(() => {
 
-counter.setAttribute(
-"data-count",
-count
-);
+count++;
 
-counter.innerText =
-Math.ceil(count)+"+";
+toolsCounter.textContent = count + "+";
 
-setTimeout(updateCounter,20);
+if(count >= target){
 
-}else{
-
-counter.innerText =
-target+"+";
+clearInterval(timer);
 
 }
 
-};
-
-if(!isNaN(counter.innerText.replace("+",""))){
-
-updateCounter();
+},40);
 
 }
 
 });
 
+observerCounter.observe(toolsCounter);
 
 </script>
 
