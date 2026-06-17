@@ -771,40 +771,25 @@ observer.observe(el);
    TOOL COUNTER ANIMATION
 ========================== */
 
-  const toolsCounter =
-document.getElementById("toolsCounter");
-
-let started = false;
-
-const observerCounter =
-new IntersectionObserver(entries => {
-
-if(entries[0].isIntersecting && !started){
-
-started = true;
+ const toolCounter = document.querySelector(".stat-card h2");
 
 let count = 0;
 const target = 40;
 
-const timer = setInterval(() => {
+const counterInterval = setInterval(() => {
 
-count++;
+    count++;
 
-toolsCounter.textContent = count + "+";
+    toolCounter.textContent = count + "+";
 
-if(count >= target){
+    if(count >= target){
 
-clearInterval(timer);
+        toolCounter.textContent = "40+";
+        clearInterval(counterInterval);
 
-}
+    }
 
-},40);
-
-}
-
-});
-
-observerCounter.observe(toolsCounter);
+}, 30);
 
 </script>
 
