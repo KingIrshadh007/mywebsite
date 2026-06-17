@@ -774,47 +774,34 @@ observer.observe(el);
 const counters =
 document.querySelectorAll(".stat-card h2");
 
-counters.forEach(counter=>{
-
-const updateCounter = ()=>{
+counters.forEach(counter => {
 
 const target =
-counter.innerText.replace("+","");
+parseInt(counter.textContent);
 
-let count =
-+counter.getAttribute("data-count") || 0;
+if(isNaN(target)) return;
 
-const increment =
-target / 50;
+let count = 0;
+
+const updateCounter = () => {
 
 if(count < target){
 
-count += increment;
+count++;
 
-counter.setAttribute(
-"data-count",
-count
-);
+counter.textContent = count + "+";
 
-counter.innerText =
-Math.ceil(count)+"+";
-
-setTimeout(updateCounter,20);
+requestAnimationFrame(updateCounter);
 
 }else{
 
-counter.innerText =
-target+"+";
+counter.textContent = target + "+";
 
 }
 
 };
 
-if(!isNaN(counter.innerText.replace("+",""))){
-
 updateCounter();
-
-}
 
 });
 
