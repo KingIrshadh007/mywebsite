@@ -770,40 +770,53 @@ observer.observe(el);
 /* ==========================
    TOOL COUNTER ANIMATION
 ========================== */
-
 const counters =
 document.querySelectorAll(".stat-card h2");
 
-counters.forEach(counter => {
+counters.forEach(counter=>{
+
+const updateCounter = ()=>{
 
 const target =
-parseInt(counter.textContent);
+counter.innerText.replace("+","");
 
-if(isNaN(target)) return;
+let count =
++counter.getAttribute("data-count") || 0;
 
-let count = 0;
-
-const updateCounter = () => {
+const increment =
+target / 50;
 
 if(count < target){
 
-count++;
+count += increment;
 
-counter.textContent = count + "+";
+counter.setAttribute(
+"data-count",
+count
+);
 
-requestAnimationFrame(updateCounter);
+counter.innerText =
+Math.ceil(count)+"+";
+
+setTimeout(updateCounter,20);
 
 }else{
 
-counter.textContent = target + "+";
+counter.innerText =
+target+"+";
 
 }
 
 };
 
+if(!isNaN(counter.innerText.replace("+",""))){
+
 updateCounter();
 
+}
+
 });
+
 
 </script>
 
