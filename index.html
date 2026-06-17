@@ -771,52 +771,24 @@ observer.observe(el);
    TOOL COUNTER ANIMATION
 ========================== */
 
-const counters =
-document.querySelectorAll(".stat-card h2");
+<section class="stats">
 
-counters.forEach(counter=>{
+<div class="stat-card">
+<h2>40+</h2>
+<p>Free Tools</p>
+</div>
 
-const updateCounter = ()=>{
+<div class="stat-card">
+<h2>100%</h2>
+<p>Free Access</p>
+</div>
 
-const target =
-counter.innerText.replace("+","");
+<div class="stat-card">
+<h2>24/7</h2>
+<p>Available</p>
+</div>
 
-let count =
-+counter.getAttribute("data-count") || 0;
-
-const increment =
-target / 50;
-
-if(count < target){
-
-count += increment;
-
-counter.setAttribute(
-"data-count",
-count
-);
-
-counter.innerText =
-Math.ceil(count)+"+";
-
-setTimeout(updateCounter,20);
-
-}else{
-
-counter.innerText =
-target+"+";
-
-}
-
-};
-
-if(!isNaN(counter.innerText.replace("+",""))){
-
-updateCounter();
-
-}
-
-});
+</section>
 
 </script>
 
