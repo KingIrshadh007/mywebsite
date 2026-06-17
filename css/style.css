@@ -174,9 +174,27 @@ rgba(255,255,255,.85);
 
 .logo{
 
+display:flex;
+
+align-items:center;
+
 font-size:28px;
 
 font-weight:700;
+
+}
+
+.logo-icon{
+
+color:#facc15;
+
+margin-right:8px;
+
+-webkit-text-fill-color:initial;
+
+}
+
+.logo-text{
 
 background:
 linear-gradient(
