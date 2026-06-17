@@ -1368,6 +1368,20 @@ font-size:20px;
 
 margin-bottom:20px;
 
+}
+
+.footer-logo-icon{
+
+color:#facc15;
+
+margin-right:6px;
+
+-webkit-text-fill-color:initial;
+
+}
+
+.footer-logo-text{
+
 background:
 linear-gradient(
 90deg,
@@ -1380,7 +1394,6 @@ linear-gradient(
 -webkit-text-fill-color:transparent;
 
 }
-
 .footer-column p{
 
 color:var(--text-light);
