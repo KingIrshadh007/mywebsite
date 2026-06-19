@@ -676,33 +676,65 @@ Made with ❤️ for everyone.
 <script>
 
 /* ==========================
-   TOOL SEARCH
+   PROFESSIONAL TOOL SEARCH
 ========================== */
 
-const searchInput =
-document.getElementById("toolSearch");
+const searchInput = document.getElementById("toolSearch");
 
 searchInput.addEventListener("input", () => {
 
-const search =
-searchInput.value.toLowerCase();
+    const keyword =
+    searchInput.value.trim().toLowerCase();
 
-document
-.querySelectorAll(".tool-card")
-.forEach(card => {
+    let found = 0;
 
-const text =
-card.innerText.toLowerCase();
+    document.querySelectorAll(".tool-card")
+    .forEach(card => {
 
-card.style.display =
-text.includes(search)
-? ""
-: "none";
+        const title =
+        card.querySelector("h3")
+        ?.innerText.toLowerCase() || "";
+
+        const desc =
+        card.querySelector("p")
+        ?.innerText.toLowerCase() || "";
+
+        const keywords =
+        card.dataset.keywords?.toLowerCase() || "";
+
+        const text =
+        title + " " + desc + " " + keywords;
+
+        if(keyword === "" || text.includes(keyword)){
+
+            card.style.display = "flex";
+
+            found++;
+
+        }
+        else{
+
+            card.style.display = "none";
+
+        }
+
+    });
+
+    const noResults =
+    document.getElementById("noResults");
+
+    if(found === 0){
+
+        noResults.style.display = "block";
+
+    }
+    else{
+
+        noResults.style.display = "none";
+
+    }
 
 });
-
-});
-
 
 /* ==========================
    DARK MODE TOGGLE
