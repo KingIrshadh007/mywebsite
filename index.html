@@ -787,6 +787,20 @@ count>0
 
 });
 
+document.addEventListener("click",(e)=>{
+
+if(
+!searchInput.contains(e.target)
+&&
+!suggestionsBox.contains(e.target)
+){
+
+suggestionsBox.style.display="none";
+
+}
+
+});
+
 /* ==========================
    DARK MODE TOGGLE
 ========================== */
