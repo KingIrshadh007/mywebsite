@@ -694,96 +694,92 @@ Made with ❤️ for everyone.
 <script>
 
 /* ==========================
-   GOOGLE STYLE SEARCH
+PROFESSIONAL SEARCH
 ========================== */
 
-const searchInput =
-document.getElementById("toolSearch");
+const searchInput = document.getElementById("toolSearch");
+const suggestionsBox = document.getElementById("searchSuggestions");
+const cards = document.querySelectorAll(".tool-card");
 
-const suggestionsBox =
-document.getElementById("searchSuggestions");
-
-const cards =
-document.querySelectorAll(".tool-card");
+let currentIndex = -1;
 
 searchInput.addEventListener("input", ()=>{
 
+```
 const keyword =
 searchInput.value.trim().toLowerCase();
 
-suggestionsBox.innerHTML="";
+suggestionsBox.innerHTML = "";
 
 if(keyword===""){
 
-suggestionsBox.style.display="none";
+    cards.forEach(card=>{
+        card.style.display="flex";
+    });
+
+    suggestionsBox.style.display="none";
+    return;
+}
+
+let found = 0;
 
 cards.forEach(card=>{
 
-card.style.display="flex";
+    const title =
+    card.querySelector("h3")?.innerText || "";
 
-});
+    const desc =
+    card.querySelector("p")?.innerText || "";
 
-return;
+    const text =
+    (title+" "+desc).toLowerCase();
 
-}
+    if(text.includes(keyword)){
 
-let count=0;
+        card.style.display="flex";
 
-cards.forEach(card=>{
+        card.style.borderColor="#3b82f6";
 
-const title =
-card.querySelector("h3")
-.innerText;
+        found++;
 
-const desc =
-card.querySelector("p")
-.innerText;
+        if(found<=6){
 
-const text =
-(title+" "+desc)
-.toLowerCase();
+            const item =
+            document.createElement("div");
 
-if(text.includes(keyword)){
+            item.className="suggestion-item";
 
-card.style.display="flex";
+            item.innerHTML="🔍 "+title;
 
-count++;
+            item.onclick=()=>{
 
-if(count<=6){
+                localStorage.setItem(
+                "recentSearch",
+                keyword
+                );
 
-const item =
-document.createElement("div");
+                window.location=
+                card.href;
 
-item.className =
-"suggestion-item";
+            };
 
-item.innerHTML =
-"🔍 "+title;
+            suggestionsBox.appendChild(item);
 
-item.onclick = ()=>{
+        }
 
-window.location =
-card.href;
+    }
 
-};
+    else{
 
-suggestionsBox.appendChild(item);
+        card.style.display="none";
 
-}
-
-}
-else{
-
-card.style.display="none";
-
-}
+    }
 
 });
 
 suggestionsBox.style.display =
-count>0
-? "block"
-: "none";
+found>0 ? "block" : "none";
+```
 
 });
 
