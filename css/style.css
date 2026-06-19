@@ -2280,3 +2280,172 @@ color:white;
 font-weight:600;
 
 }
+
+/* =====================================
+   TOOL PAGE LAYOUT FIX
+===================================== */
+
+header{
+background:rgba(7,20,38,.9);
+padding:18px 30px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+border-bottom:1px solid var(--border);
+backdrop-filter:blur(20px);
+}
+
+body.light header{
+background:rgba(255,255,255,.9);
+}
+
+.nav-links a{
+text-decoration:none;
+color:#60a5fa;
+font-weight:600;
+}
+
+.content{
+max-width:900px;
+margin:50px auto;
+padding:0 20px;
+}
+
+.tool-panel{
+background:var(--card);
+border:1px solid var(--border);
+border-radius:30px;
+padding:50px;
+box-shadow:var(--shadow);
+backdrop-filter:blur(15px);
+}
+
+.tool-panel h1{
+font-size:2.3rem;
+margin-bottom:15px;
+}
+
+.description{
+margin-bottom:30px;
+font-size:16px;
+color:var(--text-light);
+line-height:1.8;
+}
+
+/* INPUT GROUP */
+
+.input-group{
+margin-bottom:25px;
+}
+
+.input-group label{
+display:block;
+font-size:16px;
+font-weight:600;
+margin-bottom:10px;
+color:var(--text);
+}
+
+.input-group input,
+input[type="date"],
+input[type="number"],
+input[type="text"]{
+width:100%;
+padding:16px 18px;
+border-radius:15px;
+border:1px solid var(--border);
+background:rgba(255,255,255,.08);
+color:var(--text);
+font-size:16px;
+outline:none;
+}
+
+.input-group input:focus,
+input:focus{
+border-color:#3b82f6;
+box-shadow:0 0 0 4px rgba(59,130,246,.15);
+}
+
+/* BUTTON */
+
+.action-btn{
+width:100%;
+padding:18px;
+margin-top:15px;
+border:none;
+border-radius:18px;
+background:linear-gradient(135deg,#3b82f6,#06b6d4);
+color:white;
+font-size:17px;
+font-weight:700;
+cursor:pointer;
+transition:.3s;
+}
+
+.action-btn:hover{
+transform:translateY(-3px);
+}
+
+/* RESULT BOX */
+
+.result-box{
+margin-top:25px;
+padding:25px;
+border-radius:20px;
+background:rgba(59,130,246,.1);
+border:1px solid rgba(59,130,246,.25);
+font-size:20px;
+font-weight:600;
+text-align:center;
+}
+
+/* INFORMATION SECTION */
+
+.tool-panel h2{
+margin-top:40px;
+margin-bottom:15px;
+font-size:1.7rem;
+}
+
+.tool-panel p{
+line-height:1.9;
+color:var(--text-light);
+}
+
+.tool-panel ul{
+padding-left:25px;
+margin-top:15px;
+}
+
+.tool-panel li{
+margin-bottom:12px;
+line-height:1.8;
+color:var(--text-light);
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+header{
+flex-direction:column;
+gap:15px;
+text-align:center;
+}
+
+.tool-panel{
+padding:30px 25px;
+}
+
+.tool-panel h1{
+font-size:1.8rem;
+}
+
+.action-btn{
+padding:16px;
+}
+
+.result-box{
+font-size:18px;
+}
+}
