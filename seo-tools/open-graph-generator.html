@@ -12,12 +12,23 @@
 </head>
 <body>
 
-<header>
-<div class="logo">⚡ Free Tools Hub</div>
+<header class="header">
 
-<nav>
-<a href="../index.html">🏠 Home</a>
-</nav>
+<div class="logo">
+<span class="logo-icon">⚡</span>
+<span class="logo-text">
+Free Tools Hub
+</span>
+</div>
+
+<div class="header-right">
+
+<a href="../index.html" class="home-btn">
+🏠 Home
+</a>
+
+</div>
+
 </header>
 
 <main class="content">
@@ -30,37 +41,141 @@
 Generate Open Graph meta tags for social media sharing.
 </div>
 
+<div class="input-group">
+
 <label>Page Title</label>
-<input type="text" id="ogTitle">
+<input
+type="text"
+id="ogTitle"
+placeholder="My Website">
+
+</div>
+
+<div class="input-group">
 
 <label>Page Description</label>
-<textarea id="ogDescription"></textarea>
+<textarea
+id="ogDescription"
+placeholder="Enter page description"></textarea>
+
+</div>
+
+<div class="input-group">
 
 <label>Page URL</label>
-<input type="text" id="ogUrl">
+<input
+type="text"
+id="ogUrl"
+placeholder="https://example.com">
+
+</div>
+
+<div class="input-group">
 
 <label>Image URL</label>
-<input type="text" id="ogImage">
+<input
+type="text"
+id="ogImage"
+placeholder="https://example.com/image.jpg">
+
+</div>
 
 <button class="action-btn" onclick="generateOG()">
 Generate Open Graph Tags
 </button>
-
 <div class="result-box">
-<textarea id="ogResult" rows="12" readonly></textarea>
+
+<textarea
+id="ogResult"
+class="meta-output"
+readonly
+placeholder="Generated Open Graph tags will appear here..."
+></textarea>
+
+<button
+class="copy-btn"
+onclick="copyOG()">
+
+📋 Copy Tags
+
+</button>
+
 </div>
+
+<div class="tool-info">
 
 <h2>What are Open Graph Tags?</h2>
 
 <p>
-Open Graph tags control how your website appears when shared on Facebook, WhatsApp, LinkedIn and other social platforms.
+Open Graph tags are meta tags used by Facebook, WhatsApp, LinkedIn and other social platforms to display your webpage with a title, description and image when shared.
 </p>
+
+<h2>Benefits</h2>
+
+<ul>
+
+<li>Improve social media appearance.</li>
+
+<li>Increase click-through rates.</li>
+
+<li>Display custom images and descriptions.</li>
+
+<li>Enhance brand visibility.</li>
+
+<li>Work with Facebook, LinkedIn and WhatsApp.</li>
+
+</ul>
+
+<h2>How to Use</h2>
+
+<ul>
+
+<li>Enter title and description.</li>
+
+<li>Add page URL.</li>
+
+<li>Enter image URL.</li>
+
+<li>Click Generate Open Graph Tags.</li>
+
+<li>Copy and paste into your website head section.</li>
+
+</ul>
+
+</div>
 
 </div>
 
 </main>
 
 <script src="../js/open-graph-generator.js"></script>
+  <script>
+
+function copyOG(){
+
+const text =
+document.getElementById("ogResult");
+
+if(text.value==="") return;
+
+navigator.clipboard.writeText(text.value);
+
+const btn =
+document.querySelector(".copy-btn");
+
+btn.innerHTML =
+"✅ Copied!";
+
+setTimeout(()=>{
+
+btn.innerHTML =
+"📋 Copy Tags";
+
+},2000);
+
+}
+
+</script>
 
 </body>
 </html>
