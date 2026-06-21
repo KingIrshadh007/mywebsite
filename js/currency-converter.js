@@ -1,43 +1,58 @@
-function convertCurrency(){
+async function convertCurrency() {
 
     const amount =
-    parseFloat(
-        document.getElementById("currencyAmount").value
-    );
+        parseFloat(document.getElementById("currencyAmount").value);
 
     const from =
-    document.getElementById("fromCurrency").value;
+        document.getElementById("fromCurrency").value;
 
     const to =
-    document.getElementById("toCurrency").value;
+        document.getElementById("toCurrency").value;
 
-    if(isNaN(amount)){
+    const resultBox =
+        document.getElementById("currencyResult");
 
-        document.getElementById("currencyResult").innerHTML =
-        "Please enter an amount";
+    const rateTime =
+        document.getElementById("rateTime");
+
+    if (!amount || amount <= 0) {
+
+        resultBox.innerHTML =
+            "Please enter a valid amount.";
 
         return;
     }
 
-    const rates = {
+    resultBox.innerHTML = "Loading...";
 
-        USD: 1,
-        INR: 86,
-        EUR: 0.92,
-        GBP: 0.78
+    try {
 
-    };
+        const response =
+            await fetch(
+                `https://api.exchangerate-api.com/v4/latest/${from}`
+            );
 
-    const usdAmount =
-    amount / rates[from];
+        const data = await response.json();
 
-    const converted =
-    usdAmount * rates[to];
+        const rate = data.rates[to];
 
-    document.getElementById("currencyResult").innerHTML =
-    `
-    <b>${amount} ${from}</b>
-    =
-    <b>${converted.toFixed(2)} ${to}</b>
-    `;
+        const converted =
+            (amount * rate).toFixed(2);
+
+        resultBox.innerHTML =
+            `${amount} ${from} = <strong>${converted} ${to}</strong>`;
+
+        rateTime.innerHTML =
+            "Last updated: " +
+            new Date().toLocaleString();
+
+    }
+
+    catch (error) {
+
+        resultBox.innerHTML =
+            "Unable to fetch exchange rates.";
+
+    }
+
 }
