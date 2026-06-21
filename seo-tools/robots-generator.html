@@ -12,12 +12,21 @@
 </head>
 <body>
 
-<header>
-<div class="logo">⚡ Free Tools Hub</div>
+<header class="header">
 
-<nav>
-<a href="../index.html">🏠 Home</a>
-</nav>
+<div class="logo">
+<span class="logo-icon">⚡</span>
+<span class="logo-text">Free Tools Hub</span>
+</div>
+
+<div class="header-right">
+
+<a href="../index.html" class="home-btn">
+🏠 Home
+</a>
+
+</div>
+
 </header>
 
 <main class="content">
@@ -30,12 +39,16 @@
 Generate a robots.txt file to guide search engine crawlers.
 </div>
 
+<div class="input-group">
+
 <label>Website URL</label>
+
 <input
 type="text"
 id="robotsUrl"
-placeholder="https://example.com"
->
+placeholder="https://example.com">
+
+</div>
 
 <button
 class="action-btn"
@@ -44,23 +57,98 @@ Generate Robots.txt
 </button>
 
 <div class="result-box">
+
 <textarea
 id="robotsResult"
-rows="12"
-readonly></textarea>
+class="meta-output"
+readonly
+placeholder="Generated robots.txt will appear here..."
+></textarea>
+
+<button
+class="copy-btn"
+onclick="copyRobots()">
+
+📋 Copy Robots.txt
+
+</button>
+
 </div>
+
+<div class="tool-info">
 
 <h2>What is Robots.txt?</h2>
 
 <p>
-A robots.txt file tells search engines which pages or folders they can crawl and index.
+Robots.txt is a text file that tells search engine crawlers which pages or directories should or should not be accessed on your website.
 </p>
+
+<h2>Why Use Robots.txt?</h2>
+
+<ul>
+
+<li>Control search engine crawling.</li>
+
+<li>Protect private sections of your website.</li>
+
+<li>Improve SEO efficiency.</li>
+
+<li>Prevent duplicate content indexing.</li>
+
+<li>Guide search engines to your sitemap.</li>
+
+</ul>
+
+<h2>How to Use</h2>
+
+<ul>
+
+<li>Enter your website URL.</li>
+
+<li>Click Generate Robots.txt.</li>
+
+<li>Copy the generated content.</li>
+
+<li>Save it as robots.txt.</li>
+
+<li>Upload it to your website root directory.</li>
+
+</ul>
+
+</div>
 
 </div>
 
 </main>
 
 <script src="../js/robots-generator.js"></script>
+  <script>
+
+function copyRobots(){
+
+const text =
+document.getElementById("robotsResult");
+
+if(text.value==="") return;
+
+navigator.clipboard.writeText(text.value);
+
+const btn =
+document.querySelector(".copy-btn");
+
+btn.innerHTML =
+"✅ Copied!";
+
+setTimeout(()=>{
+
+btn.innerHTML =
+"📋 Copy Robots.txt";
+
+},2000);
+
+}
+
+</script>
 
 </body>
 </html>
