@@ -44,7 +44,22 @@ Generate Meta Tags
 </button>
 
 <div class="result-box">
-<textarea id="metaResult" rows="10" readonly></textarea>
+
+<textarea
+id="metaResult"
+class="meta-output"
+readonly
+placeholder="Generated meta tags will appear here..."
+></textarea>
+
+<button
+class="copy-btn"
+onclick="copyMetaTags()">
+
+📋 Copy Code
+
+</button>
+
 </div>
 
 <h2>What are Meta Tags?</h2>
@@ -58,6 +73,31 @@ Meta tags help search engines understand your webpage and improve SEO visibility
 </main>
 
 <script src="../js/meta-tag-generator.js"></script>
+  <script>
+
+function copyMetaTags(){
+
+const text =
+document.getElementById("metaResult");
+
+if(text.value==="") return;
+
+navigator.clipboard.writeText(text.value);
+
+const btn =
+document.querySelector(".copy-btn");
+
+btn.innerHTML="✅ Copied!";
+
+setTimeout(()=>{
+
+btn.innerHTML="📋 Copy Code";
+
+},2000);
+
+}
+
+</script>
 
 </body>
 </html>
