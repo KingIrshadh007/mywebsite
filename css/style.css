@@ -2494,3 +2494,45 @@ color:var(--text);
 background:rgba(59,130,246,.15);
 
 }
+
+/* =====================================
+   UNIVERSAL TOOL PAGE HEADER FIX
+===================================== */
+
+header{
+position:sticky;
+top:0;
+z-index:1000;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 25px;
+background:rgba(7,20,38,.85);
+backdrop-filter:blur(20px);
+border-bottom:1px solid var(--border);
+}
+
+body.light header{
+background:rgba(255,255,255,.85);
+}
+
+nav a{
+padding:12px 20px;
+border-radius:14px;
+text-decoration:none;
+font-weight:600;
+background:linear-gradient(135deg,#3b82f6,#06b6d4);
+color:white;
+display:inline-block;
+transition:.3s;
+}
+
+nav a:hover{
+transform:translateY(-3px);
+}
+
+.content{
+max-width:850px;
+margin:40px auto;
+padding:0 20px;
+}
