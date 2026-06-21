@@ -785,6 +785,10 @@ suggestionsBox.style.display =
 count > 0
 ? "block"
 : "none";
+  document.getElementById("noResults").style.display =
+count===0
+? "block"
+: "none";
 
 });
 
