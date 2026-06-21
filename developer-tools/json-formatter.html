@@ -12,12 +12,23 @@
 </head>
 <body>
 
-<header>
-<div class="logo">⚡ Free Tools Hub</div>
+<header class="header">
 
-<nav>
-<a href="../index.html">🏠 Home</a>
-</nav>
+<div class="logo">
+<span class="logo-icon">⚡</span>
+<span class="logo-text">
+Free Tools Hub
+</span>
+</div>
+
+<div class="header-right">
+
+<a href="../index.html" class="home-btn">
+🏠 Home
+</a>
+
+</div>
+
 </header>
 
 <main class="content">
@@ -30,17 +41,33 @@
 Format, beautify and validate JSON instantly.
 </div>
 
+<div class="input-group">
+
 <label>Paste JSON</label>
 
 <textarea
 id="jsonInput"
 rows="12"
-placeholder='{"name":"John","age":25}'></textarea>
+class="meta-output"
+placeholder='{"name":"John","age":25}'>
+</textarea>
+
+</div>
 
 <button
 class="action-btn"
 onclick="formatJSON()">
-Format JSON
+
+✨ Format JSON
+
+</button>
+
+<button
+class="action-btn"
+onclick="minifyJSON()">
+
+⚡ Minify JSON
+
 </button>
 
 <button
@@ -50,23 +77,116 @@ Minify JSON
 </button>
 
 <div class="result-box">
+
 <textarea
 id="jsonResult"
 rows="12"
-readonly></textarea>
+class="meta-output"
+readonly
+placeholder="Formatted JSON will appear here...">
+</textarea>
+
+<button
+class="copy-btn"
+onclick="copyJSON()">
+
+📋 Copy JSON
+
+</button>
+
 </div>
+
+<div class="tool-info">
 
 <h2>What is JSON Formatter?</h2>
 
 <p>
-JSON Formatter helps developers validate, beautify and minify JSON data for APIs and applications.
+
+JSON Formatter helps developers format, validate and minify JSON data for APIs, applications and databases.
+
 </p>
+
+<h2>Features</h2>
+
+<ul>
+
+<li>Beautify JSON instantly.</li>
+
+<li>Minify JSON for smaller size.</li>
+
+<li>Validate JSON syntax.</li>
+
+<li>Improve readability.</li>
+
+<li>Useful for APIs and developers.</li>
+
+</ul>
+
+<h2>How to Use</h2>
+
+<ul>
+
+<li>Paste JSON data.</li>
+
+<li>Click Format JSON to beautify.</li>
+
+<li>Click Minify JSON to compress.</li>
+
+<li>Copy the result.</li>
+
+</ul>
+
+<h2>Who Uses It?</h2>
+
+<ul>
+
+<li>Web Developers</li>
+
+<li>Backend Developers</li>
+
+<li>API Testers</li>
+
+<li>Students</li>
+
+<li>Software Engineers</li>
+
+</ul>
+
+</div>
 
 </div>
 
 </main>
 
 <script src="../js/json-formatter.js"></script>
+
+  <script>
+
+function copyJSON(){
+
+const text =
+document.getElementById("jsonResult");
+
+if(text.value==="") return;
+
+navigator.clipboard.writeText(text.value);
+
+const btn =
+document.querySelector(".copy-btn");
+
+btn.innerHTML =
+"✅ Copied!";
+
+setTimeout(()=>{
+
+btn.innerHTML =
+"📋 Copy JSON";
+
+},2000);
+
+}
+
+</script>
 
 </body>
 </html>
