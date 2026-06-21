@@ -12,12 +12,26 @@
 </head>
 <body>
 
-<header>
-<div class="logo">⚡ Free Tools Hub</div>
+<header class="header">
 
-<nav>
-<a href="../index.html">🏠 Home</a>
-</nav>
+<div class="logo">
+
+<span class="logo-icon">⚡</span>
+
+<span class="logo-text">
+Free Tools Hub
+</span>
+
+</div>
+
+<div class="header-right">
+
+<a href="../index.html" class="home-btn">
+🏠 Home
+</a>
+
+</div>
+
 </header>
 
 <main class="content">
@@ -30,12 +44,18 @@
 Minify HTML code by removing extra spaces, line breaks and comments.
 </div>
 
+<div class="input-group">
+
 <label>HTML Code</label>
 
 <textarea
 id="htmlInput"
 rows="12"
-placeholder="<html>...</html>"></textarea>
+class="meta-output"
+placeholder="<html>...</html>">
+</textarea>
+
+</div>
 
 <button
 class="action-btn"
@@ -48,21 +68,111 @@ Minify HTML
 <textarea
 id="htmlResult"
 rows="12"
-readonly></textarea>
+class="meta-output"
+readonly
+placeholder="Minified HTML will appear here...">
+</textarea>
+
+<button
+class="copy-btn"
+onclick="copyHTML()">
+
+📋 Copy HTML
+
+</button>
 
 </div>
+
+<div class="tool-info">
 
 <h2>What is HTML Minification?</h2>
 
 <p>
-HTML minification removes unnecessary characters from HTML code without affecting functionality, reducing file size and improving page load speed.
+
+HTML minification removes unnecessary spaces, comments and line breaks from HTML code without changing functionality. This helps reduce file size and improve page loading speed.
+
 </p>
 
+<h2>Features</h2>
+
+<ul>
+
+<li>Remove extra spaces.</li>
+
+<li>Delete unnecessary line breaks.</li>
+
+<li>Reduce HTML file size.</li>
+
+<li>Improve website performance.</li>
+
+<li>Optimize pages for faster loading.</li>
+
+</ul>
+
+<h2>How to Use</h2>
+
+<ul>
+
+<li>Paste your HTML code.</li>
+
+<li>Click "Minify HTML".</li>
+
+<li>Copy the optimized output.</li>
+
+<li>Use it in your website or application.</li>
+
+</ul>
+
+<h2>Who Uses It?</h2>
+
+<ul>
+
+<li>Web Developers</li>
+
+<li>Frontend Developers</li>
+
+<li>SEO Professionals</li>
+
+<li>Students</li>
+
+<li>Website Owners</li>
+
+</ul>
+
+</div>
 </div>
 
 </main>
 
 <script src="../js/html-minifier.js"></script>
+
+  <script>
+
+function copyHTML(){
+
+const text =
+document.getElementById("htmlResult");
+
+if(text.value==="") return;
+
+navigator.clipboard.writeText(text.value);
+
+const btn =
+document.querySelector(".copy-btn");
+
+btn.innerHTML =
+"✅ Copied!";
+
+setTimeout(()=>{
+
+btn.innerHTML =
+"📋 Copy HTML";
+
+},2000);
+
+}
+
+</script>
 
 </body>
 </html>
