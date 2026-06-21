@@ -12,12 +12,26 @@
 </head>
 <body>
 
-<header>
-<div class="logo">⚡ Free Tools Hub</div>
+<header class="header">
 
-<nav>
-<a href="../index.html">🏠 Home</a>
-</nav>
+<div class="logo">
+
+<span class="logo-icon">⚡</span>
+
+<span class="logo-text">
+Free Tools Hub
+</span>
+
+</div>
+
+<div class="header-right">
+
+<a href="../index.html" class="home-btn">
+🏠 Home
+</a>
+
+</div>
+
 </header>
 
 <main class="content">
@@ -30,50 +44,124 @@
 Encode text to Base64 or decode Base64 back to plain text.
 </div>
 
+<div class="input-group">
+
 <label>Input</label>
 
 <textarea
 id="base64Input"
-rows="10"
-placeholder="Enter text here..."></textarea>
+rows="12"
+class="meta-output"
+placeholder="Enter text here...">
+</textarea>
 
-<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:15px;">
+</div>
+<div class="button-group">
 
 <button
 class="action-btn"
 onclick="encodeBase64()">
-Encode
+
+🔒 Encode
+
 </button>
 
 <button
 class="action-btn"
 onclick="decodeBase64()">
-Decode
+
+🔓 Decode
+
 </button>
 
 <button
 class="action-btn"
 onclick="copyBase64Result()">
-Copy
+
+📋 Copy
+
 </button>
 
 <button
 class="action-btn"
 onclick="clearBase64()">
-Clear
+
+🗑 Clear
+
 </button>
 
 </div>
-
 <div class="result-box">
 
 <textarea
 id="base64Result"
-rows="10"
-readonly></textarea>
+rows="12"
+class="meta-output"
+readonly
+placeholder="Result will appear here...">
+</textarea>
 
 </div>
+<div class="tool-info">
 
+<h2>What is Base64 Encoding?</h2>
+
+<p>
+
+Base64 encoding converts text or binary data into ASCII characters, making it easier to transmit data over the internet.
+
+</p>
+
+<h2>Features</h2>
+
+<ul>
+
+<li>Encode plain text into Base64.</li>
+
+<li>Decode Base64 back to readable text.</li>
+
+<li>Fast browser-based processing.</li>
+
+<li>No data is uploaded to servers.</li>
+
+<li>Useful for APIs and web development.</li>
+
+</ul>
+
+<h2>How to Use</h2>
+
+<ul>
+
+<li>Enter text into the input box.</li>
+
+<li>Click Encode to convert text into Base64.</li>
+
+<li>Click Decode to restore original text.</li>
+
+<li>Copy the result instantly.</li>
+
+<li>Use Clear to reset everything.</li>
+
+</ul>
+
+<h2>Who Uses It?</h2>
+
+<ul>
+
+<li>Web Developers</li>
+
+<li>Backend Developers</li>
+
+<li>API Testers</li>
+
+<li>Students</li>
+
+<li>Software Engineers</li>
+
+</ul>
+
+</div>
+  
 </div>
 
 </main>
