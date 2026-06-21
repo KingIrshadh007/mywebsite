@@ -1989,17 +1989,21 @@ blur(15px);
 ===================================== */
 
 #noResults{
-
 display:none;
-
-margin-top:15px;
-
+position:absolute;
+top:115%;
+left:0;
+width:100%;
+padding:12px 18px;
+background:var(--card);
+border:1px solid var(--border);
+border-radius:15px;
+backdrop-filter:blur(20px);
+box-shadow:var(--shadow);
 text-align:center;
-
-color:var(--text-light);
-
-font-size:16px;
-
+font-size:15px;
+color:#ef4444;
+z-index:999;
 }
 
 /* SEARCH BOX */
