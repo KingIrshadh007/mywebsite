@@ -351,6 +351,36 @@ Made with ❤️ for everyone.
 </div>
 
 </footer>
+ <script>
+
+const themeToggle =
+document.getElementById("themeToggle");
+
+if(localStorage.getItem("theme")==="light"){
+
+document.body.classList.add("light");
+themeToggle.textContent="☀️";
+
+}
+
+themeToggle.addEventListener("click",()=>{
+
+document.body.classList.toggle("light");
+
+const light =
+document.body.classList.contains("light");
+
+localStorage.setItem(
+"theme",
+light ? "light" : "dark"
+);
+
+themeToggle.textContent =
+light ? "☀️" : "🌙";
+
+});
+
+</script> 
 
 </body>
 </html>
