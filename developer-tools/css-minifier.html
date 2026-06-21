@@ -12,12 +12,26 @@
 </head>
 <body>
 
-<header>
-<div class="logo">⚡ Free Tools Hub</div>
+<header class="header">
 
-<nav>
-<a href="../index.html">🏠 Home</a>
-</nav>
+<div class="logo">
+
+<span class="logo-icon">⚡</span>
+
+<span class="logo-text">
+Free Tools Hub
+</span>
+
+</div>
+
+<div class="header-right">
+
+<a href="../index.html" class="home-btn">
+🏠 Home
+</a>
+
+</div>
+
 </header>
 
 <main class="content">
@@ -30,12 +44,18 @@
 Minify CSS code to reduce file size and improve website performance.
 </div>
 
+<div class="input-group">
+
 <label>CSS Code</label>
 
 <textarea
 id="cssInput"
 rows="12"
-placeholder="body { color: red; }"></textarea>
+class="meta-output"
+placeholder="body { color: red; }">
+</textarea>
+
+</div>
 
 <button
 class="action-btn"
@@ -48,21 +68,112 @@ Minify CSS
 <textarea
 id="cssResult"
 rows="12"
-readonly></textarea>
+class="meta-output"
+readonly
+placeholder="Minified CSS will appear here...">
+</textarea>
+
+<button
+class="copy-btn"
+onclick="copyCSS()">
+
+📋 Copy CSS
+
+</button>
 
 </div>
+
+<div class="tool-info">
 
 <h2>What is CSS Minification?</h2>
 
 <p>
-CSS minification removes comments, spaces and unnecessary characters without changing functionality.
+
+CSS minification removes spaces, comments and unnecessary characters from CSS files without affecting functionality. It helps reduce file size and improve page loading speed.
+
 </p>
+
+<h2>Features</h2>
+
+<ul>
+
+<li>Remove unnecessary spaces.</li>
+
+<li>Reduce CSS file size.</li>
+
+<li>Improve website speed.</li>
+
+<li>Optimize stylesheets.</li>
+
+<li>Enhance performance.</li>
+
+</ul>
+
+<h2>How to Use</h2>
+
+<ul>
+
+<li>Paste your CSS code.</li>
+
+<li>Click "Minify CSS".</li>
+
+<li>Copy the optimized result.</li>
+
+<li>Use it in your project.</li>
+
+</ul>
+
+<h2>Who Uses It?</h2>
+
+<ul>
+
+<li>Web Developers</li>
+
+<li>Frontend Developers</li>
+
+<li>Website Owners</li>
+
+<li>SEO Professionals</li>
+
+<li>Students</li>
+
+</ul>
+
+</div>
 
 </div>
 
 </main>
 
 <script src="../js/css-minifier.js"></script>
+
+  <script>
+
+function copyCSS(){
+
+const text =
+document.getElementById("cssResult");
+
+if(text.value==="") return;
+
+navigator.clipboard.writeText(text.value);
+
+const btn =
+document.querySelector(".copy-btn");
+
+btn.innerHTML =
+"✅ Copied!";
+
+setTimeout(()=>{
+
+btn.innerHTML =
+"📋 Copy CSS";
+
+},2000);
+
+}
+
+</script>
 
 </body>
 </html>
