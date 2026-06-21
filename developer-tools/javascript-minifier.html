@@ -12,12 +12,26 @@
 </head>
 <body>
 
-<header>
-<div class="logo">⚡ Free Tools Hub</div>
+<header class="header">
 
-<nav>
-<a href="../index.html">🏠 Home</a>
-</nav>
+<div class="logo">
+
+<span class="logo-icon">⚡</span>
+
+<span class="logo-text">
+Free Tools Hub
+</span>
+
+</div>
+
+<div class="header-right">
+
+<a href="../index.html" class="home-btn">
+🏠 Home
+</a>
+
+</div>
+
 </header>
 
 <main class="content">
@@ -30,13 +44,18 @@
 Reduce JavaScript file size by removing comments and unnecessary whitespace.
 </div>
 
+<div class="input-group">
+
 <label>JavaScript Code</label>
 
 <textarea
 id="jsInput"
 rows="12"
-placeholder="function hello(){ console.log('Hello'); }"></textarea>
+class="meta-output"
+placeholder="function hello(){ console.log('Hello'); }">
+</textarea>
 
+</div>
 <button
 class="action-btn"
 onclick="minifyJS()">
@@ -48,21 +67,112 @@ Minify JavaScript
 <textarea
 id="jsResult"
 rows="12"
-readonly></textarea>
+class="meta-output"
+readonly
+placeholder="Minified JavaScript will appear here...">
+</textarea>
+
+<button
+class="copy-btn"
+onclick="copyJS()">
+
+📋 Copy JavaScript
+
+</button>
 
 </div>
+
+<div class="tool-info">
 
 <h2>What is JavaScript Minification?</h2>
 
 <p>
-JavaScript minification removes unnecessary characters without changing functionality, improving page speed and reducing bandwidth usage.
+
+JavaScript minification removes comments, spaces and unnecessary characters from JavaScript code without changing its functionality. This reduces file size and improves website performance.
+
 </p>
+
+<h2>Features</h2>
+
+<ul>
+
+<li>Reduce JavaScript file size.</li>
+
+<li>Improve page loading speed.</li>
+
+<li>Remove extra spaces and comments.</li>
+
+<li>Optimize website performance.</li>
+
+<li>Reduce bandwidth usage.</li>
+
+</ul>
+
+<h2>How to Use</h2>
+
+<ul>
+
+<li>Paste your JavaScript code.</li>
+
+<li>Click "Minify JavaScript".</li>
+
+<li>View the optimized code.</li>
+
+<li>Copy and use it in your project.</li>
+
+</ul>
+
+<h2>Who Uses It?</h2>
+
+<ul>
+
+<li>Frontend Developers</li>
+
+<li>Web Developers</li>
+
+<li>Website Owners</li>
+
+<li>Students</li>
+
+<li>SEO Professionals</li>
+
+</ul>
+
+</div>
 
 </div>
 
 </main>
 
 <script src="../js/javascript-minifier.js"></script>
+
+  <script>
+
+function copyJS(){
+
+const text =
+document.getElementById("jsResult");
+
+if(text.value==="") return;
+
+navigator.clipboard.writeText(text.value);
+
+const btn =
+document.querySelector(".copy-btn");
+
+btn.innerHTML =
+"✅ Copied!";
+
+setTimeout(()=>{
+
+btn.innerHTML =
+"📋 Copy JavaScript";
+
+},2000);
+
+}
+
+</script>
 
 </body>
 </html>
