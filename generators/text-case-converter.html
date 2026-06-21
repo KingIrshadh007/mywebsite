@@ -12,15 +12,29 @@
 </head>
 <body>
 
-<header>
+<header class="header">
 
-<div class="logo">⚡ Free Tools Hub</div>
+<div class="logo">
 
-<nav>
-<a href="../index.html">🏠 Home</a>
-</nav>
+<span class="logo-icon">⚡</span>
+
+<span class="logo-text">
+Free Tools Hub
+</span>
+
+</div>
+
+<div class="header-right">
+
+<a href="../index.html" class="home-btn">
+🏠 Home
+</a>
+
+</div>
 
 </header>
+
+
 
 <main class="content">
 
@@ -32,33 +46,39 @@
 Convert text into different letter cases instantly.
 </div>
 
+<div class="input-group">
+
 <label>Enter Text</label>
 
 <textarea
 id="caseInput"
-rows="10"
-placeholder="Type or paste text here..."></textarea>
+rows="12"
+class="meta-output"
+placeholder="Type or paste text here...">
+</textarea>
 
-<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:15px;">
+</div>
+
+<div class="button-group">
 
 <button class="action-btn" onclick="toUpperCaseText()">
-UPPERCASE
+🔠 UPPERCASE
 </button>
 
 <button class="action-btn" onclick="toLowerCaseText()">
-lowercase
+🔡 lowercase
 </button>
 
 <button class="action-btn" onclick="toTitleCaseText()">
-Title Case
+📝 Title Case
 </button>
 
 <button class="action-btn" onclick="toSentenceCaseText()">
-Sentence Case
+📄 Sentence Case
 </button>
 
 <button class="action-btn" onclick="copyCaseResult()">
-Copy
+📋 Copy
 </button>
 
 </div>
@@ -67,8 +87,69 @@ Copy
 
 <textarea
 id="caseResult"
-rows="10"
-readonly></textarea>
+rows="12"
+class="meta-output"
+readonly
+placeholder="Converted text will appear here...">
+</textarea>
+
+</div>
+
+  <div class="tool-info">
+
+<h2>What is a Text Case Converter?</h2>
+
+<p>
+
+A Text Case Converter changes text between uppercase, lowercase, title case and sentence case instantly. It helps writers, developers and students format text efficiently.
+
+</p>
+
+<h2>Features</h2>
+
+<ul>
+
+<li>Convert text to UPPERCASE.</li>
+
+<li>Convert text to lowercase.</li>
+
+<li>Create Title Case text.</li>
+
+<li>Create Sentence case text.</li>
+
+<li>Copy results instantly.</li>
+
+</ul>
+
+<h2>How to Use</h2>
+
+<ul>
+
+<li>Type or paste your text.</li>
+
+<li>Select the desired case format.</li>
+
+<li>View the converted output.</li>
+
+<li>Copy the result with one click.</li>
+
+</ul>
+
+<h2>Who Uses It?</h2>
+
+<ul>
+
+<li>Content Writers</li>
+
+<li>Students</li>
+
+<li>Bloggers</li>
+
+<li>SEO Professionals</li>
+
+<li>Developers</li>
+
+</ul>
 
 </div>
 
