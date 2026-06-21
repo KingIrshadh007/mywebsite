@@ -30,8 +30,16 @@
 Generate a basic XML sitemap for your website.
 </div>
 
+<div class="input-group">
+
 <label>Website URL</label>
-<input type="text" id="siteUrl" placeholder="https://example.com">
+
+<input
+type="text"
+id="siteUrl"
+placeholder="https://example.com">
+
+</div>
 
 <button class="action-btn" onclick="generateSitemap()">
 Generate Sitemap
@@ -67,6 +75,31 @@ A sitemap helps search engines discover and index your website pages efficiently
 </main>
 
 <script src="../js/sitemap-generator.js"></script>
+<script>
+
+function copySitemap(){
+
+const text =
+document.getElementById("sitemapResult");
+
+if(text.value==="") return;
+
+navigator.clipboard.writeText(text.value);
+
+const btn =
+document.querySelector(".copy-btn");
+
+btn.innerHTML="✅ Copied!";
+
+setTimeout(()=>{
+
+btn.innerHTML="📋 Copy Sitemap";
+
+},2000);
+
+}
+
+</script>
 
 </body>
 </html>
