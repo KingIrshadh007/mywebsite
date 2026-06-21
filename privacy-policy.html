@@ -97,9 +97,13 @@ transform:translateY(0);
 
 <div class="header-right">
 
-<a href="index.html" class="tool-card">
-Home
+<a href="index.html" class="home-btn">
+🏠 Home
 </a>
+
+<button id="themeToggle">
+🌙
+</button>
 
 </div>
 
@@ -304,6 +308,37 @@ Made with ❤️ for everyone.
 </div>
 
 </footer>
+<script>
 
+/* DARK / LIGHT MODE */
+
+const themeToggle =
+document.getElementById("themeToggle");
+
+if(localStorage.getItem("theme")==="light"){
+
+document.body.classList.add("light");
+themeToggle.textContent="☀️";
+
+}
+
+themeToggle.addEventListener("click",()=>{
+
+document.body.classList.toggle("light");
+
+const light =
+document.body.classList.contains("light");
+
+localStorage.setItem(
+"theme",
+light ? "light" : "dark"
+);
+
+themeToggle.textContent =
+light ? "☀️" : "🌙";
+
+});
+
+</script>
 </body>
 </html>
