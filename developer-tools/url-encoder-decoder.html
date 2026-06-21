@@ -12,12 +12,26 @@
 </head>
 <body>
 
-<header>
-<div class="logo">⚡ Free Tools Hub</div>
+<header class="header">
 
-<nav>
-<a href="../index.html">🏠 Home</a>
-</nav>
+<div class="logo">
+
+<span class="logo-icon">⚡</span>
+
+<span class="logo-text">
+Free Tools Hub
+</span>
+
+</div>
+
+<div class="header-right">
+
+<a href="../index.html" class="home-btn">
+🏠 Home
+</a>
+
+</div>
+
 </header>
 
 <main class="content">
@@ -30,37 +44,51 @@
 Encode URLs for safe transmission or decode encoded URLs back to readable format.
 </div>
 
-<label>Input</label>
+<div class="input-group">
+
+<label>Input URL or Text</label>
 
 <textarea
 id="urlInput"
-rows="10"
-placeholder="Enter URL or text here..."></textarea>
+rows="12"
+class="meta-output"
+placeholder="Enter URL or text here...">
+</textarea>
 
-<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:15px;">
+</div>
+
+<div class="button-group">
 
 <button
 class="action-btn"
 onclick="encodeURL()">
-Encode
+
+🔒 Encode
+
 </button>
 
 <button
 class="action-btn"
 onclick="decodeURL()">
-Decode
+
+🔓 Decode
+
 </button>
 
 <button
 class="action-btn"
 onclick="copyURLResult()">
-Copy
+
+📋 Copy
+
 </button>
 
 <button
 class="action-btn"
 onclick="clearURLTool()">
-Clear
+
+🗑 Clear
+
 </button>
 
 </div>
@@ -69,24 +97,91 @@ Clear
 
 <textarea
 id="urlResult"
-rows="10"
-readonly></textarea>
+rows="12"
+class="meta-output"
+readonly
+placeholder="Encoded or decoded result will appear here...">
+</textarea>
 
 </div>
+
+<div class="tool-info">
+
+<h2>What is URL Encoding?</h2>
+
+<p>
+
+URL encoding converts special characters and spaces into a format that can be safely transmitted through web addresses and APIs.
+
+</p>
 
 <h2>Example</h2>
 
 <p>
+
+Input:
+
+</p>
+
+<pre>
 https://example.com/search?q=hello world
-</p>
+</pre>
 
 <p>
-becomes:
+
+Encoded Output:
+
 </p>
 
-<p>
+<pre>
 https%3A%2F%2Fexample.com%2Fsearch%3Fq%3Dhello%20world
-</p>
+</pre>
+
+<h2>Features</h2>
+
+<ul>
+
+<li>Encode URLs safely.</li>
+
+<li>Decode encoded URLs instantly.</li>
+
+<li>Browser-based processing.</li>
+
+<li>Fast and secure.</li>
+
+<li>No data leaves your device.</li>
+
+</ul>
+
+<h2>How to Use</h2>
+
+<ul>
+
+<li>Paste your URL or text.</li>
+
+<li>Click Encode or Decode.</li>
+
+<li>Copy the output.</li>
+
+<li>Clear everything with one click.</li>
+
+</ul>
+
+<h2>Who Uses It?</h2>
+
+<ul>
+
+<li>Web Developers</li>
+
+<li>Backend Developers</li>
+
+<li>API Testers</li>
+
+<li>Students</li>
+
+<li>SEO Professionals</li>
+
+</ul>
 
 </div>
 
