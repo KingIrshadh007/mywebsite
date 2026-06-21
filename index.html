@@ -36,7 +36,9 @@ id="toolSearch"
 placeholder="🔍 Search Tools...">
 
 <div id="searchSuggestions"></div>
-
+<div id="noResults">
+❌ No matching tools found
+</div>
 </div>
 
 <button id="themeToggle">
@@ -851,13 +853,10 @@ el.classList.add("hidden");
 observer.observe(el);
 
 });
-
 document.addEventListener("click",(e)=>{
 
 if(
-!searchInput.contains(e.target)
-&&
-!suggestionsBox.contains(e.target)
+!e.target.closest(".search-box")
 ){
 
 suggestionsBox.style.display="none";
@@ -865,6 +864,7 @@ suggestionsBox.style.display="none";
 }
 
 });
+
 /* ==========================
    TOOL COUNTER ANIMATION
 ========================== */
