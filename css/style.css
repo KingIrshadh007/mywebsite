@@ -2659,3 +2659,19 @@ margin-bottom:10px;
 font-weight:600;
 
 }
+
+#themeToggle{
+position:fixed;
+bottom:20px;
+right:20px;
+width:55px;
+height:55px;
+border:none;
+border-radius:50%;
+background:#2563eb;
+color:white;
+font-size:22px;
+cursor:pointer;
+box-shadow:0 5px 20px rgba(0,0,0,.3);
+z-index:9999;
+}
