@@ -705,7 +705,7 @@ document.getElementById("searchSuggestions");
 const cards =
 document.querySelectorAll(".tool-card");
 
-searchInput.addEventListener("input", ()=>{
+searchInput.addEventListener("input",()=>{
 
 const keyword =
 searchInput.value.trim().toLowerCase();
@@ -726,20 +726,21 @@ return;
 
 }
 
-let count=0;
+let count = 0;
 
 cards.forEach(card=>{
 
 const title =
-card.querySelector("h3")
-.innerText;
+card.querySelector("h3").innerText;
 
 const desc =
-card.querySelector("p")
-.innerText;
+card.querySelector("p").innerText;
+
+const keywords =
+card.dataset.keywords || "";
 
 const text =
-(title+" "+desc)
+(title + " " + desc + " " + keywords)
 .toLowerCase();
 
 if(text.includes(keyword)){
@@ -757,12 +758,11 @@ item.className =
 "suggestion-item";
 
 item.innerHTML =
-"🔍 "+title;
+"🔍 " + title;
 
 item.onclick = ()=>{
 
-window.location =
-card.href;
+window.location = card.href;
 
 };
 
@@ -780,7 +780,7 @@ card.style.display="none";
 });
 
 suggestionsBox.style.display =
-count>0
+count > 0
 ? "block"
 : "none";
 
