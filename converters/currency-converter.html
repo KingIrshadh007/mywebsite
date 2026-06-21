@@ -6,7 +6,7 @@
 
 <title>Currency Converter - Free Tools Hub</title>
 
-<meta name="description" content="Convert currencies instantly.">
+<meta name="description" content="Convert currencies instantly using live exchange rates.">
 
 <link rel="stylesheet" href="../css/style.css">
 </head>
@@ -27,7 +27,7 @@
 <h1>💱 Currency Converter</h1>
 
 <div class="description">
-Convert between major world currencies.
+Convert currencies using real-time exchange rates.
 </div>
 
 <label>Amount</label>
@@ -38,18 +38,26 @@ placeholder="Enter amount">
 
 <label>From Currency</label>
 <select id="fromCurrency">
-    <option value="USD">USD</option>
-    <option value="INR">INR</option>
-    <option value="EUR">EUR</option>
-    <option value="GBP">GBP</option>
+<option value="USD">USD - US Dollar</option>
+<option value="INR">INR - Indian Rupee</option>
+<option value="EUR">EUR - Euro</option>
+<option value="GBP">GBP - British Pound</option>
+<option value="AED">AED - UAE Dirham</option>
+<option value="JPY">JPY - Japanese Yen</option>
+<option value="AUD">AUD - Australian Dollar</option>
+<option value="CAD">CAD - Canadian Dollar</option>
 </select>
 
 <label>To Currency</label>
 <select id="toCurrency">
-    <option value="INR">INR</option>
-    <option value="USD">USD</option>
-    <option value="EUR">EUR</option>
-    <option value="GBP">GBP</option>
+<option value="INR">INR - Indian Rupee</option>
+<option value="USD">USD - US Dollar</option>
+<option value="EUR">EUR - Euro</option>
+<option value="GBP">GBP - British Pound</option>
+<option value="AED">AED - UAE Dirham</option>
+<option value="JPY">JPY - Japanese Yen</option>
+<option value="AUD">AUD - Australian Dollar</option>
+<option value="CAD">CAD - Canadian Dollar</option>
 </select>
 
 <button
@@ -64,11 +72,101 @@ id="currencyResult">
 Result will appear here.
 </div>
 
+<p id="rateTime"></p>
+
+<h2>About Currency Converter</h2>
+
+<p>
+Get real-time exchange rates and convert currencies instantly.
+Rates are updated automatically using ExchangeRate API.
+</p>
+
 </div>
 
 </main>
 
-<script src="../js/currency-converter.js"></script>
+<script>
+
+async function convertCurrency() {
+
+    const amount =
+    parseFloat(
+        document.getElementById("currencyAmount").value
+    );
+
+    const from =
+    document.getElementById("fromCurrency").value;
+
+    const to =
+    document.getElementById("toCurrency").value;
+
+    const result =
+    document.getElementById("currencyResult");
+
+    if (!amount || amount <= 0) {
+
+        result.innerHTML =
+        "Please enter a valid amount.";
+
+        return;
+    }
+
+    result.innerHTML =
+    "Fetching live exchange rate...";
+
+    try {
+
+        const response =
+        await fetch(
+        `https://open.er-api.com/v6/latest/${from}`
+        );
+
+        const data =
+        await response.json();
+
+        if (data.result !== "success") {
+
+            result.innerHTML =
+            "Unable to fetch exchange rates.";
+
+            return;
+        }
+
+        const rate =
+        data.rates[to];
+
+        const converted =
+        (amount * rate).toFixed(2);
+
+        result.innerHTML = `
+        <strong>${amount} ${from}
+        = ${converted} ${to}</strong>
+
+        <br><br>
+
+        Exchange Rate:<br>
+
+        1 ${from} = ${rate.toFixed(4)} ${to}
+
+        <br><br>
+
+        Updated:<br>
+
+        ${new Date(data.time_last_update_utc).toLocaleString()}
+        `;
+
+    }
+
+    catch(error){
+
+        result.innerHTML =
+        "Unable to fetch live exchange rates. Please try again.";
+
+    }
+
+}
+
+</script>
 
 </body>
 </html>
