@@ -27,28 +27,3 @@ function generateMetaTags(){
     document.getElementById("metaResult").value =
     output;
 }
-<script>
-
-function copyMetaTags(){
-
-const text =
-document.getElementById("metaResult");
-
-if(text.value==="") return;
-
-navigator.clipboard.writeText(text.value);
-
-const btn =
-document.querySelector(".copy-btn");
-
-btn.innerHTML="✅ Copied!";
-
-setTimeout(()=>{
-
-btn.innerHTML="📋 Copy Code";
-
-},2000);
-
-}
-
-</script>
