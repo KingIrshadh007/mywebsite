@@ -729,11 +729,12 @@ return;
 }
 
 let count = 0;
+const addedTools = new Set();
 
 cards.forEach(card=>{
 
 const title =
-card.querySelector("h3").innerText;
+card.querySelector("h3").innerText.trim();
 
 const desc =
 card.querySelector("p").innerText;
@@ -747,20 +748,22 @@ const text =
 
 if(text.includes(keyword)){
 
-card.style.display="flex";
+card.style.display = "flex";
+
+if(!addedTools.has(title)){
+
+addedTools.add(title);
 
 count++;
 
-if(count<=6){
+if(count <= 6){
 
 const item =
 document.createElement("div");
 
-item.className =
-"suggestion-item";
+item.className = "suggestion-item";
 
-item.innerHTML =
-"🔍 " + title;
+item.innerHTML = "🔍 " + title;
 
 item.onclick = ()=>{
 
@@ -773,9 +776,11 @@ suggestionsBox.appendChild(item);
 }
 
 }
+
+}
 else{
 
-card.style.display="none";
+card.style.display = "none";
 
 }
 
