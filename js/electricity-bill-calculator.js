@@ -65,43 +65,49 @@ function calculateElectricityBill() {
 // ======================================
 // CLEAR BILL
 // ======================================
-
 function clearBill() {
 
     billData = null;
 
+    document.getElementById("state").selectedIndex = 0;
+
     document.getElementById("units").value = "";
-    document.getElementById("freeUnits").value = "0";
+
+    document.getElementById("freeUnits").value = 0;
+
     document.getElementById("rate").value = "";
-    document.getElementById("fixedCharge").value = "0";
+
+    document.getElementById("fixedCharge").value = 0;
 
     document.getElementById("billResult").innerHTML = `
-        <h3>Bill Details</h3>
+<h3>⚡ Electricity Usage Report</h3>
 
-        <p>State : -</p>
-        <p>Total Units : -</p>
-        <p>Free Units : -</p>
-        <p>Chargeable Units : -</p>
-        <p>Rate Per Unit : -</p>
-        <p>Fixed Charge : -</p>
+<p><b>State :</b> -</p>
 
-        <h2>Total Amount : ₹0</h2>
-    `;
+<p><b>Total Units :</b> -</p>
+
+<p><b>Free Units :</b> -</p>
+
+<p><b>Chargeable Units :</b> -</p>
+
+<p><b>Rate Per Unit :</b> -</p>
+
+<p><b>Fixed Charge :</b> -</p>
+
+<hr>
+
+<h2>Total Amount : ₹0</h2>
+`;
+
 }
 
 // ======================================
 // DOWNLOAD PDF
 // ======================================
-
 function downloadBillPDF() {
 
     if (!billData) {
-        alert("Please calculate bill first.");
-        return;
-    }
-
-    if (!window.jspdf) {
-        alert("jsPDF library not loaded.");
+        alert("Please calculate the bill first.");
         return;
     }
 
@@ -114,47 +120,83 @@ function downloadBillPDF() {
     });
 
     // Outer Border
-    doc.setDrawColor(40, 120, 255);
+    doc.setDrawColor(59,130,246);
     doc.setLineWidth(0.8);
-    doc.rect(8, 8, 132, 190);
+    doc.roundedRect(8,8,132,185,4,4);
 
     // Header
-    doc.setFillColor(40, 120, 255);
-    doc.rect(8, 8, 132, 18, "F");
+    doc.setFillColor(59,130,246);
+    doc.roundedRect(8,8,132,18,4,4,"F");
 
     doc.setTextColor(255,255,255);
     doc.setFontSize(14);
-    doc.text("Electricity Usage Report", 74, 19, {align:"center"});
-
-    doc.setTextColor(0,0,0);
-
-    let y = 40;
-
-    doc.setFontSize(10);
-
-    doc.text(`Bill Number : ${billData.billNo}`, 15, y); y += 10;
-    doc.text(`State : ${billData.state}`, 15, y); y += 10;
-    doc.text(`Units : ${billData.units}`, 15, y); y += 10;
-    doc.text(`Free Units : ${billData.freeUnits}`, 15, y); y += 10;
-    doc.text(`Chargeable Units : ${billData.chargeableUnits}`, 15, y); y += 10;
-    doc.text(`Rate Per Unit : Rs. ${billData.rate}`, 15, y); y += 10;
-    doc.text(`Fixed Charge : Rs. ${billData.fixedCharge}`, 15, y); y += 10;
-    doc.text(`Date : ${billData.date}`, 15, y); y += 10;
-
-    y += 8;
-
-    doc.setFillColor(16,185,129);
-    doc.rect(20, y, 105, 15, "F");
-
-    doc.setTextColor(255,255,255);
-    doc.setFontSize(12);
 
     doc.text(
-        `Total Amount : Rs. ${billData.total.toFixed(2)}`,
-        72,
-        y + 10,
+        "Electricity Usage Report",
+        74,
+        19,
         {align:"center"}
     );
 
-    doc.save(`Electricity-Report-${billData.billNo}.pdf`);
+    doc.setTextColor(0,0,0);
+    doc.setFontSize(10);
+
+    let y = 35;
+
+    doc.text(`Bill Number : ${billData.billNo}`,15,y);
+    y+=10;
+
+    doc.text(`State : ${billData.state}`,15,y);
+    y+=10;
+
+    doc.text(`Total Units : ${billData.units}`,15,y);
+    y+=10;
+
+    doc.text(`Free Units : ${billData.freeUnits}`,15,y);
+    y+=10;
+
+    doc.text(`Chargeable Units : ${billData.chargeableUnits}`,15,y);
+    y+=10;
+
+    doc.text(`Rate Per Unit : ₹${billData.rate}`,15,y);
+    y+=10;
+
+    doc.text(`Fixed Charge : ₹${billData.fixedCharge}`,15,y);
+    y+=10;
+
+    doc.text(`Date : ${billData.date}`,15,y);
+    y+=10;
+
+    doc.text(`Time : ${billData.time}`,15,y);
+
+    // Total Amount Box
+    y += 18;
+
+    doc.setFillColor(16,185,129);
+
+    doc.roundedRect(
+        25,
+        y,
+        95,
+        14,
+        3,
+        3,
+        "F"
+    );
+
+    doc.setTextColor(255,255,255);
+
+    doc.setFontSize(12);
+
+    doc.text(
+        `Total Amount : ₹${billData.total.toFixed(2)}`,
+        72,
+        y+9,
+        {align:"center"}
+    );
+
+    doc.save(
+        `Electricity-Report-${billData.billNo}.pdf`
+    );
+
 }
