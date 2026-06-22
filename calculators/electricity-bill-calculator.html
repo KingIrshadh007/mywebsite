@@ -1,0 +1,150 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Electricity Bill Calculator India - Free Tools Hub</title>
+
+<meta name="description"
+content="Calculate electricity bills for all Indian states with free units, fixed charges and PDF download.">
+
+<link rel="stylesheet" href="../css/style.css">
+
+<!-- jsPDF CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+</head>
+<body>
+
+<header>
+<div class="logo">⚡ Free Tools Hub</div>
+
+<nav>
+<a href="../index.html">🏠 Home</a>
+</nav>
+</header>
+
+<main class="content">
+
+<div class="tool-panel active">
+
+<h1>⚡ Electricity Bill Calculator India</h1>
+
+<div class="description">
+Calculate electricity bills for all Indian states with free units support and PDF download.
+</div>
+
+<label>Select State</label>
+
+<select id="state">
+<option>Tamil Nadu</option>
+<option>Andhra Pradesh</option>
+<option>Arunachal Pradesh</option>
+<option>Assam</option>
+<option>Bihar</option>
+<option>Chhattisgarh</option>
+<option>Goa</option>
+<option>Gujarat</option>
+<option>Haryana</option>
+<option>Himachal Pradesh</option>
+<option>Jharkhand</option>
+<option>Karnataka</option>
+<option>Kerala</option>
+<option>Madhya Pradesh</option>
+<option>Maharashtra</option>
+<option>Manipur</option>
+<option>Meghalaya</option>
+<option>Mizoram</option>
+<option>Nagaland</option>
+<option>Odisha</option>
+<option>Punjab</option>
+<option>Rajasthan</option>
+<option>Sikkim</option>
+<option>Telangana</option>
+<option>Tripura</option>
+<option>Uttar Pradesh</option>
+<option>Uttarakhand</option>
+<option>West Bengal</option>
+<option>Delhi</option>
+<option>Jammu and Kashmir</option>
+<option>Ladakh</option>
+<option>Puducherry</option>
+</select>
+
+<label>Units Consumed (kWh)</label>
+<input type="number" id="units" placeholder="Example: 350">
+
+<label>Free Units</label>
+<input type="number" id="freeUnits" value="0">
+
+<label>Current Rate Per Unit (₹)</label>
+<input type="number" id="rate" step="0.01" placeholder="Example: 7.50">
+
+<label>Fixed Charge (₹)</label>
+<input type="number" id="fixedCharge" value="0">
+
+<div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:20px;">
+
+<button
+class="action-btn"
+onclick="calculateElectricityBill()">
+Calculate Bill
+</button>
+
+<button
+class="action-btn"
+onclick="downloadBillPDF()">
+Download PDF
+</button>
+
+<button
+class="action-btn"
+onclick="clearBill()">
+Clear
+</button>
+
+</div>
+
+<div class="result-box">
+
+<div id="billResult">
+
+<h3>Bill Details</h3>
+
+<p>State : -</p>
+
+<p>Total Units : -</p>
+
+<p>Free Units : -</p>
+
+<p>Chargeable Units : -</p>
+
+<p>Rate Per Unit : -</p>
+
+<p>Fixed Charge : -</p>
+
+<h2>Total Amount : ₹0</h2>
+
+</div>
+
+</div>
+
+<h2>What is an Electricity Bill Calculator?</h2>
+
+<p>
+This tool helps users estimate electricity charges based on consumed units,
+free units provided by the government, unit rate and fixed charges. It works
+for all Indian states and supports PDF bill download.
+</p>
+
+</div>
+
+</main>
+
+<script src="../js/electricity-bill-calculator.js"></script>
+
+</body>
+</html>
+```
