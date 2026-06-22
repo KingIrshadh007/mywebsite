@@ -1,4 +1,3 @@
-```javascript
 // ======================================
 // ELECTRICITY BILL CALCULATOR
 // ======================================
@@ -159,4 +158,3 @@ function downloadBillPDF() {
 
     doc.save(`Electricity-Report-${billData.billNo}.pdf`);
 }
-```
