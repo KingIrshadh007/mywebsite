@@ -1,236 +1,301 @@
-// =============================
-// Electricity Bill Calculator
-// =============================
+```javascript
+// ======================================
+// ELECTRICITY BILL CALCULATOR
+// ======================================
 
 let billData = null;
 
-// Calculate Bill
+// Generate Bill Number
+function generateBillNumber() {
+    return "EB" + Date.now().toString().slice(-8);
+}
+
+// ======================================
+// CALCULATE BILL
+// ======================================
+
 function calculateElectricityBill() {
 
     const state = document.getElementById("state").value;
 
-    let units = Number(document.getElementById("units").value);
-    let freeUnits = Number(document.getElementById("freeUnits").value);
-    let rate = Number(document.getElementById("rate").value);
-    let fixedCharge = Number(document.getElementById("fixedCharge").value);
+    const units = Number(document.getElementById("units").value);
+
+    const freeUnits = Number(document.getElementById("freeUnits").value);
+
+    const rate = Number(document.getElementById("rate").value);
+
+    const fixedCharge = Number(
+        document.getElementById("fixedCharge").value
+    );
 
     if (units <= 0 || rate <= 0) {
         alert("Please enter valid units and rate.");
         return;
     }
 
-    let chargeableUnits = units - freeUnits;
+    const chargeableUnits =
+        Math.max(0, units - freeUnits);
 
-    if (chargeableUnits < 0) {
-        chargeableUnits = 0;
-    }
+    const total =
+        (chargeableUnits * rate) + fixedCharge;
 
-    let energyCharge = chargeableUnits * rate;
-
-    let totalAmount = energyCharge + fixedCharge;
-
-    // Save data for PDF
     billData = {
+        billNo: generateBillNumber(),
         state,
         units,
         freeUnits,
         chargeableUnits,
         rate,
         fixedCharge,
-        totalAmount
+        total,
+        date: new Date().toLocaleDateString(),
+        time: new Date().toLocaleTimeString()
     };
 
     document.getElementById("billResult").innerHTML = `
 
-        <div class="bill-header">
-            ⚡ Electricity Usage Report
-        </div>
+<h3>⚡ Electricity Usage Report</h3>
 
-        <div class="bill-row">
-            <span>State</span>
-            <span>${state}</span>
-        </div>
+<p><b>Bill Number :</b> ${billData.billNo}</p>
 
-        <div class="bill-row">
-            <span>Total Units</span>
-            <span>${units}</span>
-        </div>
+<p><b>State :</b> ${state}</p>
 
-        <div class="bill-row">
-            <span>Free Units</span>
-            <span>${freeUnits}</span>
-        </div>
+<p><b>Total Units :</b> ${units}</p>
 
-        <div class="bill-row">
-            <span>Chargeable Units</span>
-            <span>${chargeableUnits}</span>
-        </div>
+<p><b>Free Units :</b> ${freeUnits}</p>
 
-        <div class="bill-row">
-            <span>Rate / Unit</span>
-            <span>₹${rate}</span>
-        </div>
+<p><b>Chargeable Units :</b> ${chargeableUnits}</p>
 
-        <div class="bill-row">
-            <span>Fixed Charge</span>
-            <span>₹${fixedCharge}</span>
-        </div>
+<p><b>Rate Per Unit :</b> ₹${rate}</p>
 
-        <div class="bill-total">
-            ₹${totalAmount.toFixed(2)}
-        </div>
+<p><b>Fixed Charge :</b> ₹${fixedCharge}</p>
 
-    `;
+<p><b>Date :</b> ${billData.date}</p>
+
+<p><b>Time :</b> ${billData.time}</p>
+
+<hr>
+
+<h2>Total Amount : ₹${total.toFixed(2)}</h2>
+
+`;
+
 }
 
+// ======================================
+// CLEAR
+// ======================================
 
-// =============================
-// Download Beautiful PDF
-// =============================
+function clearBill() {
 
-function downloadBillPDF() {
+    billData = null;
+
+    document.getElementById("units").value = "";
+
+    document.getElementById("freeUnits").value = 0;
+
+    document.getElementById("rate").value = "";
+
+    document.getElementById("fixedCharge").value = 0;
+
+    document.getElementById("billResult").innerHTML = `
+
+<h3>Bill Details</h3>
+
+<p>State : -</p>
+
+<p>Total Units : -</p>
+
+<p>Free Units : -</p>
+
+<p>Chargeable Units : -</p>
+
+<p>Rate Per Unit : -</p>
+
+<p>Fixed Charge : -</p>
+
+<h2>Total Amount : ₹0</h2>
+
+`;
+
+}
+
+// ======================================
+// COPY BILL
+// ======================================
+
+function copyBill() {
 
     if (!billData) {
         alert("Please calculate the bill first.");
         return;
     }
 
-    const { jsPDF } = window.jspdf;
+    navigator.clipboard.writeText(
 
-    const doc = new jsPDF();
+`Electricity Usage Report
 
-    // Border
-    doc.setDrawColor(0,102,255);
-    doc.setLineWidth(1.5);
-    doc.roundedRect(8,8,194,135,5,5);
+Bill Number : ${billData.billNo}
 
-    // Header
-    doc.setFillColor(0,102,255);
-    doc.roundedRect(8,8,194,20,5,5,"F");
+State : ${billData.state}
 
-    doc.setTextColor(255,255,255);
-    doc.setFontSize(18);
-    doc.text("Electricity Usage Report",55,21);
+Units : ${billData.units}
 
-    doc.setTextColor(80);
-    doc.setFontSize(10);
-
-    const now = new Date();
-
-    doc.text(
-        "Generated : " +
-        now.toLocaleDateString() +
-        " " +
-        now.toLocaleTimeString(),
-        15,
-        35
+Total Amount : ₹${billData.total.toFixed(2)}
+`
     );
 
-    // Table Header
-    doc.setFillColor(230,240,255);
-    doc.rect(15,45,80,10,"F");
-    doc.rect(95,45,90,10,"F");
+    alert("Bill copied successfully.");
+}
 
-    doc.setTextColor(0,0,0);
-    doc.setFontSize(12);
+// ======================================
+// PRINT BILL
+// ======================================
 
-    doc.text("Description",40,52);
-    doc.text("Value",130,52);
+function printBill() {
 
-    let y = 55;
-
-    function row(label,value){
-
-        doc.rect(15,y,80,12);
-        doc.rect(95,y,90,12);
-
-        doc.text(label,20,y+8);
-        doc.text(String(value),100,y+8);
-
-        y += 12;
+    if (!billData) {
+        alert("Please calculate bill first.");
+        return;
     }
 
-    row("State",billData.state);
-    row("Units Consumed",billData.units);
-    row("Free Units",billData.freeUnits);
-    row("Chargeable Units",billData.chargeableUnits);
-    row("Rate Per Unit","₹"+billData.rate);
-    row("Fixed Charge","₹"+billData.fixedCharge);
+    window.print();
 
-    // Total Box
-    doc.setFillColor(34,197,94);
+}
 
-    doc.roundedRect(40,130,120,18,4,4,"F");
+// ======================================
+// SHARE BILL
+// ======================================
+
+function shareBill() {
+
+    if (!billData) {
+        alert("Please calculate bill first.");
+        return;
+    }
+
+    if (navigator.share) {
+
+        navigator.share({
+
+            title: "Electricity Usage Report",
+
+            text:
+`Bill Number : ${billData.billNo}
+
+State : ${billData.state}
+
+Total Amount : ₹${billData.total.toFixed(2)}
+`
+
+        });
+
+    } else {
+
+        alert("Share not supported on this device.");
+
+    }
+
+}
+
+// ======================================
+// DOWNLOAD PDF
+// ======================================
+
+function downloadBillPDF() {
+
+    if (!billData) {
+        alert("Please calculate bill first.");
+        return;
+    }
+
+    const { jsPDF } = window.jspdf;
+
+    const doc = new jsPDF({
+        orientation: "portrait",
+        unit: "mm",
+        format: "a5"
+    });
+
+    // Border
+    doc.setDrawColor(59,130,246);
+    doc.setLineWidth(1);
+    doc.roundedRect(8,8,132,185,4,4);
+
+    // Header
+    doc.setFillColor(59,130,246);
+
+    doc.roundedRect(8,8,132,18,4,4,"F");
 
     doc.setTextColor(255,255,255);
 
-    doc.setFontSize(15);
+    doc.setFontSize(16);
 
     doc.text(
-        "TOTAL AMOUNT : ₹" +
-        billData.totalAmount.toFixed(2),
-        62,
-        142
+        "Electricity Usage Report",
+        74,
+        20,
+        {align:"center"}
     );
 
-    doc.save("Electricity_Usage_Report.pdf");
+    doc.setTextColor(0,0,0);
+
+    doc.setFontSize(11);
+
+    let y = 40;
+
+    doc.text(`Bill No : ${billData.billNo}`,15,y);
+
+    y += 12;
+
+    doc.text(`State : ${billData.state}`,15,y);
+
+    y += 12;
+
+    doc.text(`Units : ${billData.units}`,15,y);
+
+    y += 12;
+
+    doc.text(`Free Units : ${billData.freeUnits}`,15,y);
+
+    y += 12;
+
+    doc.text(`Chargeable Units : ${billData.chargeableUnits}`,15,y);
+
+    y += 12;
+
+    doc.text(`Rate Per Unit : ₹${billData.rate}`,15,y);
+
+    y += 12;
+
+    doc.text(`Fixed Charge : ₹${billData.fixedCharge}`,15,y);
+
+    y += 20;
+
+    doc.setFillColor(16,185,129);
+
+    doc.roundedRect(
+        20,
+        y,
+        105,
+        18,
+        3,
+        3,
+        "F"
+    );
+
+    doc.setTextColor(255,255,255);
+
+    doc.setFontSize(14);
+
+    doc.text(
+        `Total Amount : ₹${billData.total.toFixed(2)}`,
+        72,
+        y + 11,
+        {align:"center"}
+    );
+
+    doc.save("Electricity-Usage-Report.pdf");
 
 }
-
-
-// =============================
-// Clear
-// =============================
-
-function clearBill() {
-
-    document.getElementById("units").value = "";
-    document.getElementById("freeUnits").value = 0;
-    document.getElementById("rate").value = "";
-    document.getElementById("fixedCharge").value = 0;
-
-    billData = null;
-
-   document.getElementById("billResult").innerHTML = `
-<div class="bill-report">
-
-<h3>⚡ Electricity Usage Report</h3>
-
-<div class="bill-row">
-<span>State :</span>
-<span>${state}</span>
-</div>
-
-<div class="bill-row">
-<span>Total Units :</span>
-<span>${units}</span>
-</div>
-
-<div class="bill-row">
-<span>Free Units :</span>
-<span>${freeUnits}</span>
-</div>
-
-<div class="bill-row">
-<span>Chargeable Units :</span>
-<span>${chargeableUnits}</span>
-</div>
-
-<div class="bill-row">
-<span>Rate Per Unit :</span>
-<span>₹${rate}</span>
-</div>
-
-<div class="bill-row">
-<span>Fixed Charge :</span>
-<span>₹${fixedCharge}</span>
-</div>
-
-<div class="bill-total">
-₹${totalAmount.toFixed(2)}
-</div>
-
-</div>
-`;
-
-}
+```
