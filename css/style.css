@@ -2659,3 +2659,23 @@ margin-bottom:10px;
 font-weight:600;
 
 }
+.bill-row{
+display:flex;
+justify-content:space-between;
+padding:14px;
+margin-bottom:12px;
+background:rgba(255,255,255,.05);
+border-radius:12px;
+font-size:16px;
+}
+
+.bill-total{
+margin-top:20px;
+padding:20px;
+background:linear-gradient(135deg,#16a34a,#22c55e);
+border-radius:16px;
+font-size:26px;
+font-weight:700;
+text-align:center;
+color:white;
+}
