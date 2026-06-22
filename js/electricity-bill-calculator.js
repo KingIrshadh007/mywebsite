@@ -88,71 +88,92 @@ function calculateElectricityBill() {
 // Download Beautiful PDF
 // =============================
 
-function downloadBillPDF(){
+function downloadBillPDF() {
 
-if(!billData){
-alert("Please calculate the bill first.");
-return;
-}
+    if (!billData) {
+        alert("Please calculate the bill first.");
+        return;
+    }
 
-const { jsPDF } = window.jspdf;
+    const { jsPDF } = window.jspdf;
 
-const doc = new jsPDF();
+    const doc = new jsPDF();
 
-doc.setDrawColor(0,102,255);
-doc.setLineWidth(1.5);
+    // Border
+    doc.setDrawColor(0,102,255);
+    doc.setLineWidth(1.5);
+    doc.roundedRect(8,8,194,135,5,5);
 
-doc.roundedRect(10,10,190,125,5,5);
+    // Header
+    doc.setFillColor(0,102,255);
+    doc.roundedRect(8,8,194,20,5,5,"F");
 
-doc.setFillColor(30,144,255);
-doc.roundedRect(10,10,190,20,5,5,"F");
+    doc.setTextColor(255,255,255);
+    doc.setFontSize(18);
+    doc.text("Electricity Usage Report",55,21);
 
-doc.setTextColor(255,255,255);
-doc.setFontSize(18);
-doc.text("Electricity Usage Report",55,23);
+    doc.setTextColor(80);
+    doc.setFontSize(10);
 
-doc.setTextColor(0,0,0);
-doc.setFontSize(12);
+    const now = new Date();
 
-let y=45;
+    doc.text(
+        "Generated : " +
+        now.toLocaleDateString() +
+        " " +
+        now.toLocaleTimeString(),
+        15,
+        35
+    );
 
-doc.text("State :",20,y);
-doc.text(billData.state,100,y);
+    // Table Header
+    doc.setFillColor(230,240,255);
+    doc.rect(15,45,80,10,"F");
+    doc.rect(95,45,90,10,"F");
 
-y+=12;
-doc.text("Units Consumed :",20,y);
-doc.text(String(billData.units),100,y);
+    doc.setTextColor(0,0,0);
+    doc.setFontSize(12);
 
-y+=12;
-doc.text("Free Units :",20,y);
-doc.text(String(billData.freeUnits),100,y);
+    doc.text("Description",40,52);
+    doc.text("Value",130,52);
 
-y+=12;
-doc.text("Chargeable Units :",20,y);
-doc.text(String(billData.chargeableUnits),100,y);
+    let y = 55;
 
-y+=12;
-doc.text("Rate Per Unit :",20,y);
-doc.text("₹"+billData.rate,100,y);
+    function row(label,value){
 
-y+=12;
-doc.text("Fixed Charge :",20,y);
-doc.text("₹"+billData.fixedCharge,100,y);
+        doc.rect(15,y,80,12);
+        doc.rect(95,y,90,12);
 
-doc.setFillColor(34,197,94);
+        doc.text(label,20,y+8);
+        doc.text(String(value),100,y+8);
 
-doc.roundedRect(35,105,140,18,4,4,"F");
+        y += 12;
+    }
 
-doc.setTextColor(255,255,255);
-doc.setFontSize(15);
+    row("State",billData.state);
+    row("Units Consumed",billData.units);
+    row("Free Units",billData.freeUnits);
+    row("Chargeable Units",billData.chargeableUnits);
+    row("Rate Per Unit","₹"+billData.rate);
+    row("Fixed Charge","₹"+billData.fixedCharge);
 
-doc.text(
-"TOTAL : ₹"+billData.totalAmount.toFixed(2),
-65,
-117
-);
+    // Total Box
+    doc.setFillColor(34,197,94);
 
-doc.save("Electricity_Usage_Report.pdf");
+    doc.roundedRect(40,130,120,18,4,4,"F");
+
+    doc.setTextColor(255,255,255);
+
+    doc.setFontSize(15);
+
+    doc.text(
+        "TOTAL AMOUNT : ₹" +
+        billData.totalAmount.toFixed(2),
+        62,
+        142
+    );
+
+    doc.save("Electricity_Usage_Report.pdf");
 
 }
 
@@ -170,36 +191,46 @@ function clearBill() {
 
     billData = null;
 
-    document.getElementById("billResult").innerHTML = `
+   document.getElementById("billResult").innerHTML = `
+<div class="bill-report">
+
+<h3>⚡ Electricity Usage Report</h3>
 
 <div class="bill-row">
-<b>State :</b> ${state}
+<span>State :</span>
+<span>${state}</span>
 </div>
 
 <div class="bill-row">
-<b>Total Units :</b> ${units}
+<span>Total Units :</span>
+<span>${units}</span>
 </div>
 
 <div class="bill-row">
-<b>Free Units :</b> ${freeUnits}
+<span>Free Units :</span>
+<span>${freeUnits}</span>
 </div>
 
 <div class="bill-row">
-<b>Chargeable Units :</b> ${chargeableUnits}
+<span>Chargeable Units :</span>
+<span>${chargeableUnits}</span>
 </div>
 
 <div class="bill-row">
-<b>Rate Per Unit :</b> ₹${rate}
+<span>Rate Per Unit :</span>
+<span>₹${rate}</span>
 </div>
 
 <div class="bill-row">
-<b>Fixed Charge :</b> ₹${fixedCharge}
+<span>Fixed Charge :</span>
+<span>₹${fixedCharge}</span>
 </div>
 
 <div class="bill-total">
-Total Amount : ₹${totalAmount.toFixed(2)}
+₹${totalAmount.toFixed(2)}
 </div>
 
+</div>
 `;
 
 }
