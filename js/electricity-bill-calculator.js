@@ -4,32 +4,6 @@
 
 let billData = null;
 
-// State-wise default rates and free units
-
-const stateData = {
-
-"Tamil Nadu": {rate:7.50, free:100},
-
-"Karnataka": {rate:8.20, free:200},
-
-"Kerala": {rate:7.90, free:0},
-
-"Andhra Pradesh": {rate:7.30, free:0},
-
-"Telangana": {rate:8.00, free:50},
-
-"Maharashtra": {rate:9.10, free:0},
-
-"Delhi": {rate:8.50, free:200},
-
-"West Bengal": {rate:7.80, free:0},
-
-"Punjab": {rate:8.30, free:300},
-
-"Gujarat": {rate:7.60, free:0}
-
-};
-
 function updateStateDefaults(){
 
 const state =
