@@ -2753,3 +2753,65 @@ font-size:13px;
 text-align:center;
 opacity:.7;
 }
+
+/* ===== Calculator Layout ===== */
+
+.calculator-layout{
+display:flex;
+justify-content:center;
+gap:30px;
+align-items:flex-start;
+flex-wrap:wrap;
+}
+
+/* ===== Right Card ===== */
+
+.rate-sidebar{
+width:260px;
+background:var(--card);
+border:1px solid var(--border);
+border-radius:20px;
+padding:20px;
+box-shadow:var(--shadow);
+position:sticky;
+top:100px;
+}
+
+.rate-sidebar h3{
+text-align:center;
+margin-bottom:20px;
+}
+
+.rate-list{
+display:flex;
+flex-direction:column;
+gap:12px;
+}
+
+.rate-item{
+display:flex;
+justify-content:space-between;
+padding:12px;
+background:rgba(255,255,255,.05);
+border-radius:12px;
+transition:.3s;
+}
+
+.rate-item:hover{
+transform:translateX(5px);
+}
+
+/* Mobile */
+
+@media(max-width:1200px){
+
+.calculator-layout{
+flex-direction:column;
+}
+
+.rate-sidebar{
+width:100%;
+position:static;
+}
+
+}
