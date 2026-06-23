@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
 <meta charset="UTF-8">
@@ -9,7 +8,7 @@
 <title>Electricity Bill Calculator India - Free Tools Hub</title>
 
 <meta name="description"
-content="Calculate electricity bills for all Indian states with free units support and PDF download.">
+content="Calculate electricity bills for all Indian states with free units, fixed charges and PDF download.">
 
 <link rel="stylesheet" href="../css/style.css">
 
@@ -21,7 +20,7 @@ content="Calculate electricity bills for all Indian states with free units suppo
 max-width:1500px;
 margin:auto;
 display:flex;
-gap:30px;
+gap:35px;
 align-items:flex-start;
 justify-content:center;
 padding:40px 20px;
@@ -29,12 +28,12 @@ padding:40px 20px;
 
 .tool-panel{
 width:100%;
-max-width:820px;
+max-width:780px;
 padding:40px;
 border-radius:30px;
 background:rgba(255,255,255,.08);
-backdrop-filter:blur(20px);
-box-shadow:0 10px 40px rgba(0,0,0,.3);
+backdrop-filter:blur(18px);
+box-shadow:0 10px 40px rgba(0,0,0,.25);
 }
 
 .sidebar-container{
@@ -45,11 +44,11 @@ gap:25px;
 }
 
 .rate-card{
-background:rgba(255,255,255,.08);
-backdrop-filter:blur(15px);
 padding:25px;
 border-radius:25px;
-box-shadow:0 8px 30px rgba(0,0,0,.3);
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(15px);
+box-shadow:0 8px 25px rgba(0,0,0,.25);
 transition:.3s;
 }
 
@@ -61,7 +60,7 @@ transform:translateY(-6px);
 display:flex;
 justify-content:space-between;
 padding:12px 0;
-border-bottom:1px solid rgba(255,255,255,.1);
+border-bottom:1px solid rgba(255,255,255,.08);
 }
 
 .rate-note{
@@ -69,29 +68,6 @@ font-size:14px;
 opacity:.8;
 text-align:center;
 margin-top:15px;
-}
-
-.result-box{
-margin-top:30px;
-padding:25px;
-border-radius:20px;
-background:rgba(255,255,255,.05);
-box-shadow:0 5px 20px rgba(0,0,0,.2);
-}
-
-.action-btn{
-padding:14px 22px;
-border:none;
-border-radius:15px;
-cursor:pointer;
-font-weight:700;
-background:linear-gradient(135deg,#3b82f6,#06b6d4);
-color:white;
-transition:.3s;
-}
-
-.action-btn:hover{
-transform:translateY(-4px);
 }
 
 @media(max-width:1100px){
@@ -103,7 +79,7 @@ align-items:center;
 
 .sidebar-container{
 width:100%;
-max-width:800px;
+max-width:780px;
 }
 
 }
@@ -130,16 +106,13 @@ max-width:800px;
 
 <div class="calculator-layout">
 
-<!-- MAIN CALCULATOR -->
-
+<!-- LEFT SIDE -->
 <div class="tool-panel active">
 
 <h1>⚡ Electricity Bill Calculator India</h1>
 
 <div class="description">
-
 Calculate electricity bills for all Indian states with free units support and PDF download.
-
 </div>
 
 <label>Select State</label>
@@ -160,35 +133,18 @@ Calculate electricity bills for all Indian states with free units support and PD
 </select>
 
 <label>Units Consumed (kWh)</label>
-
-<input
-type="number"
-id="units"
-placeholder="Example: 350">
+<input type="number" id="units" placeholder="Example: 350">
 
 <label>Free Units</label>
-
-<input
-type="number"
-id="freeUnits"
-value="0">
+<input type="number" id="freeUnits" value="0">
 
 <label>Current Rate Per Unit (₹)</label>
-
-<input
-type="number"
-id="rate"
-step="0.01"
-placeholder="Example: 7.50">
+<input type="number" id="rate" step="0.01" placeholder="Example: 7.50">
 
 <label>Fixed Charge (₹)</label>
+<input type="number" id="fixedCharge" value="0">
 
-<input
-type="number"
-id="fixedCharge"
-value="0">
-
-<div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:25px">
+<div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:25px;">
 
 <button class="action-btn"
 onclick="calculateElectricityBill()">
@@ -234,174 +190,176 @@ Clear
 <h2>What is an Electricity Bill Calculator?</h2>
 
 <p>
-
-This tool helps estimate electricity charges based on consumed units,
-free units provided by the government, unit rates and fixed charges.
-
+This tool helps users estimate electricity charges based on consumed units, free units provided by the government, unit rate and fixed charges.
+It supports all Indian states and PDF bill download.
 </p>
 
 </div>
-        
+
 <!-- RIGHT SIDEBAR -->
 <div class="sidebar-container">
 
-    <!-- Latest Unit Rates -->
-    <div class="rate-card">
+<!-- Latest Unit Rates -->
+<div class="rate-card">
 
-        <h3>⚡ Latest Unit Rates</h3>
+<h3>⚡ Latest Unit Rates</h3>
 
-        <div class="rate-item">
-            <span>Tamil Nadu</span>
-            <span>₹7.50</span>
-        </div>
+<div class="rate-item">
+<span>Tamil Nadu</span>
+<span>₹7.50</span>
+</div>
 
-        <div class="rate-item">
-            <span>Karnataka</span>
-            <span>₹8.20</span>
-        </div>
+<div class="rate-item">
+<span>Karnataka</span>
+<span>₹8.20</span>
+</div>
 
-        <div class="rate-item">
-            <span>Kerala</span>
-            <span>₹7.90</span>
-        </div>
+<div class="rate-item">
+<span>Kerala</span>
+<span>₹7.90</span>
+</div>
 
-        <div class="rate-item">
-            <span>Telangana</span>
-            <span>₹8.00</span>
-        </div>
+<div class="rate-item">
+<span>Telangana</span>
+<span>₹8.00</span>
+</div>
 
-        <div class="rate-item">
-            <span>Maharashtra</span>
-            <span>₹9.10</span>
-        </div>
+<div class="rate-item">
+<span>Maharashtra</span>
+<span>₹9.10</span>
+</div>
 
-        <div class="rate-item">
-            <span>Delhi</span>
-            <span>₹8.50</span>
-        </div>
+<div class="rate-item">
+<span>Delhi</span>
+<span>₹8.50</span>
+</div>
 
-        <div class="rate-item">
-            <span>West Bengal</span>
-            <span>₹7.80</span>
-        </div>
+<div class="rate-item">
+<span>West Bengal</span>
+<span>₹7.80</span>
+</div>
 
-        <div class="rate-item">
-            <span>Gujarat</span>
-            <span>₹7.60</span>
-        </div>
-
-    </div>
-
-
-    <!-- Last Month Average Rates -->
-    <div class="rate-card">
-
-        <h3>📊 Last Month Average Rates</h3>
-
-        <div class="rate-item">
-            <span>Tamil Nadu</span>
-            <span>₹7.40</span>
-        </div>
-
-        <div class="rate-item">
-            <span>Karnataka</span>
-            <span>₹8.10</span>
-        </div>
-
-        <div class="rate-item">
-            <span>Kerala</span>
-            <span>₹7.70</span>
-        </div>
-
-        <div class="rate-item">
-            <span>Andhra Pradesh</span>
-            <span>₹7.20</span>
-        </div>
-
-        <div class="rate-item">
-            <span>Telangana</span>
-            <span>₹7.90</span>
-        </div>
-
-        <div class="rate-item">
-            <span>Maharashtra</span>
-            <span>₹8.90</span>
-        </div>
-
-        <p class="rate-note">
-            Average residential tariff reference
-        </p>
-
-    </div>
-
-
-    <!-- Free Units -->
-    <div class="rate-card">
-
-        <h3>🎁 Free Units By State</h3>
-
-        <div class="rate-item">
-            <span>Tamil Nadu</span>
-            <span>100 Units</span>
-        </div>
-
-        <div class="rate-item">
-            <span>Karnataka</span>
-            <span>200 Units</span>
-        </div>
-
-        <div class="rate-item">
-            <span>Punjab</span>
-            <span>300 Units</span>
-        </div>
-
-        <div class="rate-item">
-            <span>Delhi</span>
-            <span>Subsidy</span>
-        </div>
-
-        <div class="rate-item">
-            <span>Kerala</span>
-            <span>0 Units</span>
-        </div>
-
-    </div>
-
-
-    <!-- Energy Saving Tips -->
-    <div class="rate-card">
-
-        <h3>💡 Energy Saving Tips</h3>
-
-        <div class="rate-item">
-            <span>💡 Use LED Bulbs</span>
-        </div>
-
-        <div class="rate-item">
-            <span>❄ Maintain AC at 24°C</span>
-        </div>
-
-        <div class="rate-item">
-            <span>🔌 Switch Off Unused Devices</span>
-        </div>
-
-        <div class="rate-item">
-            <span>⭐ Use 5-Star Appliances</span>
-        </div>
-
-        <div class="rate-item">
-            <span>☀ Use Natural Lighting</span>
-        </div>
-
-    </div>
+<div class="rate-item">
+<span>Gujarat</span>
+<span>₹7.60</span>
+</div>
 
 </div>
-        
+
+
+<!-- Last Month Average -->
+<div class="rate-card">
+
+<h3>📊 Last Month Average Rates</h3>
+
+<div class="rate-item">
+<span>Tamil Nadu</span>
+<span>₹7.40</span>
+</div>
+
+<div class="rate-item">
+<span>Karnataka</span>
+<span>₹8.10</span>
+</div>
+
+<div class="rate-item">
+<span>Kerala</span>
+<span>₹7.70</span>
+</div>
+
+<div class="rate-item">
+<span>Telangana</span>
+<span>₹7.90</span>
+</div>
+
+<div class="rate-item">
+<span>Maharashtra</span>
+<span>₹8.90</span>
+</div>
+
+<div class="rate-item">
+<span>Delhi</span>
+<span>₹8.20</span>
+</div>
+
+<p class="rate-note">
+Average residential tariff reference.
+</p>
+
+</div>
+
+
+<!-- Free Units -->
+<div class="rate-card">
+
+<h3>🎁 Free Units by State</h3>
+
+<div class="rate-item">
+<span>Tamil Nadu</span>
+<span>100 Units</span>
+</div>
+
+<div class="rate-item">
+<span>Karnataka</span>
+<span>200 Units</span>
+</div>
+
+<div class="rate-item">
+<span>Punjab</span>
+<span>300 Units</span>
+</div>
+
+<div class="rate-item">
+<span>Delhi</span>
+<span>Subsidy</span>
+</div>
+
+<div class="rate-item">
+<span>Telangana</span>
+<span>50 Units</span>
+</div>
+
+</div>
+
+
+<!-- Energy Saving Tips -->
+<div class="rate-card">
+
+<h3>💡 Energy Saving Tips</h3>
+
+<div class="rate-item">
+<span>💡 Use LED Bulbs</span>
+</div>
+
+<div class="rate-item">
+<span>❄️ Maintain AC at 24°C</span>
+</div>
+
+<div class="rate-item">
+<span>🔌 Switch Off Idle Devices</span>
+</div>
+
+<div class="rate-item">
+<span>⭐ Use 5-Star Appliances</span>
+</div>
+
+<div class="rate-item">
+<span>☀️ Prefer Natural Lighting</span>
+</div>
+
+</div>
+
+</div>
+
+<!-- END SIDEBAR -->
+
 </div>
 <!-- END calculator-layout -->
 
 </main>
 
+
+<!-- FOOTER -->
 <footer class="footer">
 
 <div class="footer-bottom">
@@ -418,7 +376,8 @@ Made with ❤️ for everyone.
 
 </footer>
 
-<!-- Electricity Calculator JS -->
+
+<!-- JAVASCRIPT -->
 <script src="../js/electricity-bill-calculator.js"></script>
 
 </body>
