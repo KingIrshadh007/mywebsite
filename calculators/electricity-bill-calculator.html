@@ -11,8 +11,66 @@ content="Calculate electricity bills for all Indian states with free units, fixe
 
 <link rel="stylesheet" href="../css/style.css">
 
-<!-- jsPDF CDN -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<style>
+
+.calculator-layout{
+display:flex;
+gap:30px;
+align-items:flex-start;
+justify-content:center;
+flex-wrap:wrap;
+}
+
+.tool-panel{
+max-width:850px;
+flex:1;
+}
+
+.sidebar-container{
+width:300px;
+display:flex;
+flex-direction:column;
+gap:25px;
+}
+
+.last-month-card,
+.rate-sidebar{
+background:var(--card);
+border:1px solid var(--border);
+border-radius:20px;
+padding:20px;
+box-shadow:var(--shadow);
+}
+
+.rate-row,
+.rate-item{
+display:flex;
+justify-content:space-between;
+padding:10px 0;
+border-bottom:1px solid rgba(255,255,255,.1);
+}
+
+.rate-note{
+font-size:13px;
+opacity:.7;
+margin-top:15px;
+}
+
+@media(max-width:1100px){
+
+.calculator-layout{
+flex-direction:column;
+}
+
+.sidebar-container{
+width:100%;
+}
+
+}
+
+</style>
 
 </head>
 <body>
@@ -29,71 +87,8 @@ content="Calculate electricity bills for all Indian states with free units, fixe
 
 <div class="calculator-layout">
 
+<!-- CALCULATOR -->
 <div class="tool-panel active">
-  <!-- Previous Month State Rates -->
-<div class="last-month-card">
-
-<h3>📊 Last Month Average Unit Rates</h3>
-
-<div class="rates-scroll">
-
-<div class="rate-row">
-<span>Tamil Nadu</span>
-<span>₹7.50/unit</span>
-</div>
-
-<div class="rate-row">
-<span>Karnataka</span>
-<span>₹8.20/unit</span>
-</div>
-
-<div class="rate-row">
-<span>Kerala</span>
-<span>₹7.80/unit</span>
-</div>
-
-<div class="rate-row">
-<span>Andhra Pradesh</span>
-<span>₹7.30/unit</span>
-</div>
-
-<div class="rate-row">
-<span>Telangana</span>
-<span>₹8.00/unit</span>
-</div>
-
-<div class="rate-row">
-<span>Maharashtra</span>
-<span>₹9.00/unit</span>
-</div>
-
-<div class="rate-row">
-<span>Delhi</span>
-<span>₹8.10/unit</span>
-</div>
-
-<div class="rate-row">
-<span>West Bengal</span>
-<span>₹7.60/unit</span>
-</div>
-
-<div class="rate-row">
-<span>Gujarat</span>
-<span>₹7.90/unit</span>
-</div>
-
-<div class="rate-row">
-<span>Punjab</span>
-<span>₹8.30/unit</span>
-</div>
-
-</div>
-
-<p class="rate-note">
-Average residential tariff reference.
-</p>
-
-</div>
 
 <h1>⚡ Electricity Bill Calculator India</h1>
 
@@ -105,37 +100,15 @@ Calculate electricity bills for all Indian states with free units support and PD
 
 <select id="state">
 <option>Tamil Nadu</option>
-<option>Andhra Pradesh</option>
-<option>Arunachal Pradesh</option>
-<option>Assam</option>
-<option>Bihar</option>
-<option>Chhattisgarh</option>
-<option>Goa</option>
-<option>Gujarat</option>
-<option>Haryana</option>
-<option>Himachal Pradesh</option>
-<option>Jharkhand</option>
 <option>Karnataka</option>
 <option>Kerala</option>
-<option>Madhya Pradesh</option>
-<option>Maharashtra</option>
-<option>Manipur</option>
-<option>Meghalaya</option>
-<option>Mizoram</option>
-<option>Nagaland</option>
-<option>Odisha</option>
-<option>Punjab</option>
-<option>Rajasthan</option>
-<option>Sikkim</option>
+<option>Andhra Pradesh</option>
 <option>Telangana</option>
-<option>Tripura</option>
-<option>Uttar Pradesh</option>
-<option>Uttarakhand</option>
-<option>West Bengal</option>
+<option>Maharashtra</option>
 <option>Delhi</option>
-<option>Jammu and Kashmir</option>
-<option>Ladakh</option>
-<option>Puducherry</option>
+<option>West Bengal</option>
+<option>Gujarat</option>
+<option>Punjab</option>
 </select>
 
 <label>Units Consumed (kWh)</label>
@@ -152,20 +125,17 @@ Calculate electricity bills for all Indian states with free units support and PD
 
 <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:20px;">
 
-<button
-class="action-btn"
+<button class="action-btn"
 onclick="calculateElectricityBill()">
 Calculate Bill
 </button>
 
-<button
-class="action-btn"
+<button class="action-btn"
 onclick="downloadBillPDF()">
 Download PDF
 </button>
 
-<button
-class="action-btn"
+<button class="action-btn"
 onclick="clearBill()">
 Clear
 </button>
@@ -199,21 +169,56 @@ Clear
 <h2>What is an Electricity Bill Calculator?</h2>
 
 <p>
-This tool helps users estimate electricity charges based on consumed units,
-free units provided by the government, unit rate and fixed charges. It works
-for all Indian states and supports PDF bill download.
+This tool helps estimate electricity charges based on units consumed, free units, current unit rate and fixed charges.
 </p>
 
 </div>
 
+
+<!-- RIGHT SIDE -->
+<div class="sidebar-container">
+
+<!-- LAST MONTH -->
+<div class="last-month-card">
+
+<h3>📊 Last Month Average Unit Rates</h3>
+
+<div class="rate-row">
+<span>Tamil Nadu</span>
+<span>₹7.50/unit</span>
 </div>
 
-<!-- RIGHT SIDE ELECTRICITY RATES -->
+<div class="rate-row">
+<span>Karnataka</span>
+<span>₹8.20/unit</span>
+</div>
+
+<div class="rate-row">
+<span>Kerala</span>
+<span>₹7.80/unit</span>
+</div>
+
+<div class="rate-row">
+<span>Andhra Pradesh</span>
+<span>₹7.30/unit</span>
+</div>
+
+<div class="rate-row">
+<span>Telangana</span>
+<span>₹8.00/unit</span>
+</div>
+
+<p class="rate-note">
+Average residential tariff reference.
+</p>
+
+</div>
+
+
+<!-- LATEST -->
 <div class="rate-sidebar">
 
 <h3>⚡ Latest Unit Rates</h3>
-
-<div class="rate-list">
 
 <div class="rate-item">
 <span>Tamil Nadu</span>
@@ -260,8 +265,6 @@ for all Indian states and supports PDF bill download.
 </div>
 
 </div>
-
-</main>
 
 </main>
 
