@@ -217,9 +217,3 @@ function downloadBillPDF() {
     );
 
 }
-window.onload = function(){
-
-updateStateDefaults();
-
-};
-
