@@ -19,20 +19,20 @@ content="Calculate electricity bills for all Indian states with free units, fixe
 .calculator-layout{
 max-width:1500px;
 margin:auto;
+padding:40px 20px;
 display:flex;
-gap:35px;
+gap:30px;
 align-items:flex-start;
 justify-content:center;
-padding:40px 20px;
 }
 
 .tool-panel{
 width:100%;
-max-width:780px;
+max-width:820px;
 padding:40px;
 border-radius:30px;
 background:rgba(255,255,255,.08);
-backdrop-filter:blur(18px);
+backdrop-filter:blur(20px);
 box-shadow:0 10px 40px rgba(0,0,0,.25);
 }
 
@@ -44,11 +44,11 @@ gap:25px;
 }
 
 .rate-card{
-padding:25px;
-border-radius:25px;
 background:rgba(255,255,255,.08);
 backdrop-filter:blur(15px);
-box-shadow:0 8px 25px rgba(0,0,0,.25);
+padding:25px;
+border-radius:25px;
+box-shadow:0 8px 30px rgba(0,0,0,.25);
 transition:.3s;
 }
 
@@ -60,14 +60,29 @@ transform:translateY(-6px);
 display:flex;
 justify-content:space-between;
 padding:12px 0;
-border-bottom:1px solid rgba(255,255,255,.08);
+border-bottom:1px solid rgba(255,255,255,.1);
 }
 
-.rate-note{
-font-size:14px;
-opacity:.8;
-text-align:center;
-margin-top:15px;
+.action-btn{
+padding:14px 22px;
+border:none;
+border-radius:15px;
+font-weight:700;
+cursor:pointer;
+background:linear-gradient(135deg,#3b82f6,#06b6d4);
+color:#fff;
+transition:.3s;
+}
+
+.action-btn:hover{
+transform:translateY(-4px);
+}
+
+.result-box{
+margin-top:30px;
+padding:25px;
+border-radius:20px;
+background:rgba(255,255,255,.05);
 }
 
 @media(max-width:1100px){
@@ -79,7 +94,7 @@ align-items:center;
 
 .sidebar-container{
 width:100%;
-max-width:780px;
+max-width:820px;
 }
 
 }
@@ -106,13 +121,16 @@ max-width:780px;
 
 <div class="calculator-layout">
 
-<!-- LEFT SIDE -->
+<!-- MAIN CALCULATOR -->
+
 <div class="tool-panel active">
 
 <h1>⚡ Electricity Bill Calculator India</h1>
 
 <div class="description">
+
 Calculate electricity bills for all Indian states with free units support and PDF download.
+
 </div>
 
 <label>Select State</label>
@@ -133,16 +151,29 @@ Calculate electricity bills for all Indian states with free units support and PD
 </select>
 
 <label>Units Consumed (kWh)</label>
-<input type="number" id="units" placeholder="Example: 350">
+
+<input type="number"
+id="units"
+placeholder="Example: 350">
 
 <label>Free Units</label>
-<input type="number" id="freeUnits" value="0">
+
+<input type="number"
+id="freeUnits"
+value="0">
 
 <label>Current Rate Per Unit (₹)</label>
-<input type="number" id="rate" step="0.01" placeholder="Example: 7.50">
+
+<input type="number"
+id="rate"
+step="0.01"
+placeholder="Example: 7.50">
 
 <label>Fixed Charge (₹)</label>
-<input type="number" id="fixedCharge" value="0">
+
+<input type="number"
+id="fixedCharge"
+value="0">
 
 <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:25px;">
 
@@ -190,8 +221,9 @@ Clear
 <h2>What is an Electricity Bill Calculator?</h2>
 
 <p>
-This tool helps users estimate electricity charges based on consumed units, free units provided by the government, unit rate and fixed charges.
-It supports all Indian states and PDF bill download.
+
+This tool estimates electricity charges based on consumed units, free units, unit rate and fixed charges.
+
 </p>
 
 </div>
@@ -268,6 +300,11 @@ It supports all Indian states and PDF bill download.
 </div>
 
 <div class="rate-item">
+<span>Andhra Pradesh</span>
+<span>₹7.20</span>
+</div>
+
+<div class="rate-item">
 <span>Telangana</span>
 <span>₹7.90</span>
 </div>
@@ -277,13 +314,8 @@ It supports all Indian states and PDF bill download.
 <span>₹8.90</span>
 </div>
 
-<div class="rate-item">
-<span>Delhi</span>
-<span>₹8.20</span>
-</div>
-
-<p class="rate-note">
-Average residential tariff reference.
+<p style="margin-top:15px;font-size:14px;opacity:.8;text-align:center;">
+Average residential tariff reference
 </p>
 
 </div>
@@ -332,11 +364,11 @@ Average residential tariff reference.
 </div>
 
 <div class="rate-item">
-<span>❄️ Maintain AC at 24°C</span>
+<span>❄ Keep AC at 24°C</span>
 </div>
 
 <div class="rate-item">
-<span>🔌 Switch Off Idle Devices</span>
+<span>🔌 Turn Off Idle Devices</span>
 </div>
 
 <div class="rate-item">
@@ -344,23 +376,106 @@ Average residential tariff reference.
 </div>
 
 <div class="rate-item">
-<span>☀️ Prefer Natural Lighting</span>
+<span>☀ Use Natural Light</span>
 </div>
 
 </div>
-
-</div>
-
-<!-- END SIDEBAR -->
 
 </div>
 <!-- END calculator-layout -->
+</div>
 
 </main>
 
 
 <!-- FOOTER -->
 <footer class="footer">
+
+<div class="footer-container">
+
+<div class="footer-column">
+
+<h3>
+⚡ Free Tools Hub
+</h3>
+
+<p>
+
+Your one-stop destination for free online calculators,
+SEO tools, converters and generators.
+
+</p>
+
+</div>
+
+
+<div class="footer-column">
+
+<h3>Quick Links</h3>
+
+<ul>
+
+<li>
+<a href="../index.html">Home</a>
+</li>
+
+<li>
+<a href="../about.html">About Us</a>
+</li>
+
+<li>
+<a href="../contact.html">Contact</a>
+</li>
+
+<li>
+<a href="../privacy-policy.html">Privacy Policy</a>
+</li>
+
+<li>
+<a href="../terms.html">Terms & Conditions</a>
+</li>
+
+</ul>
+
+</div>
+
+
+<div class="footer-column">
+
+<h3>Popular Tools</h3>
+
+<ul>
+
+<li>
+<a href="../calculators/age-calculator.html">
+Age Calculator
+</a>
+</li>
+
+<li>
+<a href="../calculators/bmi-calculator.html">
+BMI Calculator
+</a>
+</li>
+
+<li>
+<a href="../generators/password-generator.html">
+Password Generator
+</a>
+</li>
+
+<li>
+<a href="../developer-tools/json-formatter.html">
+JSON Formatter
+</a>
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
 
 <div class="footer-bottom">
 
@@ -377,7 +492,7 @@ Made with ❤️ for everyone.
 </footer>
 
 
-<!-- JAVASCRIPT -->
+<!-- ELECTRICITY BILL CALCULATOR JS -->
 <script src="../js/electricity-bill-calculator.js"></script>
 
 </body>
