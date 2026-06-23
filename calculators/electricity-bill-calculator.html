@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Electricity Bill Calculator India - Free Tools Hub</title>
 
 <meta name="description"
-content="Calculate electricity bills for all Indian states with free units, fixed charges and PDF download.">
+content="Calculate electricity bills for all Indian states with free units support and PDF download.">
 
 <link rel="stylesheet" href="../css/style.css">
 
@@ -16,45 +18,62 @@ content="Calculate electricity bills for all Indian states with free units, fixe
 <style>
 
 .calculator-layout{
+max-width:1500px;
+margin:auto;
 display:flex;
 gap:30px;
 align-items:flex-start;
 justify-content:center;
-flex-wrap:wrap;
+padding:40px 20px;
 }
 
 .tool-panel{
-max-width:850px;
-flex:1;
+max-width:750px;
+width:100%;
+padding:40px;
+border-radius:30px;
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(20px);
+box-shadow:0 10px 40px rgba(0,0,0,.3);
 }
 
 .sidebar-container{
-width:300px;
+width:320px;
 display:flex;
 flex-direction:column;
 gap:25px;
 }
 
 .last-month-card,
-.rate-sidebar{
-background:var(--card);
-border:1px solid var(--border);
-border-radius:20px;
-padding:20px;
-box-shadow:var(--shadow);
+.rate-sidebar,
+.free-unit-card{
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(15px);
+padding:25px;
+border-radius:25px;
+box-shadow:0 8px 30px rgba(0,0,0,.3);
+transition:.3s;
+}
+
+.last-month-card:hover,
+.rate-sidebar:hover,
+.free-unit-card:hover{
+transform:translateY(-6px);
 }
 
 .rate-row,
-.rate-item{
+.rate-item,
+.free-item{
 display:flex;
 justify-content:space-between;
-padding:10px 0;
+padding:12px 0;
 border-bottom:1px solid rgba(255,255,255,.1);
 }
 
 .rate-note{
-font-size:13px;
-opacity:.7;
+text-align:center;
+font-size:14px;
+opacity:.8;
 margin-top:15px;
 }
 
@@ -62,10 +81,12 @@ margin-top:15px;
 
 .calculator-layout{
 flex-direction:column;
+align-items:center;
 }
 
 .sidebar-container{
 width:100%;
+max-width:700px;
 }
 
 }
@@ -73,21 +94,25 @@ width:100%;
 </style>
 
 </head>
+
 <body>
 
 <header>
-<div class="logo">⚡ Free Tools Hub</div>
+
+<div class="logo">
+⚡ Free Tools Hub
+</div>
 
 <nav>
 <a href="../index.html">🏠 Home</a>
 </nav>
+
 </header>
 
 <main class="content">
 
 <div class="calculator-layout">
 
-<!-- CALCULATOR -->
 <div class="tool-panel active">
 
 <h1>⚡ Electricity Bill Calculator India</h1>
@@ -99,6 +124,7 @@ Calculate electricity bills for all Indian states with free units support and PD
 <label>Select State</label>
 
 <select id="state">
+
 <option>Tamil Nadu</option>
 <option>Karnataka</option>
 <option>Kerala</option>
@@ -107,8 +133,9 @@ Calculate electricity bills for all Indian states with free units support and PD
 <option>Maharashtra</option>
 <option>Delhi</option>
 <option>West Bengal</option>
-<option>Gujarat</option>
 <option>Punjab</option>
+<option>Gujarat</option>
+
 </select>
 
 <label>Units Consumed (kWh)</label>
@@ -118,12 +145,12 @@ Calculate electricity bills for all Indian states with free units support and PD
 <input type="number" id="freeUnits" value="0">
 
 <label>Current Rate Per Unit (₹)</label>
-<input type="number" id="rate" step="0.01" placeholder="Example: 7.50">
+<input type="number" id="rate" step="0.01">
 
 <label>Fixed Charge (₹)</label>
 <input type="number" id="fixedCharge" value="0">
 
-<div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:20px;">
+<div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:25px">
 
 <button class="action-btn"
 onclick="calculateElectricityBill()">
@@ -169,19 +196,17 @@ Clear
 <h2>What is an Electricity Bill Calculator?</h2>
 
 <p>
-This tool helps estimate electricity charges based on units consumed, free units, current unit rate and fixed charges.
+This tool helps estimate electricity charges based on consumed units, free units, unit rates and fixed charges.
 </p>
 
 </div>
 
 
-<!-- RIGHT SIDE -->
 <div class="sidebar-container">
 
-<!-- LAST MONTH -->
 <div class="last-month-card">
 
-<h3>📊 Last Month Average Unit Rates</h3>
+<h3>📊 Last Month Average Rates</h3>
 
 <div class="rate-row">
 <span>Tamil Nadu</span>
@@ -209,13 +234,12 @@ This tool helps estimate electricity charges based on units consumed, free units
 </div>
 
 <p class="rate-note">
-Average residential tariff reference.
+Average residential tariff reference
 </p>
 
 </div>
 
 
-<!-- LATEST -->
 <div class="rate-sidebar">
 
 <h3>⚡ Latest Unit Rates</h3>
@@ -236,11 +260,6 @@ Average residential tariff reference.
 </div>
 
 <div class="rate-item">
-<span>Telangana</span>
-<span>₹8.00</span>
-</div>
-
-<div class="rate-item">
 <span>Maharashtra</span>
 <span>₹9.10</span>
 </div>
@@ -250,25 +269,198 @@ Average residential tariff reference.
 <span>₹8.50</span>
 </div>
 
-<div class="rate-item">
-<span>West Bengal</span>
-<span>₹7.80</span>
 </div>
 
-<div class="rate-item">
-<span>Gujarat</span>
-<span>₹7.60</span>
+
+<div class="free-unit-card">
+
+<h3>🎁 Free Units By State</h3>
+
+<div class="free-item">
+<span>Tamil Nadu</span>
+<span>100 Units</span>
+</div>
+
+<div class="free-item">
+<span>Karnataka</span>
+<span>200 Units</span>
+</div>
+
+<div class="free-item">
+<span>Punjab</span>
+<span>300 Units</span>
+</div>
+
+<div class="free-item">
+<span>Delhi</span>
+<span>Subsidy</span>
 </div>
 
 </div>
+```html
+        <h2>What is an Electricity Bill Calculator?</h2>
 
-</div>
+        <p>
+            This tool helps users estimate electricity charges based on consumed units,
+            free units provided by the government, unit rate and fixed charges.
+            It works for all Indian states and supports PDF bill download.
+        </p>
+
+    </div>
+
+
+    <!-- RIGHT SIDEBAR -->
+    <div class="sidebar-container">
+
+        <!-- Latest Rates -->
+        <div class="rate-card">
+            <h3>⚡ Latest Unit Rates</h3>
+
+            <div class="rate-list">
+
+                <div class="rate-item">
+                    <span>Tamil Nadu</span>
+                    <span>₹7.50</span>
+                </div>
+
+                <div class="rate-item">
+                    <span>Karnataka</span>
+                    <span>₹8.20</span>
+                </div>
+
+                <div class="rate-item">
+                    <span>Kerala</span>
+                    <span>₹7.90</span>
+                </div>
+
+                <div class="rate-item">
+                    <span>Telangana</span>
+                    <span>₹8.00</span>
+                </div>
+
+                <div class="rate-item">
+                    <span>Maharashtra</span>
+                    <span>₹9.10</span>
+                </div>
+
+                <div class="rate-item">
+                    <span>Delhi</span>
+                    <span>₹8.50</span>
+                </div>
+
+                <div class="rate-item">
+                    <span>West Bengal</span>
+                    <span>₹7.80</span>
+                </div>
+
+                <div class="rate-item">
+                    <span>Gujarat</span>
+                    <span>₹7.60</span>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- Last Month Rates -->
+        <div class="rate-card">
+
+            <h3>📊 Last Month Average</h3>
+
+            <div class="rate-list">
+
+                <div class="rate-item">
+                    <span>Tamil Nadu</span>
+                    <span>₹7.40</span>
+                </div>
+
+                <div class="rate-item">
+                    <span>Karnataka</span>
+                    <span>₹8.10</span>
+                </div>
+
+                <div class="rate-item">
+                    <span>Kerala</span>
+                    <span>₹7.70</span>
+                </div>
+
+                <div class="rate-item">
+                    <span>Telangana</span>
+                    <span>₹7.90</span>
+                </div>
+
+                <div class="rate-item">
+                    <span>Maharashtra</span>
+                    <span>₹8.90</span>
+                </div>
+
+                <div class="rate-item">
+                    <span>Delhi</span>
+                    <span>₹8.30</span>
+                </div>
+
+            </div>
+
+            <p class="rate-note">
+                Average residential tariff reference.
+            </p>
+
+        </div>
+
+
+        <!-- Quick Tips -->
+        <div class="rate-card">
+
+            <h3>💡 Energy Saving Tips</h3>
+
+            <div class="tip-box">
+                ✔ Use LED bulbs
+            </div>
+
+            <div class="tip-box">
+                ✔ Switch off unused appliances
+            </div>
+
+            <div class="tip-box">
+                ✔ Use 5-Star rated devices
+            </div>
+
+            <div class="tip-box">
+                ✔ Reduce AC temperature settings
+            </div>
+
+            <div class="tip-box">
+                ✔ Save electricity and lower bills
+            </div>
+
+        </div>
+
+    </div>
 
 </div>
 
 </main>
 
+
+<footer class="footer">
+
+<div class="footer-bottom">
+
+<p>
+© 2026 Free Tools Hub. All Rights Reserved.
+</p>
+
+<p>
+Made with ❤️ for everyone.
+</p>
+
+</div>
+
+</footer>
+
+
 <script src="../js/electricity-bill-calculator.js"></script>
 
 </body>
 </html>
+
