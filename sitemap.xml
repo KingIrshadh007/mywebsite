@@ -1,207 +1,104 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-<!-- Home -->
-
+<!-- Homepage -->
 <url>
-<loc>https://free-tools-hub-online.netlify.app/</loc>
+    <loc>https://free-tools-hub-online.netlify.app/</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
 </url>
 
 <!-- Main Pages -->
-
 <url>
-<loc>https://free-tools-hub-online.netlify.app/about.html</loc>
+    <loc>https://free-tools-hub-online.netlify.app/about.html</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
 </url>
 
 <url>
-<loc>https://free-tools-hub-online.netlify.app/contact.html</loc>
+    <loc>https://free-tools-hub-online.netlify.app/contact.html</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
 </url>
 
 <url>
-<loc>https://free-tools-hub-online.netlify.app/privacy-policy.html</loc>
+    <loc>https://free-tools-hub-online.netlify.app/privacy-policy.html</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
 </url>
 
 <url>
-<loc>https://free-tools-hub-online.netlify.app/terms.html</loc>
+    <loc>https://free-tools-hub-online.netlify.app/terms.html</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
 </url>
 
 <url>
-<loc>https://free-tools-hub-online.netlify.app/disclaimer.html</loc>
+    <loc>https://free-tools-hub-online.netlify.app/disclaimer.html</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
 </url>
 
 <!-- Calculators -->
 
-<url>
-<loc>https://free-tools-hub-online.netlify.app/calculators/electricity-bill-calculator.html</loc>
-</url>
-
-<url>
-<loc>https://free-tools-hub-online.netlify.app/calculators/age-calculator.html</loc>
-</url>
-
-<url>
-<loc>https://free-tools-hub-online.netlify.app/calculators/bmi-calculator.html</loc>
-</url>
-
-<url>
-<loc>https://free-tools-hub-online.netlify.app/calculators/emi-calculator.html</loc>
-</url>
-
-<url>
-<loc>https://free-tools-hub-online.netlify.app/calculators/gst-calculator.html</loc>
-</url>
-
-<url>
-<loc>https://free-tools-hub-online.netlify.app/calculators/sip-calculator.html</loc>
-</url>
-
-<url>
-<loc>https://free-tools-hub-online.netlify.app/calculators/fd-calculator.html</loc>
-</url>
-
-<url>
-<loc>https://free-tools-hub-online.netlify.app/calculators/rd-calculator.html</loc>
-</url>
-
-<url>
-<loc>https://free-tools-hub-online.netlify.app/calculators/ppf-calculator.html</loc>
-</url>
-
-<url>
-<loc>https://free-tools-hub-online.netlify.app/calculators/income-tax-calculator.html</loc>
-</url>
-
-<url>
-<loc>https://free-tools-hub-online.netlify.app/calculators/gratuity-calculator.html</loc>
-</url>
-
-<url>
-<loc>https://free-tools-hub-online.netlify.app/calculators/percentage-calculator.html</loc>
-</url>
-
-<url>
-<loc>https://free-tools-hub-online.netlify.app/calculators/date-calculator.html</loc>
-</url>
-
-<url>
-<loc>https://free-tools-hub-online.netlify.app/calculators/hra-calculator.html</loc>
-</url>
-
-<url>
-<loc>https://free-tools-hub-online.netlify.app/calculators/epf-calculator.html</loc>
-</url>
-
-<url>
-<loc>https://free-tools-hub-online.netlify.app/calculators/scientific-calculator.html</loc>
-</url>
+<url><loc>https://free-tools-hub-online.netlify.app/calculators/electricity-bill-calculator.html</loc><lastmod>2026-06-09</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+<url><loc>https://free-tools-hub-online.netlify.app/calculators/age-calculator.html</loc><lastmod>2026-06-09</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+<url><loc>https://free-tools-hub-online.netlify.app/calculators/bmi-calculator.html</loc><lastmod>2026-06-09</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+<url><loc>https://free-tools-hub-online.netlify.app/calculators/emi-calculator.html</loc><lastmod>2026-06-09</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+<url><loc>https://free-tools-hub-online.netlify.app/calculators/gst-calculator.html</loc><lastmod>2026-06-09</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+<url><loc>https://free-tools-hub-online.netlify.app/calculators/sip-calculator.html</loc><lastmod>2026-06-09</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+<url><loc>https://free-tools-hub-online.netlify.app/calculators/fd-calculator.html</loc><lastmod>2026-06-09</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+<url><loc>https://free-tools-hub-online.netlify.app/calculators/rd-calculator.html</loc><lastmod>2026-06-09</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+<url><loc>https://free-tools-hub-online.netlify.app/calculators/ppf-calculator.html</loc><lastmod>2026-06-09</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+<url><loc>https://free-tools-hub-online.netlify.app/calculators/income-tax-calculator.html</loc><lastmod>2026-06-09</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+<url><loc>https://free-tools-hub-online.netlify.app/calculators/gratuity-calculator.html</loc><lastmod>2026-06-09</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+<url><loc>https://free-tools-hub-online.netlify.app/calculators/percentage-calculator.html</loc><lastmod>2026-06-09</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+<url><loc>https://free-tools-hub-online.netlify.app/calculators/date-calculator.html</loc><lastmod>2026-06-09</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+<url><loc>https://free-tools-hub-online.netlify.app/calculators/hra-calculator.html</loc><lastmod>2026-06-09</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+<url><loc>https://free-tools-hub-online.netlify.app/calculators/epf-calculator.html</loc><lastmod>2026-06-09</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+<url><loc>https://free-tools-hub-online.netlify.app/calculators/scientific-calculator.html</loc><lastmod>2026-06-09</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
 
 <!-- SEO Tools -->
 
-<url>
-<loc>https://free-tools-hub-online.netlify.app/seo-tools/meta-tag-generator.html</loc>
-</url>
-
-<url>
-<loc>https://free-tools-hub-online.netlify.app/seo-tools/sitemap-generator.html</loc>
-</url>
-
-<url>
-<loc>https://free-tools-hub-online.netlify.app/seo-tools/robots-generator.html</loc>
-</url>
-
-<url>
-<loc>https://free-tools-hub-online.netlify.app/seo-tools/open-graph-generator.html</loc>
-</url>
-
-<url>
-<loc>https://free-tools-hub-online.netlify.app/seo-tools/keyword-density-checker.html</loc>
-</url>
-
-<url>
-<loc>https://free-tools-hub-online.netlify.app/seo-tools/word-counter.html</loc>
-</url>
-
-<url>
-<loc>https://free-tools-hub-online.netlify.app/seo-tools/character-counter.html</loc>
-</url>
+<url><loc>https://free-tools-hub-online.netlify.app/seo-tools/meta-tag-generator.html</loc><lastmod>2026-06-09</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+<url><loc>https://free-tools-hub-online.netlify.app/seo-tools/sitemap-generator.html</loc><lastmod>2026-06-09</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+<url><loc>https://free-tools-hub-online.netlify.app/seo-tools/robots-generator.html</loc><lastmod>2026-06-09</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+<url><loc>https://free-tools-hub-online.netlify.app/seo-tools/open-graph-generator.html</loc><lastmod>2026-06-09</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+<url><loc>https://free-tools-hub-online.netlify.app/seo-tools/keyword-density-checker.html</loc><lastmod>2026-06-09</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+<url><loc>https://free-tools-hub-online.netlify.app/seo-tools/word-counter.html</loc><lastmod>2026-06-09</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+<url><loc>https://free-tools-hub-online.netlify.app/seo-tools/character-counter.html</loc><lastmod>2026-06-09</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 
 <!-- Developer Tools -->
 
-<url>
-<loc>https://free-tools-hub-online.netlify.app/developer-tools/json-formatter.html</loc>
-</url>
-
-<url>
-<loc>https://free-tools-hub-online.netlify.app/developer-tools/html-minifier.html</loc>
-</url>
-
-<url>
-<loc>https://free-tools-hub-online.netlify.app/developer-tools/css-minifier.html</loc>
-</url>
-
-<url>
-<loc>https://free-tools-hub-online.netlify.app/developer-tools/javascript-minifier.html</loc>
-</url>
-
-<url>
-<loc>https://free-tools-hub-online.netlify.app/developer-tools/base64-encoder-decoder.html</loc>
-</url>
-
-<url>
-<loc>https://free-tools-hub-online.netlify.app/developer-tools/url-encoder-decoder.html</loc>
-</url>
+<url><loc>https://free-tools-hub-online.netlify.app/developer-tools/json-formatter.html</loc><lastmod>2026-06-09</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+<url><loc>https://free-tools-hub-online.netlify.app/developer-tools/html-minifier.html</loc><lastmod>2026-06-09</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+<url><loc>https://free-tools-hub-online.netlify.app/developer-tools/css-minifier.html</loc><lastmod>2026-06-09</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+<url><loc>https://free-tools-hub-online.netlify.app/developer-tools/javascript-minifier.html</loc><lastmod>2026-06-09</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+<url><loc>https://free-tools-hub-online.netlify.app/developer-tools/base64-encoder-decoder.html</loc><lastmod>2026-06-09</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+<url><loc>https://free-tools-hub-online.netlify.app/developer-tools/url-encoder-decoder.html</loc><lastmod>2026-06-09</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 
 <!-- Converters -->
 
-<url>
-<loc>https://free-tools-hub-online.netlify.app/converters/unit-converter.html</loc>
-</url>
-
-<url>
-<loc>https://free-tools-hub-online.netlify.app/converters/currency-converter.html</loc>
-</url>
-
-<url>
-<loc>https://free-tools-hub-online.netlify.app/converters/temperature-converter.html</loc>
-</url>
-
-<url>
-<loc>https://free-tools-hub-online.netlify.app/converters/color-converter.html</loc>
-</url>
+<url><loc>https://free-tools-hub-online.netlify.app/converters/unit-converter.html</loc><lastmod>2026-06-09</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+<url><loc>https://free-tools-hub-online.netlify.app/converters/currency-converter.html</loc><lastmod>2026-06-09</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+<url><loc>https://free-tools-hub-online.netlify.app/converters/temperature-converter.html</loc><lastmod>2026-06-09</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+<url><loc>https://free-tools-hub-online.netlify.app/converters/color-converter.html</loc><lastmod>2026-06-09</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 
 <!-- Generators -->
 
-<url>
-<loc>https://free-tools-hub-online.netlify.app/generators/qr-code-generator.html</loc>
-</url>
-
-<url>
-<loc>https://free-tools-hub-online.netlify.app/generators/password-generator.html</loc>
-</url>
-
-<url>
-<loc>https://free-tools-hub-online.netlify.app/generators/uuid-generator.html</loc>
-</url>
-
-<url>
-<loc>https://free-tools-hub-online.netlify.app/generators/random-number-generator.html</loc>
-</url>
-
-<url>
-<loc>https://free-tools-hub-online.netlify.app/generators/text-case-converter.html</loc>
-</url>
-
-<url>
-<loc>https://free-tools-hub-online.netlify.app/generators/lorem-ipsum-generator.html</loc>
-</url>
-
-<url>
-<loc>https://free-tools-hub-online.netlify.app/generators/barcode-generator.html</loc>
-</url>
-
-<url>
-<loc>https://free-tools-hub-online.netlify.app/generators/fake-data-generator.html</loc>
-</url>
+<url><loc>https://free-tools-hub-online.netlify.app/generators/qr-code-generator.html</loc><lastmod>2026-06-09</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+<url><loc>https://free-tools-hub-online.netlify.app/generators/password-generator.html</loc><lastmod>2026-06-09</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+<url><loc>https://free-tools-hub-online.netlify.app/generators/uuid-generator.html</loc><lastmod>2026-06-09</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+<url><loc>https://free-tools-hub-online.netlify.app/generators/random-number-generator.html</loc><lastmod>2026-06-09</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+<url><loc>https://free-tools-hub-online.netlify.app/generators/text-case-converter.html</loc><lastmod>2026-06-09</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+<url><loc>https://free-tools-hub-online.netlify.app/generators/lorem-ipsum-generator.html</loc><lastmod>2026-06-09</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+<url><loc>https://free-tools-hub-online.netlify.app/generators/barcode-generator.html</loc><lastmod>2026-06-09</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+<url><loc>https://free-tools-hub-online.netlify.app/generators/fake-data-generator.html</loc><lastmod>2026-06-09</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 
 </urlset>
